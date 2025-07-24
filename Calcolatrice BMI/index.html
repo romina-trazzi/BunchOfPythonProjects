@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Calcolatrice BMI</title>
+</head>
+<body>
+    <h1>Calcola il tuo BMI</h1>
+    <form method="post">
+        <label>Peso (kg): <input type="number" name="peso" step="0.1" required min="0"></label><br><br>
+        <label>Altezza (cm): <input type="number" name="altezza" step="1" required min="0"></label><br><br>
+        <button type="submit">Calcola</button>
+    </form>
+
+    {% if bmi %}
+        <h2>Il tuo BMI è: {{ bmi|round(2) }}</h2>
+        <p>Categoria: {{ categoria }}</p>
+    {% endif %}
+</body>
+</html>
