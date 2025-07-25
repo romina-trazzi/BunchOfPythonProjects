@@ -3,26 +3,27 @@ import os
 from app.services.gestore_utenti import GestoreUtenti
 from app.services.logger_accessi import LoggerAccessi
 
-# Blueprint per tutte le rotte legate all'autenticazione
 login_bp = Blueprint("login", __name__)
 
-# Percorsi ai file nella cartella instance/
+# Percorsi assoluti ai file in instance/
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-utenti_path = os.path.join(BASE_DIR, "instance", "utenti.json")
-log_path = os.path.join(BASE_DIR, "instance", "access_log.txt")
+INSTANCE_PATH = os.path.join(BASE_DIR, "instance")
 
-# Inizializzazione gestori utenti e log
+# Garantisci che la cartella instance esista
+os.makedirs(INSTANCE_PATH, exist_ok=True)
+
+utenti_path = os.path.join(INSTANCE_PATH, "utenti.json")
+log_path = os.path.join(INSTANCE_PATH, "access_log.txt")
+
 utenti = GestoreUtenti(utenti_path)
 logger = LoggerAccessi(log_path)
 
-# Rotta per la homepage: reindirizza all'inserimento se loggati
 @login_bp.route("/")
 def home():
     if "username" in session:
         return redirect(url_for("studenti.inserisci"))
     return redirect(url_for("login.login"))
 
-# Login utente
 @login_bp.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -42,7 +43,6 @@ def login():
             flash("Password errata.")
     return render_template("login.html")
 
-# Registrazione utente
 @login_bp.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -62,7 +62,6 @@ def register():
             flash("Utente già esistente.")
     return render_template("register.html")
 
-# Logout utente
 @login_bp.route("/logout")
 def logout():
     session.pop("username", None)

@@ -9,10 +9,10 @@ studenti_bp = Blueprint("studenti", __name__)
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
 db_path = os.path.join(BASE_DIR, "instance", "studenti.db")
 
-# Inizializza il database
+# Inizializza il gestore del database
 db_studenti = DatabaseStudenti(db_path)
 
-# Inserimento di un nuovo studente
+# Route: Inserisci nuovo studente
 @studenti_bp.route("/inserisci", methods=["GET", "POST"])
 def inserisci():
     if "username" not in session:
@@ -29,9 +29,10 @@ def inserisci():
             return redirect(url_for("studenti.elenco"))
         else:
             flash("Il voto deve essere compreso tra 0 e 10.")
+
     return render_template("inserisci.html")
 
-# Elenco di tutti gli studenti
+# Route: Elenco degli studenti
 @studenti_bp.route("/elenco")
 def elenco():
     if "username" not in session:
@@ -40,7 +41,7 @@ def elenco():
     studenti = db_studenti.get_studenti()
     return render_template("elenco.html", studenti=studenti)
 
-# Modifica di uno studente esistente
+# Route: Modifica studente
 @studenti_bp.route("/modifica/<int:studente_id>", methods=["GET", "POST"])
 def modifica(studente_id):
     if "username" not in session:
@@ -63,7 +64,7 @@ def modifica(studente_id):
 
     return render_template("modifica.html", studente=studente)
 
-# Eliminazione di uno studente
+# Route: Elimina studente
 @studenti_bp.route("/elimina/<int:studente_id>")
 def elimina(studente_id):
     if "username" not in session:

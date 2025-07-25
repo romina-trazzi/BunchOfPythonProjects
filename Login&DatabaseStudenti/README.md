@@ -45,7 +45,7 @@ LoginApp/
 
 ```bash
 git clone https://github.com/tuo-username/LoginApp.git
-cd LoginApp
+cd "Login&DatabaseStudenti" # Come stringa, perché & è un carattere riservato
 python -m venv venv
 source venv/bin/activate       # Windows: .\venv\Scripts\activate
 pip install flask
@@ -61,11 +61,12 @@ Poi visita http://127.0.0.1:5000 nel browser.
 
 ## 📦 Dipendenze principali
 
-Funzionalità	Libreria
-Web framework	flask
-Sicurezza password	werkzeug.security
-Log e data handling	datetime, os, json
-Database	sqlite3
+| Funzionalità            | Libreria              |
+|-------------------------|------------------------|
+| Web framework           | `flask`                |
+| Sicurezza password      | `werkzeug.security`    |
+| Log e data handling     | `datetime`, `os`, `json` |
+| Database                | `sqlite3`              |
 
 
 ## 📌 Note
