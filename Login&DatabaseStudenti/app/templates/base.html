@@ -18,7 +18,7 @@
       {% endwith %}
 
       {% if session.username %}
-          <p>Benvenuto, {{ session.username }} | <a href="{{ url_for('login.logout') }}">Logout</a></p>
+          <p>Benvenuto, {{ session.username }} | </p>
       {% endif %}
 
       {% block content %}{% endblock %}

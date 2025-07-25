@@ -2,12 +2,20 @@
 {% block title %}Modifica Studente{% endblock %}
 
 {% block content %}
-<h2>Modifica studente</h2>
-<form method="POST">
-    <label>Nome:</label><input type="text" name="nome" value="{{ studente[1] }}" required><br>
-    <label>Cognome:</label><input type="text" name="cognome" value="{{ studente[2] }}" required><br>
-    <label>Voto:</label><input type="number" name="voto" step="0.1" min="0" max="10" value="{{ studente[3] }}" required><br>
+<h2>Modifica Studente</h2>
+
+<form method="post">
+    <label for="nome">Nome:</label>
+    <input type="text" name="nome" value="{{ studente.nome }}" required><br>
+
+    <label for="cognome">Cognome:</label>
+    <input type="text" name="cognome" value="{{ studente.cognome }}" required><br>
+
+    <label for="voto">Voto:</label>
+    <input type="number" step="0.1" min="0" max="10" name="voto" value="{{ studente.voto }}" required><br>
+
     <button type="submit">Salva modifiche</button>
 </form>
-<p><a href="{{ url_for('elenco') }}">🔙 Torna all'elenco</a></p>
+
+<p><a href="{{ url_for('studenti.elenco') }}">Torna all'elenco</a></p>
 {% endblock %}

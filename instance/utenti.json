@@ -1,0 +1,8 @@
+{
+    "Romina": {
+        "password": "scrypt:32768:8:1$0pwo6cYH8P58jvFx$57b9fc99b84429890e4580f6537c5fbb8f919a77cd51d8c1a8c720b76494b5bf89c6fbf38f6118483e4073815f4f3c17791eb44e96a8eb717abcc5ef9d53a0e9",
+        "tentativi": 0,
+        "bloccato": false,
+        "sblocco": null
+    }
+}
