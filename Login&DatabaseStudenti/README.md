@@ -20,17 +20,17 @@ Applicazione web in Python (Flask) con autenticazione sicura, logging e gestione
 ## 📁 Struttura del progetto
 
 LoginApp/
-├── run.py # Punto di avvio dell'app Flask
-├── instance/ # File persistenti (non tracciati da Git)
-│ ├── studenti.db # Database SQLite degli studenti
-│ ├── utenti.json # Utenti registrati
-│ └── access_log.txt # Log degli accessi
+├── run.py 
+├── instance/ 
+│ ├── studenti.db 
+│ ├── utenti.json 
+│ └── access_log.txt 
 ├── app/
-│ ├── init.py # Factory Flask + registrazione blueprint
-│ ├── models/ # db_studenti.py, gestore_utenti.py, logger_accessi.py
-│ ├── routes/ # login_routes.py, studenti_routes.py
-│ ├── templates/ # Template HTML Jinja2
-│ └── static/ # (Opzionale) CSS/JS personalizzati
+│ ├── init.py 
+│ ├── models/ 
+│ ├── routes/ 
+│ ├── templates/ 
+│ └── static/
 └── README.md
 
 
@@ -96,5 +96,4 @@ Full Stack Developer · Appassionata di storia, scacchi, letteratura e cucina
 Stack: HTML, CSS, JS, React, Java, PHP, C#, SQL, Python
 
 ### 🪪 Licenza
-
-MIT – Libero utilizzo e modifica con attribuzione
+Libero utilizzo e modifica con attribuzione
