@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>K-Means Visualizer</title>
+</head>
+<body>
+    <h1>Visualizzazione K-Means</h1>
+    <form method="POST">
+        <label for="k">Numero di cluster (K):</label>
+        <input type="number" name="k" min="1" max="10" value="{{ k }}">
+        <input type="submit" value="Rigenera GIF">
+    </form>
+    <h2>Animazione</h2>
+    <img src="/{{ gif_url }}" alt="K-Means GIF">
+    
+</body>
+</html>
