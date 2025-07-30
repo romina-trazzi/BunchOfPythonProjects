@@ -4,5 +4,11 @@
         "tentativi": 0,
         "bloccato": false,
         "sblocco": null
+    },
+    "Vale": {
+        "password": "scrypt:32768:8:1$84wz4QS7m9BR8GYW$86d032096371a0ac64fcae486f1d20e9b2bf4d77623410c61edfcdecdff147d1fdc1ee92435f89194ad3e47b469dbe22b713796c956f21111990c48baec2944a",
+        "tentativi": 0,
+        "bloccato": false,
+        "sblocco": null
     }
 }

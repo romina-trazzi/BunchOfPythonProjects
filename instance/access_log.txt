@@ -1,6 +1,0 @@
-== Registro accessi ==
-2025-07-25 03:02:12 - Romina - utente_non_trovato
-2025-07-25 03:02:20 - Romina - utente_non_trovato
-2025-07-25 03:02:29 - Romina - utente_non_trovato
-2025-07-25 03:04:09 - Romina - registrazione
-2025-07-25 03:04:18 - Romina - successo
