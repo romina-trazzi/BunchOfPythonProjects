@@ -1,0 +1,25 @@
+/* 1. Base foundational styles */
+@import url('base/reset.css');
+@import url('base/variables.css');
+@import url('base/typography.css');
+
+/* 2. Themes */
+@import url('themes/light.css');
+@import url('themes/dark.css');
+
+/* 3. Layout */
+@import url('layout/layout.css');
+@import url('layout/grid.css');
+
+/* 4. Components */
+@import url('components/navbar.css');
+@import url('components/buttons.css');
+@import url('components/forms.css');
+@import url('components/cards.css');
+@import url('components/chat.css');
+@import url('components/theme-toggle.css');
+
+/* 5. Utilities (last to override) */
+@import url('utilities/animations.css');
+@import url('utilities/helpers.css');
+@import url('utilities/responsive.css');

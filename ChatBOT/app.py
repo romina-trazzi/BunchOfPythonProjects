@@ -1,17 +1,12 @@
-import os
-from flask import Flask, render_template
-from api.api_routes import api_blueprint
+from flask import Flask
 from dotenv import load_dotenv
+from api.api_routes import api_blueprint
 
 load_dotenv()
 
 app = Flask(__name__)
 app.register_blueprint(api_blueprint)
 
-@app.route("/")
-def index():
-    return render_template("index.html")
-
 if __name__ == "__main__":
-    os.makedirs("output/charts", exist_ok=True)
+    print("✅ App Flask avviata: http://localhost:5000")
     app.run(debug=True)
