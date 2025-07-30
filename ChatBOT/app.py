@@ -1,6 +1,6 @@
 from flask import Flask
 from dotenv import load_dotenv
-from api.api_routes import api_blueprint
+from api.routes import api_blueprint
 
 load_dotenv()
 

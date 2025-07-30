@@ -2,6 +2,10 @@
 
 {% block title %}Chatbot{% endblock %}
 
+{% block head_extra %}
+<script src="{{ url_for('static', filename='js/chat.js') }}" defer></script>
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid chat-container">
     <h2 class="text-center mb-3">💬 Chatbot Finanziario</h2>
@@ -19,8 +23,4 @@
         <p class="mt-2">Sto elaborando la tua richiesta...</p>
     </div>
 </div>
-{% endblock %}
-
-{% block head_extra %}
-<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
 {% endblock %}
