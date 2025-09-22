@@ -1,0 +1,238 @@
+/* ==========================================================================
+   🎨 CV → JSON UI — Foglio di stile unico (rem-first)
+   ========================================================================== */
+
+/* === 0) RESET & VARIABILI ================================================= */
+
+* { box-sizing: border-box; }
+
+:root{
+  /* Palette */
+  --bg:            #f6f8fb;
+  --card:          #ffffff;
+  --text:          #0f172a;
+  --muted:         #6b7280;
+  --primary:       #0b76f5;
+  --primary-weak:  rgba(11,118,245,0.1);
+  --primary-weak2: rgba(11,118,245,0.18);
+  --danger:        #ef4444;
+
+  /* Decorazioni */
+  --shadow: 0 0.5rem 1.5rem rgba(15, 23, 42, 0.06);
+  --radius: 0.75rem; /* 12px */
+}
+
+html, body, #root { height: 100%; }
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === 1) LAYOUT BASE ======================================================= */
+
+.page{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;              /* 16px */
+  padding: 1.75rem;       /* 28px */
+}
+
+.container{
+  width: 100%;
+  max-width: 61.25rem;    /* 980px */
+  margin-inline: auto;
+}
+
+/* === 2) TIPOGRAFIA ======================================================== */
+
+.muted{ color: var(--muted); }
+.hint{ color: var(--muted); font-size: 0.9rem; margin-left: 0.5rem; }
+h1,h2,h3,h4{ margin: 0; }
+code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+
+/* === 3) CARD / SEZIONI ==================================================== */
+
+.card{
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(15, 23, 42, 0.06); /* 1px */
+  padding: 1.375rem;      /* 22px */
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;          /* 14px */
+}
+
+.card-header.container{ padding: 0; }
+.card-header h1{ font-size: 1.375rem; }   /* 22px */
+.card-header .muted{ font-size: 0.8125rem; } /* 13px */
+
+/* === 4) DROPZONE ========================================================== */
+
+.file-input-hidden{ display: none; }
+
+.dropzone{
+  border: 2px dashed rgba(15,23,42,0.06); /* 2px */
+  border-radius: 0.625rem;  /* 10px */
+  padding: 1.25rem;         /* 20px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 7.5rem;       /* 120px */
+  cursor: pointer;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3));
+}
+.dropzone:hover{ transform: translateY(-0.1875rem); } /* 3px */
+.dropzone.has-file{ border-style: solid; border-color: rgba(11,118,245,0.12); }
+
+.dropzone-empty{
+  display: flex; flex-direction: column; align-items: center; gap: 0.375rem; /* 6px */
+  text-align: center;
+}
+.icon{ width: 2.625rem; height: 2.625rem; opacity: .7; stroke: currentColor; fill: none; } /* 42px */
+.drop-title{ font-weight: 600; }
+.drop-sub{ font-size: 0.8125rem; color: var(--muted); } /* 13px */
+
+/* === 5) FILE PREVIEW ====================================================== */
+
+.file-preview{ display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.file-meta{ display: flex; flex-direction: column; }
+.file-meta strong{ font-size: 0.875rem; } /* 14px */
+
+/* === 6) CONTROLS ========================================================== */
+
+.controls{ display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; } /* 12px */
+
+/* Modes */
+.modes{ display: flex; gap: 0.5rem; align-items: center; } /* 8px */
+.chip{
+  display: inline-flex; align-items: center; gap: 0.5rem; /* 8px */
+  border-radius: 999rem;
+  padding: 0.375rem 0.75rem; /* 6px 12px */
+  border: 1px solid rgba(15,23,42,0.06); /* 1px */
+  cursor: pointer; font-size: 0.8125rem; user-select: none; /* 13px */
+}
+.chip input{ display: none; }
+.chip.active{ background: var(--primary-weak); border-color: var(--primary-weak2); color: var(--primary); }
+
+/* Buttons */
+.actions{ display: flex; gap: 0.5rem; } /* 8px */
+.btn{
+  background: var(--primary); color: #fff;
+  padding: 0.5rem 0.875rem;  /* 8px 14px */
+  border-radius: 0.625rem;   /* 10px */
+  border: none;
+  cursor: pointer; font-weight: 600;
+}
+.btn:hover{ filter: brightness(0.98); }
+.btn:disabled{ opacity: .6; cursor: not-allowed; }
+
+.btn.ghost{
+  background: transparent; color: var(--primary);
+  border: 1px solid rgba(11,118,245,0.12); /* 1px */
+}
+.btn.small{ padding: 0.375rem 0.625rem; font-size: 0.8125rem; border-radius: 0.5rem; }
+
+/* === 7) ALERT ============================================================= */
+
+.alert{ padding: 0.625rem; border-radius: 0.5rem; }
+.alert.error{ background: rgba(239,68,68,0.08); color: var(--danger); }
+
+/* === 8) RISULTATO ========================================================= */
+
+.result{
+  margin-top: 0.375rem;     /* 6px */
+  background: #fbfdff;
+  border-radius: 0.625rem;  /* 10px */
+  padding: 0.875rem;        /* 14px */
+  border: 1px solid rgba(15,23,42,0.03); /* 1px */
+}
+
+.result-header{
+  display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; /* 12px */
+}
+
+.result-title h2{ font-size: 1.1rem; }
+
+/* JSON viewer */
+.json{
+  background: #0b1220; color: #e6eefc;
+  padding: 0.75rem;         /* 12px */
+  border-radius: 0.5rem;    /* 8px */
+  overflow: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.75rem;       /* 12px */
+  max-height: 40vh;
+  margin-top: 0.75rem;      /* 12px */
+}
+
+/* Progress (sotto al JSON) */
+.progress-wrap{ margin-top: 0.875rem; } /* 14px */
+.progress-meta{
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.75rem; color: #374151; margin-bottom: 0.375rem; /* 12px,6px */
+}
+.progress-value{ font-weight: 700; }
+
+/* Usando <progress>: stili base cross-browser */
+progress.progress{
+  width: 100%;
+  height: 0.625rem;           /* 10px */
+  border: none;
+  border-radius: 0.5rem;      /* 8px */
+  background: #e6eefc;
+  overflow: hidden;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* WebKit */
+progress.progress::-webkit-progress-bar{
+  background: #e6eefc;
+  border-radius: 0.5rem;
+}
+progress.progress::-webkit-progress-value{
+  background: #94a3b8; /* fallback neutro */
+  border-radius: 0.5rem;
+}
+
+/* Firefox */
+progress.progress::-moz-progress-bar{
+  background: #94a3b8;
+  border-radius: 0.5rem;
+}
+
+/* Varianti colore in base alla classe */
+progress.progress.ok::-webkit-progress-value{ background: #16a34a; }
+progress.progress.warn::-webkit-progress-value{ background: #f59e0b; }
+progress.progress.bad::-webkit-progress-value{ background: #ef4444; }
+
+progress.progress.ok::-moz-progress-bar{ background: #16a34a; }
+progress.progress.warn::-moz-progress-bar{ background: #f59e0b; }
+progress.progress.bad::-moz-progress-bar{ background: #ef4444; }
+
+/* === 9) FOOTER ============================================================ */
+
+.card-footer{
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.8125rem;     /* 13px */
+  padding: 0.5rem 1.375rem 0 1.375rem; /* 8px + orizzontale come .card */
+  border-top: 1px solid rgba(15,23,42,0.06); /* 1px */
+  background: transparent;
+}
+
+/* === 10) RESPONSIVE ======================================================= */
+
+@media (max-width: 720px){ 
+  .container{ max-width: 100%; }
+  .card{ padding: 1rem; }               /* 16px */
+  .controls{ flex-direction: column; align-items: stretch; }
+  .result-header{ flex-direction: column; align-items: flex-start; gap: 0.5rem; } /* 8px */
+}
