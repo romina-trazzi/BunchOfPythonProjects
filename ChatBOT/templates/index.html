@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Benvenuto{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content fade-in-up">
+                        <h1 class="hero-title">
+                            Intelligenza Artificiale per i Tuoi Investimenti
+                        </h1>
+                        <p class="hero-subtitle">
+                            Analizza i mercati finanziari con precisione, ottieni insights personalizzati e prendi decisioni informate con la potenza dell'AI.
+                        </p>
+                        <a href="/chatbot" class="btn btn-primary">💬 Chatbot</a>
+                        <a href="/ticker" class="btn btn-success">📈 Grafici</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <div style="font-size: 12rem; opacity: 0.1; color: var(--primary-color);">
+                            📊
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Hero Section -->
+
+    <!-- Features Section -->
+    <section class="container my-5">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">AI Chatbot Finanziario</h3>
+                    <p class="feature-description">
+                        Conversazioni intelligenti su investimenti, analisi di mercato e strategie finanziarie personalizzate basate sui tuoi obiettivi.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-card fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-area"></i>
+                    </div>
+                    <h3 class="feature-title">Analisi Tecnica Avanzata</h3>
+                    <p class="feature-description">
+                        Grafici interattivi, indicatori tecnici e pattern recognition per analizzare trend e opportunità di investimento.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-card fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Sicurezza Professionale</h3>
+                    <p class="feature-description">
+                        Protezione avanzata dei dati, crittografia end-to-end e conformità alle normative finanziarie internazionali.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Features Section -->
+
+    <!-- Stats Section -->
+    <section class="container">
+        <div class="stats-section fade-in-up">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <span class="stat-number">95%</span>
+                        <div class="stat-label">Precisione Analisi</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <div class="stat-label">Asset Monitorati</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <div class="stat-label">Monitoraggio</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <span class="stat-number">< 1s</span>
+                        <div class="stat-label">Tempo Risposta</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Stats Section -->
+{% endblock %}

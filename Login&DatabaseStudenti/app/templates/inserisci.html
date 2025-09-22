@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Inserisci Studente{% endblock %}
+
+{% block content %}
+<h2>Inserisci nuovo studente</h2>
+<form method="POST">
+    <label>Nome:</label><input type="text" name="nome" required><br>
+    <label>Cognome:</label><input type="text" name="cognome" required><br>
+    <label>Voto:</label><input type="number" name="voto" step="0.1" min="0" max="10" required><br>
+    <button type="submit">Salva</button>
+</form>
+<p><a href="{{ url_for('studenti.elenco') }}">Visualizza Elenco</a></p>
+{% endblock %}

@@ -1,0 +1,242 @@
+/**
+ * Light Theme 
+ * Override delle variabili CSS per il tema chiaro
+ * Utilizza le variabili definite in variables.css come base
+ */
+
+:root {
+    /* ===== COLORI DI BACKGROUND ===== */
+    
+    /* Background principali */
+    --bg-primary: var(--gray-50);           /* Background principale app */
+    --bg-secondary: var(--gray-100);        /* Background sezioni secondarie */
+    --bg-tertiary: var(--gray-200);         /* Background elementi terzi */
+    --bg-surface: #ffffff;                  /* Background cards/modali */
+    --bg-elevated: #ffffff;                 /* Background elementi elevati */
+    
+    /* Background interattivi */
+    --bg-hover: var(--gray-100);            /* Hover generico */
+    --bg-active: var(--gray-200);           /* Stato attivo */
+    --bg-selected: var(--primary-50);       /* Elemento selezionato */
+    --bg-disabled: var(--gray-100);         /* Elementi disabilitati */
+    
+    /* Background overlay */
+    --bg-overlay: rgba(0, 0, 0, 0.5);       /* Backdrop modali */
+    --bg-glass: rgba(255, 255, 255, 0.8);   /* Effetto vetro */
+
+    /* ===== COLORI DI TESTO ===== */
+    
+    /* Testo principale */
+    --text-primary: var(--gray-900);        /* Testo principale scuro */
+    --text-secondary: var(--gray-700);      /* Testo secondario */
+    --text-tertiary: var(--gray-500);       /* Testo ausiliario */
+    --text-quaternary: var(--gray-400);     /* Testo molto leggero */
+    
+    /* Testo su sfondi colorati */
+    --text-on-primary: #ffffff;             /* Testo su primary */
+    --text-on-secondary: #ffffff;           /* Testo su secondary */
+    --text-on-accent: var(--gray-900);      /* Testo su accent */
+    --text-on-danger: #ffffff;              /* Testo su danger */
+    
+    /* Testo interattivo */
+    --text-link: var(--primary-600);        /* Link */
+    --text-link-hover: var(--primary-700);  /* Link hover */
+    --text-disabled: var(--gray-400);       /* Testo disabilitato */
+    --text-placeholder: var(--gray-400);    /* Placeholder input */
+
+    /* ===== COLORI DI BORDO ===== */
+    
+    /* Bordi base */
+    --border-light: var(--gray-200);        /* Bordo leggero */
+    --border-medium: var(--gray-300);       /* Bordo medio */
+    --border-strong: var(--gray-400);       /* Bordo forte */
+    --border-primary: var(--primary-500);   /* Bordo primary */
+    
+    /* Bordi interattivi */
+    --border-hover: var(--gray-400);        /* Bordo hover */
+    --border-focus: var(--primary-500);     /* Bordo focus */
+    --border-active: var(--primary-600);    /* Bordo attivo */
+    --border-disabled: var(--gray-200);     /* Bordo disabilitato */
+    
+    /* Bordi semantici */
+    --border-success: var(--secondary-400); /* Bordo successo */
+    --border-warning: var(--warning-400);   /* Bordo warning */
+    --border-danger: var(--danger-400);     /* Bordo errore */
+    --border-info: var(--info-400);         /* Bordo info */
+
+    /* ===== OMBRE PERSONALIZZATE ===== */
+    
+    /* Ombre base (più leggere per tema light) */
+    --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 
+                   0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    --shadow-card-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                         0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    --shadow-modal: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    --shadow-dropdown: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+                       0 4px 6px -4px rgba(0, 0, 0, 0.05);
+    
+    /* Ombre colorate */
+    --shadow-primary: 0 4px 14px 0 rgba(59, 130, 246, 0.15);
+    --shadow-secondary: 0 4px 14px 0 rgba(34, 197, 94, 0.15);
+    --shadow-danger: 0 4px 14px 0 rgba(239, 68, 68, 0.15);
+
+    /* ===== ICONE E INDICATORI ===== */
+    
+    /* Colori icone */
+    --icon-primary: var(--gray-600);        /* Icone principali */
+    --icon-secondary: var(--gray-500);      /* Icone secondarie */
+    --icon-tertiary: var(--gray-400);       /* Icone ausiliarie */
+    --icon-accent: var(--primary-600);      /* Icone accent */
+    --icon-on-primary: #ffffff;             /* Icone su primary */
+    --icon-disabled: var(--gray-300);       /* Icone disabilitate */
+
+    /* ===== STATI FINANZIARI ===== */
+    
+    /* Indicatori di performance */
+    --profit-bg: var(--secondary-50);       /* Background profitto */
+    --profit-text: var(--secondary-700);    /* Testo profitto */
+    --profit-border: var(--secondary-200);  /* Bordo profitto */
+    
+    --loss-bg: var(--danger-50);            /* Background perdita */
+    --loss-text: var(--danger-700);         /* Testo perdita */
+    --loss-border: var(--danger-200);       /* Bordo perdita */
+    
+    --neutral-bg: var(--gray-50);           /* Background neutro */
+    --neutral-text: var(--gray-700);        /* Testo neutro */
+    --neutral-border: var(--gray-200);      /* Bordo neutro */
+
+    /* ===== COMPONENTI SPECIFICI ===== */
+    
+    /* Navigation */
+    --nav-bg: #ffffff;                      /* Background navbar */
+    --nav-border: var(--gray-200);          /* Bordo navbar */
+    --nav-item-hover: var(--gray-100);      /* Hover nav item */
+    --nav-item-active: var(--primary-50);   /* Nav item attivo */
+    
+    /* Sidebar */
+    --sidebar-bg: #ffffff;                  /* Background sidebar */
+    --sidebar-border: var(--gray-200);      /* Bordo sidebar */
+    --sidebar-item-hover: var(--gray-50);   /* Hover sidebar item */
+    
+    /* Cards */
+    --card-bg: #ffffff;                     /* Background card */
+    --card-header-bg: var(--gray-50);       /* Header card */
+    --card-border: var(--gray-200);         /* Bordo card */
+    
+    /* Forms */
+    --input-bg: #ffffff;                    /* Background input */
+    --input-border: var(--gray-300);        /* Bordo input */
+    --input-focus-border: var(--primary-500); /* Bordo input focus */
+    --input-focus-ring: rgba(59, 130, 246, 0.1); /* Ring focus */
+    
+    /* Tables */
+    --table-header-bg: var(--gray-50);      /* Header tabella */
+    --table-row-hover: var(--gray-50);      /* Riga hover */
+    --table-border: var(--gray-200);        /* Bordi tabella */
+    
+    /* Charts */
+    --chart-grid: var(--gray-200);          /* Griglia grafici */
+    --chart-axis: var(--gray-400);          /* Assi grafici */
+    --chart-label: var(--gray-600);         /* Label grafici */
+
+    /* ===== GRADIENTI TEMA LIGHT ===== */
+    
+    /* Gradienti background */
+    --gradient-page: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+    --gradient-card: linear-gradient(145deg, #ffffff 0%, var(--gray-50) 100%);
+    --gradient-hero: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 50%, var(--primary-700) 100%);
+    
+    /* Gradienti overlay */
+    --gradient-overlay-light: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 100%);
+    --gradient-mask-light: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+
+    /* ===== SCROLLBAR PERSONALIZZATA ===== */
+    
+    --scrollbar-track: var(--gray-100);     /* Track scrollbar */
+    --scrollbar-thumb: var(--gray-300);     /* Thumb scrollbar */
+    --scrollbar-thumb-hover: var(--gray-400); /* Thumb hover */
+
+    /* ===== ACCESSIBILITÀ ===== */
+    
+    /* Focus visibile per accessibilità */
+    --focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    --focus-ring-offset: 2px;
+    
+    /* Contrasti minimi garantiti */
+    --contrast-aa: 4.5;  /* Riferimento WCAG AA */
+    --contrast-aaa: 7;   /* Riferimento WCAG AAA */
+}
+
+/* ===== APPLICAZIONE AUTOMATICA TEMA LIGHT ===== */
+
+/* Applicato quando nessun tema è specificato o tema light attivo */
+:root:not([data-theme]),
+:root[data-theme="light"] {
+    color-scheme: light;
+    
+    /* Override delle variabili semantiche se necessario */
+    --current-bg: var(--bg-primary);
+    --current-text: var(--text-primary);
+    --current-border: var(--border-light);
+}
+
+/* ===== SCROLLBAR STYLING (WEBKIT) ===== */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+/* ===== SELECTION COLORS ===== */
+
+::selection {
+    background-color: var(--primary-100);
+    color: var(--primary-900);
+}
+
+::-moz-selection {
+    background-color: var(--primary-100);
+    color: var(--primary-900);
+}
+
+/* ===== MEDIA QUERIES PER PREFERENZE SISTEMA ===== */
+
+/* Rispetta la preferenza del sistema operativo */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) {
+        /* Il tema light è già applicato di default */
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+    :root {
+        /* Forza colori ottimali per stampa */
+        --bg-primary: #ffffff;
+        --bg-surface: #ffffff;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --border-light: #cccccc;
+        
+        /* Rimuovi ombre per stampa */
+        --shadow-card: none;
+        --shadow-modal: none;
+        --shadow-dropdown: none;
+    }
+}

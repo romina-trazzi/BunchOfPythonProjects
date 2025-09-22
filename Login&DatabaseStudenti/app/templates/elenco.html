@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Elenco Studenti{% endblock %}
+{% block content %}
+<h2>📋 Elenco studenti</h2>
+
+{% if studenti %}
+<table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Voto</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for nome, cognome, voto, id in studenti %}
+    <tr>
+        <td>{{ nome }}</td>
+        <td>{{ cognome }}</td>
+        <td>{{ voto }}</td>
+        <td>
+            <a href="{{ url_for('studenti.modifica', studente_id=id) }}">✏️ Modifica</a> |
+            <a href="{{ url_for('studenti.elimina', studente_id=id) }}" onclick="return confirm('Eliminare questo studente?')">🗑️ Elimina</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>📭 Nessuno studente inserito.</p>
+{% endif %}
+
+<p><a href="{{ url_for('studenti.inserisci') }}">🔙 Inserisci un altro studente</a></p>
+   {% if session.username %}
+        <p>🔐 Autenticato come {{ session.username }} | <a href="{{ url_for('login.logout') }}">Esci</a></p>
+    {% endif %}
+{% endblock %}

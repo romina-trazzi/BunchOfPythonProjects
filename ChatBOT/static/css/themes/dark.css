@@ -1,0 +1,321 @@
+/**
+ * Dark Theme 
+ * Override delle variabili CSS per il tema scuro
+ * Ottimizzato per ridurre l'affaticamento oculare e migliorare l'esperienza notturna
+ */
+
+:root[data-theme="dark"] {
+    /* ===== COLORI DI BACKGROUND ===== */
+    
+    /* Background principali - toni scuri ma non troppo per evitare affaticamento */
+    --bg-primary: var(--gray-900);           /* Background principale app */
+    --bg-secondary: var(--gray-800);         /* Background sezioni secondarie */
+    --bg-tertiary: var(--gray-700);          /* Background elementi terzi */
+    --bg-surface: var(--gray-850);           /* Background cards/modali - custom value */
+    --bg-elevated: var(--gray-800);          /* Background elementi elevati */
+    
+    /* Background interattivi */
+    --bg-hover: var(--gray-800);             /* Hover generico */
+    --bg-active: var(--gray-700);            /* Stato attivo */
+    --bg-selected: var(--primary-900);       /* Elemento selezionato */
+    --bg-disabled: var(--gray-800);          /* Elementi disabilitati */
+    
+    /* Background overlay */
+    --bg-overlay: rgba(0, 0, 0, 0.8);        /* Backdrop modali più scuro */
+    --bg-glass: rgba(15, 23, 42, 0.8);       /* Effetto vetro scuro */
+
+    /* Definizione custom per gray-850 */
+    --gray-850: #1a202c;
+
+    /* ===== COLORI DI TESTO ===== */
+    
+    /* Testo principale - toni chiari ma non troppo per evitare abbaglio */
+    --text-primary: var(--gray-100);         /* Testo principale chiaro */
+    --text-secondary: var(--gray-300);       /* Testo secondario */
+    --text-tertiary: var(--gray-400);        /* Testo ausiliario */
+    --text-quaternary: var(--gray-500);      /* Testo molto leggero */
+    
+    /* Testo su sfondi colorati - invariato per buon contrasto */
+    --text-on-primary: #ffffff;              /* Testo su primary */
+    --text-on-secondary: #ffffff;            /* Testo su secondary */
+    --text-on-accent: var(--gray-900);       /* Testo su accent */
+    --text-on-danger: #ffffff;               /* Testo su danger */
+    
+    /* Testo interattivo - colori più brillanti per visibilità */
+    --text-link: var(--primary-400);         /* Link più chiaro */
+    --text-link-hover: var(--primary-300);   /* Link hover più chiaro */
+    --text-disabled: var(--gray-600);        /* Testo disabilitato */
+    --text-placeholder: var(--gray-500);     /* Placeholder input */
+
+    /* ===== COLORI DI BORDO ===== */
+    
+    /* Bordi base - più scuri ma visibili */
+    --border-light: var(--gray-700);         /* Bordo leggero */
+    --border-medium: var(--gray-600);        /* Bordo medio */
+    --border-strong: var(--gray-500);        /* Bordo forte */
+    --border-primary: var(--primary-500);    /* Bordo primary invariato */
+    
+    /* Bordi interattivi */
+    --border-hover: var(--gray-500);         /* Bordo hover */
+    --border-focus: var(--primary-400);      /* Bordo focus più chiaro */
+    --border-active: var(--primary-400);     /* Bordo attivo più chiaro */
+    --border-disabled: var(--gray-700);      /* Bordo disabilitato */
+    
+    /* Bordi semantici - colori più brillanti per visibilità */
+    --border-success: var(--secondary-500);  /* Bordo successo */
+    --border-warning: var(--warning-400);    /* Bordo warning */
+    --border-danger: var(--danger-500);      /* Bordo errore */
+    --border-info: var(--info-400);          /* Bordo info */
+
+    /* ===== OMBRE PERSONALIZZATE ===== */
+    
+    /* Ombre più pronunciate per creare profondità nel tema scuro */
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 
+                   0 2px 4px -2px rgba(0, 0, 0, 0.2);
+    --shadow-card-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 
+                         0 4px 6px -4px rgba(0, 0, 0, 0.3);
+    --shadow-modal: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    --shadow-dropdown: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 
+                       0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    
+    /* Ombre colorate - più intense per visibilità */
+    --shadow-primary: 0 4px 14px 0 rgba(59, 130, 246, 0.25);
+    --shadow-secondary: 0 4px 14px 0 rgba(34, 197, 94, 0.25);
+    --shadow-danger: 0 4px 14px 0 rgba(239, 68, 68, 0.25);
+
+    /* ===== ICONE E INDICATORI ===== */
+    
+    /* Colori icone - più chiari per visibilità */
+    --icon-primary: var(--gray-300);         /* Icone principali */
+    --icon-secondary: var(--gray-400);       /* Icone secondarie */
+    --icon-tertiary: var(--gray-500);        /* Icone ausiliarie */
+    --icon-accent: var(--primary-400);       /* Icone accent */
+    --icon-on-primary: #ffffff;              /* Icone su primary */
+    --icon-disabled: var(--gray-600);        /* Icone disabilitate */
+
+    /* ===== STATI FINANZIARI ===== */
+    
+    /* Indicatori di performance - colori più saturi per contrasto */
+    --profit-bg: var(--secondary-900);       /* Background profitto scuro */
+    --profit-text: var(--secondary-300);     /* Testo profitto chiaro */
+    --profit-border: var(--secondary-700);   /* Bordo profitto */
+    
+    --loss-bg: var(--danger-900);            /* Background perdita scuro */
+    --loss-text: var(--danger-300);          /* Testo perdita chiaro */
+    --loss-border: var(--danger-700);        /* Bordo perdita */
+    
+    --neutral-bg: var(--gray-800);           /* Background neutro */
+    --neutral-text: var(--gray-300);         /* Testo neutro */
+    --neutral-border: var(--gray-600);       /* Bordo neutro */
+
+    /* ===== COMPONENTI SPECIFICI ===== */
+    
+    /* Navigation */
+    --nav-bg: var(--gray-900);               /* Background navbar */
+    --nav-border: var(--gray-700);           /* Bordo navbar */
+    --nav-item-hover: var(--gray-800);       /* Hover nav item */
+    --nav-item-active: var(--primary-900);   /* Nav item attivo */
+    
+    /* Sidebar */
+    --sidebar-bg: var(--gray-850);           /* Background sidebar */
+    --sidebar-border: var(--gray-700);       /* Bordo sidebar */
+    --sidebar-item-hover: var(--gray-800);   /* Hover sidebar item */
+    
+    /* Cards */
+    --card-bg: var(--gray-850);              /* Background card */
+    --card-header-bg: var(--gray-800);       /* Header card */
+    --card-border: var(--gray-700);          /* Bordo card */
+    
+    /* Forms */
+    --input-bg: var(--gray-800);             /* Background input */
+    --input-border: var(--gray-600);         /* Bordo input */
+    --input-focus-border: var(--primary-400); /* Bordo input focus */
+    --input-focus-ring: rgba(59, 130, 246, 0.2); /* Ring focus più visibile */
+    
+    /* Tables */
+    --table-header-bg: var(--gray-800);      /* Header tabella */
+    --table-row-hover: var(--gray-800);      /* Riga hover */
+    --table-border: var(--gray-700);         /* Bordi tabella */
+    
+    /* Charts */
+    --chart-grid: var(--gray-700);           /* Griglia grafici */
+    --chart-axis: var(--gray-500);           /* Assi grafici */
+    --chart-label: var(--gray-400);          /* Label grafici */
+
+    /* ===== GRADIENTI TEMA DARK ===== */
+    
+    /* Gradienti background - toni scuri sofisticati */
+    --gradient-page: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-850) 100%);
+    --gradient-card: linear-gradient(145deg, var(--gray-850) 0%, var(--gray-800) 100%);
+    --gradient-hero: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 50%, var(--primary-800) 100%);
+    
+    /* Gradienti overlay */
+    --gradient-overlay-dark: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.9) 100%);
+    --gradient-mask-dark: linear-gradient(90deg, rgba(15, 23, 42, 1) 0%, rgba(15, 23, 42, 0) 100%);
+
+    /* ===== SCROLLBAR PERSONALIZZATA ===== */
+    
+    --scrollbar-track: var(--gray-800);      /* Track scrollbar */
+    --scrollbar-thumb: var(--gray-600);      /* Thumb scrollbar */
+    --scrollbar-thumb-hover: var(--gray-500); /* Thumb hover */
+
+    /* ===== ACCESSIBILITÀ ===== */
+    
+    /* Focus più visibile nel tema scuro */
+    --focus-ring: 0 0 0 3px rgba(96, 165, 250, 0.3);
+    --focus-ring-offset: 2px;
+    
+    /* Contrasti adattati per tema scuro */
+    --contrast-aa: 4.5;
+    --contrast-aaa: 7;
+
+    /* ===== VARIABILI SEMANTICHE CORRENTI ===== */
+    
+    --current-bg: var(--bg-primary);
+    --current-text: var(--text-primary);
+    --current-border: var(--border-light);
+    
+    /* Imposta il color-scheme per il browser */
+    color-scheme: dark;
+}
+
+/* ===== SCROLLBAR STYLING DARK (WEBKIT) ===== */
+
+[data-theme="dark"] ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+/* ===== SELECTION COLORS DARK ===== */
+
+[data-theme="dark"] ::selection {
+    background-color: var(--primary-800);
+    color: var(--primary-100);
+}
+
+[data-theme="dark"] ::-moz-selection {
+    background-color: var(--primary-800);
+    color: var(--primary-100);
+}
+
+/* ===== MEDIA QUERIES PER PREFERENZE SISTEMA ===== */
+
+/* Applica automaticamente tema scuro se preferito dal sistema */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        /* Replica tutte le variabili del tema dark */
+        --bg-primary: var(--gray-900);
+        --bg-secondary: var(--gray-800);
+        --bg-tertiary: var(--gray-700);
+        --bg-surface: #1a202c;
+        --bg-elevated: var(--gray-800);
+        
+        --bg-hover: var(--gray-800);
+        --bg-active: var(--gray-700);
+        --bg-selected: var(--primary-900);
+        --bg-disabled: var(--gray-800);
+        
+        --bg-overlay: rgba(0, 0, 0, 0.8);
+        --bg-glass: rgba(15, 23, 42, 0.8);
+        
+        --text-primary: var(--gray-100);
+        --text-secondary: var(--gray-300);
+        --text-tertiary: var(--gray-400);
+        --text-quaternary: var(--gray-500);
+        
+        --text-link: var(--primary-400);
+        --text-link-hover: var(--primary-300);
+        --text-disabled: var(--gray-600);
+        --text-placeholder: var(--gray-500);
+        
+        --border-light: var(--gray-700);
+        --border-medium: var(--gray-600);
+        --border-strong: var(--gray-500);
+        --border-focus: var(--primary-400);
+        
+        --icon-primary: var(--gray-300);
+        --icon-secondary: var(--gray-400);
+        --icon-tertiary: var(--gray-500);
+        --icon-accent: var(--primary-400);
+        
+        --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 
+                       0 2px 4px -2px rgba(0, 0, 0, 0.2);
+        
+        --focus-ring: 0 0 0 3px rgba(96, 165, 250, 0.3);
+        
+        color-scheme: dark;
+    }
+}
+
+/* ===== ELEMENTI SPECIFICI DARK MODE ===== */
+
+/* Immagini e media - riduce luminosità per tema scuro */
+[data-theme="dark"] img:not([data-keep-brightness]) {
+    filter: brightness(0.9) contrast(1.1);
+    transition: filter var(--transition-fast);
+}
+
+[data-theme="dark"] img:not([data-keep-brightness]):hover {
+    filter: brightness(1) contrast(1);
+}
+
+/* Canvas e SVG - filtri per adattamento tema scuro */
+[data-theme="dark"] canvas,
+[data-theme="dark"] svg:not([data-keep-original]) {
+    filter: brightness(0.95);
+}
+
+/* Video player - controlli adattati */
+[data-theme="dark"] video::-webkit-media-controls-panel {
+    background-color: var(--bg-surface);
+}
+
+/* ===== OVERRIDES PER LIBRERIE ESTERNE ===== */
+
+/* Chart.js adaptation */
+[data-theme="dark"] .chartjs-tooltip {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-light) !important;
+}
+
+/* Code syntax highlighting adaptation */
+[data-theme="dark"] pre,
+[data-theme="dark"] code {
+    background-color: var(--gray-800) !important;
+    color: var(--gray-200) !important;
+}
+
+/* ===== PRINT STYLES DARK ===== */
+
+@media print {
+    [data-theme="dark"] {
+        /* Forza tema chiaro per stampa anche se dark attivo */
+        --bg-primary: #ffffff !important;
+        --bg-surface: #ffffff !important;
+        --text-primary: #000000 !important;
+        --text-secondary: #333333 !important;
+        --border-light: #cccccc !important;
+        
+        --shadow-card: none !important;
+        --shadow-modal: none !important;
+        --shadow-dropdown: none !important;
+        
+        color-scheme: light !important;
+    }
+}

@@ -1,0 +1,381 @@
+/**
+ * Sistema Tipografico - App Finanziaria
+ * Definisce stili tipografici consistenti e leggibili
+ * 
+ * Organizzazione:
+ * 1. Font Loading e Fallbacks
+ * 2. Headings (H1-H6)
+ * 3. Body Text e Paragrafi
+ * 4. Utility Classes
+ * 5. Componenti Tipografici Speciali
+ * 6. Responsive Typography
+ */
+
+/* ===== 1. FONT LOADING E FALLBACKS ===== */
+
+/**
+ * Preconnect ai font esterni per performance
+ * Da aggiungere nel <head> HTML:
+ * <link rel="preconnect" href="https://fonts.googleapis.com">
+ * <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ * <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+ */
+
+/* Font Display ottimizzato per performance */
+@font-face {
+    font-family: 'Inter var';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap; /* Mostra fallback immediatamente, poi sostituisce */
+    src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ===== 2. HEADINGS (H1-H6) ===== */
+
+/**
+ * Gerarchia tipografica chiara e scalabile
+ * Utilizza scale modulare per proporzioni armoniose
+ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.025em; /* Tight tracking per headings */
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-4);
+    scroll-margin-top: var(--spacing-20); /* Per smooth scrolling con navbar fixed */
+}
+
+/* H1 - Hero Titles, Main Page Headers */
+h1 {
+    font-size: var(--text-4xl);        /* 36px */
+    font-weight: var(--font-extrabold);
+    line-height: var(--leading-none);
+    letter-spacing: -0.05em;
+    margin-bottom: var(--spacing-6);
+}
+
+/* H2 - Section Headers */
+h2 {
+    font-size: var(--text-3xl);        /* 30px */
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.035em;
+    margin-bottom: var(--spacing-5);
+}
+
+/* H3 - Subsection Headers */
+h3 {
+    font-size: var(--text-2xl);        /* 24px */
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.025em;
+    margin-bottom: var(--spacing-4);
+}
+
+/* H4 - Component Headers */
+h4 {
+    font-size: var(--text-xl);         /* 20px */
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-snug);
+    margin-bottom: var(--spacing-3);
+}
+
+/* H5 - Small Section Headers */
+h5 {
+    font-size: var(--text-lg);         /* 18px */
+    font-weight: var(--font-medium);
+    line-height: var(--leading-snug);
+    margin-bottom: var(--spacing-2);
+}
+
+/* H6 - Minor Headers */
+h6 {
+    font-size: var(--text-base);       /* 16px */
+    font-weight: var(--font-medium);
+    line-height: var(--leading-normal);
+    margin-bottom: var(--spacing-2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+
+/* ===== 3. BODY TEXT E PARAGRAFI ===== */
+
+/**
+ * Stili per contenuto leggibile e accessibile
+ * Ottimizzato per lettura su schermo
+ */
+
+p {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-relaxed); /* 1.625 per leggibilità */
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-4);
+}
+
+/* Paragrafo lead - per introduzioni */
+.lead {
+    font-size: var(--text-lg);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-6);
+}
+
+/* Small text */
+small,
+.text-small {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: var(--leading-normal);
+}
+
+/* ===== 4. UTILITY CLASSES ===== */
+
+/**
+ * Classi utility per modificatori tipografici rapidi
+ * Seguono convenzioni standard (text-*, font-*, leading-*)
+ */
+
+/* Font Sizes */
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-3xl { font-size: var(--text-3xl); }
+.text-4xl { font-size: var(--text-4xl); }
+.text-5xl { font-size: var(--text-5xl); }
+.text-6xl { font-size: var(--text-6xl); }
+
+/* Font Weights */
+.font-thin { font-weight: var(--font-thin); }
+.font-extralight { font-weight: var(--font-extralight); }
+.font-light { font-weight: var(--font-light); }
+.font-normal { font-weight: var(--font-normal); }
+.font-medium { font-weight: var(--font-medium); }
+.font-semibold { font-weight: var(--font-semibold); }
+.font-bold { font-weight: var(--font-bold); }
+.font-extrabold { font-weight: var(--font-extrabold); }
+.font-black { font-weight: var(--font-black); }
+
+/* Line Heights */
+.leading-none { line-height: var(--leading-none); }
+.leading-tight { line-height: var(--leading-tight); }
+.leading-snug { line-height: var(--leading-snug); }
+.leading-normal { line-height: var(--leading-normal); }
+.leading-relaxed { line-height: var(--leading-relaxed); }
+.leading-loose { line-height: var(--leading-loose); }
+
+/* Text Colors */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-inverse { color: var(--text-inverse); }
+
+/* Text Alignment */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* Text Transform */
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+.normal-case { text-transform: none; }
+
+/* Letter Spacing */
+.tracking-tighter { letter-spacing: -0.05em; }
+.tracking-tight { letter-spacing: -0.025em; }
+.tracking-normal { letter-spacing: 0em; }
+.tracking-wide { letter-spacing: 0.025em; }
+.tracking-wider { letter-spacing: 0.05em; }
+.tracking-widest { letter-spacing: 0.1em; }
+
+/* ===== 5. COMPONENTI TIPOGRAFICI SPECIALI ===== */
+
+/**
+ * Componenti tipografici per casi d'uso specifici
+ * Ottimizzati per app finanziaria
+ */
+
+/* Display Text - Per hero sections */
+.display-1 {
+    font-size: var(--text-6xl);
+    font-weight: var(--font-black);
+    line-height: var(--leading-none);
+    letter-spacing: -0.05em;
+}
+
+.display-2 {
+    font-size: var(--text-5xl);
+    font-weight: var(--font-extrabold);
+    line-height: var(--leading-none);
+    letter-spacing: -0.035em;
+}
+
+/* Gradient Text - Per highlights */
+.text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent; /* Fallback per browser non supportati */
+}
+
+/* Monospace per codici, numeri finanziari */
+.font-mono,
+.financial-number {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums; /* Numeri allineati */
+    letter-spacing: -0.025em;
+}
+
+/* Stili per valori finanziari */
+.price {
+    font-family: var(--font-mono);
+    font-weight: var(--font-semibold);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.025em;
+}
+
+.price-positive {
+    color: var(--secondary-600);
+}
+
+.price-negative {
+    color: var(--danger-600);
+}
+
+.price-neutral {
+    color: var(--text-muted);
+}
+
+/* Quote e citazioni */
+blockquote {
+    border-left: 4px solid var(--primary-500);
+    padding-left: var(--spacing-4);
+    margin: var(--spacing-6) 0;
+    font-style: italic;
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+}
+
+blockquote footer {
+    margin-top: var(--spacing-2);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    font-style: normal;
+}
+
+blockquote footer::before {
+    content: '— ';
+}
+
+/* Code blocks */
+code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: var(--gray-100);
+    color: var(--gray-800);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-base);
+    border: 1px solid var(--gray-200);
+}
+
+[data-theme="dark"] code {
+    background: var(--gray-800);
+    color: var(--gray-200);
+    border-color: var(--gray-700);
+}
+
+/* ===== 6. RESPONSIVE TYPOGRAPHY ===== */
+
+/**
+ * Scala tipografica responsive per dispositivi diversi
+ * Mobile-first approach con progressive enhancement
+ */
+
+/* Mobile (default) - già definito sopra */
+
+/* Tablet e desktop */
+@media (min-width: 768px) {
+    h1 {
+        font-size: var(--text-5xl);    /* 48px */
+    }
+    
+    h2 {
+        font-size: var(--text-4xl);    /* 36px */
+    }
+    
+    h3 {
+        font-size: var(--text-3xl);    /* 30px */
+    }
+    
+    .display-1 {
+        font-size: var(--text-7xl);    /* 72px */
+    }
+    
+    .display-2 {
+        font-size: var(--text-6xl);    /* 60px */
+    }
+    
+    .lead {
+        font-size: var(--text-xl);
+    }
+}
+
+/* Large desktop */
+@media (min-width: 1024px) {
+    h1 {
+        font-size: var(--text-6xl);    /* 60px */
+    }
+    
+    .display-1 {
+        font-size: var(--text-8xl);    /* 96px */
+    }
+    
+    .display-2 {
+        font-size: var(--text-7xl);    /* 72px */
+    }
+}
+
+/* ===== ACCESSIBILITÀ ===== */
+
+/**
+ * Miglioramenti per accessibilità e leggibilità
+ */
+
+/* Rispetta le preferenze di movimento ridotto */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: var(--font-black);
+    }
+    
+    p {
+        font-weight: var(--font-medium);
+    }
+}
+
+/* Migliora leggibilità su schermi a bassa risoluzione */
+@media (-webkit-min-device-pixel-ratio: 1) {
+    body {
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+}

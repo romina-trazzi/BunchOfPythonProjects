@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ETF Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        img { max-width: 100%; }
+        table { border-collapse: collapse; width: 100%; }
+        td, th { border: 1px solid #ccc; padding: 6px; text-align: right; }
+    </style>
+</head>
+<body>
+    <h1>Report ETF: {{ symbol }}</h1>
+    <img src="{{ chart_path }}" alt="Grafico ETF">
+    <h2>Statistiche</h2>
+    {{ stats | safe }}
+</body>
+</html>

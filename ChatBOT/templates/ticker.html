@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Grafici Azioni{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">📈 Analisi Azioni</h2>
+
+<form method="POST" class="mb-4">
+    <div class="mb-3">
+        <label for="ticker" class="form-label">Ticker (es: AAPL, TSLA):</label>
+        <input type="text" class="form-control" name="ticker" id="ticker" required value="{{ ticker }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="period" class="form-label">Periodo:</label>
+        <select class="form-select" name="period" id="period">
+            {% for value in ["1mo", "3mo", "6mo", "1y", "5y"] %}
+                <option value="{{ value }}" {% if value == selected_period %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Genera grafico</button>
+</form>
+
+{% if error_message %}
+    <div class="alert alert-danger">{{ error_message }}</div>
+{% endif %}
+
+{% if chart_image_base64 %}
+    <div>
+        <h4>Grafico per {{ ticker }} ({{ selected_period }})</h4>
+        <img id="chart-img" src="data:image/png;base64,{{ chart_image_base64 }}" class="img-fluid mt-3">
+    </div>
+    {% endif %}
+    <a id="download-link" class="btn btn-success mt-3 text-center" download="{{ ticker }}_chart.png">📥 Salva grafico</a>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='js/ticker.js') }}"></script>
+{% endblock %}
