@@ -40,6 +40,8 @@ export default function App() {
 
   const API = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
+
+
   useEffect(() => {
     function onKeyDown(e) {
       const isMac = /Mac|iPod|iPhone|iPad/.test(window.navigator.platform);
@@ -84,34 +86,49 @@ export default function App() {
   function onDragOver(e) { e.preventDefault(); }
 
   async function handleUpload() {
-    setError("");
-    setResult(null);
-    if (!file) {
-      setError("Nessun file selezionato.");
-      return;
-    }
-    setLoading(true);
-    try {
-      const fd = new FormData();
-      fd.append("file", file, file.name);
-      const apiMode = mode === "external" ? "ocr" : "local";
-      const res = await fetch(`${API}/parse?mode=${apiMode}&language=ita`, {
-        method: "POST",
-        body: fd,
-      });
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(`Server: ${res.status} — ${text}`);
-      }
-      const data = await res.json();
-      setResult(data);
-    } catch (err) {
-      console.error(err);
-      setError(err.message || "Errore sconosciuto durante l'upload.");
-    } finally {
-      setLoading(false);
-    }
+  setError("");
+  setResult(null);
+
+  if (!file) {
+    setError("Nessun file selezionato.");
+    return;
   }
+
+  setLoading(true);
+  try {
+    const fd = new FormData();
+    fd.append("file", file, file.name);
+
+    // Il backend si aspetta "local" | "external" (non "ocr")
+    const apiMode = mode === "external" ? "external" : "local";
+
+    const res = await fetch(`${API}/parse?mode=${apiMode}&language=ita`, {
+      method: "POST",
+      body: fd,
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`Server: ${res.status} — ${text}`);
+    }
+
+    const data = await res.json(); // body: { schema: {...} }
+    // leggo le percentuali dagli header (esposti dal CORS)
+    const core = Number(res.headers.get("X-Completion-Core"));
+    const global = Number(res.headers.get("X-Completion-Global"));
+
+    setResult({
+      schema: data?.schema ?? {},
+      completamento_percentuale: Number.isFinite(core) ? core : undefined,
+      completamento_schema_percentuale: Number.isFinite(global) ? global : undefined,
+    });
+  } catch (err) {
+    console.error(err);
+    setError(err.message || "Errore sconosciuto durante l'upload.");
+  } finally {
+    setLoading(false);
+  }
+}
 
   function resetAll() {
     setFile(null);
@@ -204,12 +221,13 @@ export default function App() {
               <div className="result-actions">
                 <button className="btn small" onClick={() => {
                   const base = file?.name?.replace(/\.pdf$/i, "") || "parsed_resume";
-                  downloadJSON(result, safeFilename(base, "json"));
+                  downloadJSON(result?.schema, safeFilename(base, "json"));
                 }}>
+                  
                   Salva JSON
                 </button>
                 <button className="btn small ghost" onClick={() => {
-                  navigator.clipboard?.writeText(JSON.stringify(result, null, 2));
+                  navigator.clipboard?.writeText(JSON.stringify(result?.schema, null, 2));
                 }}>
                   Copia JSON
                 </button>
@@ -217,29 +235,57 @@ export default function App() {
             </div>
 
             <pre className="json">
-              {JSON.stringify(result, null, 2)}
+              {JSON.stringify(result?.schema, null, 2)}
             </pre>
 
-            {typeof result.completamento_percentuale === "number" && (
-              <div className="progress-wrap" aria-label="Completamento estrazione">
-                <div className="progress-meta">
-                  <div>Completamento</div>
-                  <div className="progress-value">
-                    {result.completamento_percentuale}%
+            {(typeof result.completamento_percentuale === "number" ||
+              typeof result.completamento_schema_percentuale === "number") && (
+              <div className="progress-stack" aria-label="Indicatori di completezza">
+                {/* Core */}
+                {typeof result.completamento_percentuale === "number" && (
+                  <div className="progress-wrap" aria-label="Completamento core">
+                    <div className="progress-meta">
+                      <div>Completamento (core)</div>
+                      <div className="progress-value">
+                        {result.completamento_percentuale}%
+                      </div>
+                    </div>
+                    <progress
+                      className={`progress ${
+                        result.completamento_percentuale >= 80
+                          ? "ok"
+                          : result.completamento_percentuale >= 50
+                          ? "warn"
+                          : "bad"
+                      }`}
+                      max="100"
+                      value={Math.min(100, Math.max(0, result.completamento_percentuale))}
+                    />
                   </div>
-                </div>
-                {/* uso <progress> per evitare qualsiasi CSS inline */}
-                <progress
-                  className={`progress ${
-                    result.completamento_percentuale >= 80
-                      ? "ok"
-                      : result.completamento_percentuale >= 50
-                      ? "warn"
-                      : "bad"
-                  }`}
-                  max="100"
-                  value={Math.min(100, Math.max(0, result.completamento_percentuale))}
-                />
+                )}
+
+                {/* Schema */}
+                {typeof result.completamento_schema_percentuale === "number" && (
+                  <div className="progress-wrap" aria-label="Completezza schema">
+                    <div className="progress-meta">
+                      <div>Completezza schema</div>
+                      <div className="progress-value">
+                        {result.completamento_schema_percentuale}%
+                      </div>
+                    </div>
+                    <progress
+                      className={`progress ${
+                        result.completamento_schema_percentuale >= 80
+                          ? "ok"
+                          : result.completamento_schema_percentuale >= 50
+                          ? "warn"
+                          : "bad"
+                      }`}
+                      max="100"
+                      value={Math.min(100, Math.max(0, result.completamento_schema_percentuale))}
+                    />
+                  </div>
+                )}
               </div>
             )}
           </section>

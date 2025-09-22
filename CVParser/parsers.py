@@ -4,7 +4,8 @@
 #   parse_text_to_internal(text: str, blocks: list[dict] | None, filename: str) -> dict
 #
 # Dipende solo da utils.py:
-#   norm, is_noise, dedupe_keep_order, parse_date_any, parse_range,
+#   norm, is_noise, dedupe_keep_order,
+#   parse_date_any, parse_range,
 #   phone_candidates, country_from_phone, country_from_tld,
 #   normalize_country, country_from_text
 # ------------------------------------------------------------------------------
@@ -12,42 +13,70 @@
 from __future__ import annotations
 
 import re
+
 from typing import Any, Dict, List, Tuple, Optional
 
 from utils import (
     norm, is_noise, dedupe_keep_order,
     parse_date_any, parse_range,
-    phone_candidates, country_from_phone, country_from_tld, normalize_country, country_from_text,
+    phone_candidates, country_from_phone, country_from_tld, normalize_country, country_from_text, 
+    country_to_it, nationality_to_it
 )
 
+from unidecode import unidecode
+
+
 # ==============================================================================
-# Sezioni: zero alias — solo heading “da layout”
+# Heuristic headings (no liste di alias)
 #   - riga breve (< 60)
+#   - niente numeri
+#   - non può finire con : (etichetta)
+#   - non può essere un contatto
 #   - UPPERCASE o Title Case (>=70% parole capitalizzate)
 #   - riga vuota prima o dopo
 # ==============================================================================
 
 def _is_heading(line: str) -> bool:
-    s = line.strip()
+    s = norm(line)
     if not s or len(s) > 60:
         return False
-    words = [w for w in re.findall(r"[^\W\d_][\wÀ-ÿ'-]*", s)]
+    if s.endswith(":"):                     # ← blocca etichette tipo "Città:"
+        return False
+    if "@" in s or "://" in s or re.search(r"\d{5,}", s):
+        return False
+    words = re.findall(r"[^\W\d_][\wÀ-ÿ'-]*", s)
     if not words:
         return False
-    all_upper = s == s.upper()
     cap_ratio = sum(w[:1].isupper() for w in words) / max(1, len(words))
-    return all_upper or cap_ratio >= 0.7
+    return s.isupper() or cap_ratio >= 0.7
 
+
+# ==============================================================================
+# Segmenta il testo in sezioni usando solo heading 'di forma' (no liste di alias).
+# Regole chiave (demandate a _is_heading):
+#   - 2..60 char, niente numeri dominanti
+#   - no etichette (niente ':' finale)
+#   - no email/url/telefoni
+#   - case: ALLCAPS oppure ≥70% Title Case
+#   - isolamento: riga vuota prima OPPURE dopo.
+# ==============================================================================
+   
 def detect_sections(text: str) -> Dict[str, str]:
+    """
+    Segmentazione semplice:
+      - un heading è una riga 'titolo' secondo _is_heading
+      - consideriamo heading valido se c'è riga vuota PRIMA o DOPO
+    """
     txt = norm(text)
     lines = txt.splitlines()
     idxs: List[int] = []
     for i, l in enumerate(lines):
-        if _is_heading(l):
-            prev_blank = (i == 0) or (lines[i-1].strip() == "")
-            next_blank = (i+1 < len(lines) and lines[i+1].strip() == "")
-            if prev_blank or next_blank:
-                idxs.append(i)
+        if not _is_heading(l):
+            continue
+        prev_blank = (i == 0) or (lines[i-1].strip() == "")
+        next_blank = (i+1 < len(lines) and lines[i+1].strip() == "")
+        if prev_blank or next_blank:
+            idxs.append(i)
 
     if not idxs:
         return {"body": txt}
@@ -61,9 +90,164 @@ def detect_sections(text: str) -> Dict[str, str]:
         if chunk:
             sections[title] = chunk
     return sections or {"body": txt}
+    
+    
+# ==============================================================================
+# Nome & Cognome (scoring multi-fonte: Layout, Email, LinkedIn, Filename) 
+# ==============================================================================
+
+_FILENAME_STOP = {"cv", "resume", "curriculum", "europass", "final", "draft", "copy"}
+
+def _canonize_token(t: str) -> str:
+    """Normalizza un token per confronto: strip, lowercase, unidecode."""
+    return unidecode(t).strip().lower()
+
+def _tokenize_basic(s: str) -> List[str]:
+    """Tokenizzazione semplice: separa su ., _, -, spazi; rimuove cifre; solo alfabetici."""
+    s = unidecode(norm(s))
+    s = re.sub(r"\d+", "", s)
+    parts = re.split(r"[.\-_\s]+", s)
+    return [p for p in parts if p and p.isalpha() and len(p) >= 2]
+
+def _slug_tokens(s: str) -> List[str]:
+    return _tokenize_basic(s)[:4]
+
+def _linkedin_tokens(url: str) -> Optional[List[str]]:
+    if not url:
+        return None
+    m = re.search(r"linkedin\.com/(?:in|pub)/([A-Za-z0-9\-_\.]+)", url, re.I)
+    if not m:
+        return None
+    toks = _slug_tokens(m.group(1))
+    return toks if len(toks) >= 2 else None
+
+def _email_tokens(email: str) -> Optional[List[str]]:
+    if not email or "@" not in email:
+        return None
+    local = email.split("@", 1)[0]
+    toks = _slug_tokens(local)
+    return toks if len(toks) >= 2 else None
+
+def _filename_tokens(fn: str) -> Optional[List[str]]:
+    if not fn:
+        return None
+    s = re.sub(r"\.pdf$", "", fn, flags=re.I)
+    s = re.sub(r"\(.*?\)", " ", s)          # es. "(luglio 2025)" → " "
+    s = re.sub(r"[_\-]+", " ", s)
+    parts = [p for p in re.split(r"\s+", unidecode(norm(s))) if p]
+    clean = []
+    for p in parts:
+        pl = p.lower()
+        if pl in _FILENAME_STOP:
+            continue
+        # NON rimuoviamo mesi/mesi-abbrev — richiesta esplicita
+        if re.fullmatch(r"(19|20)\d{2}", pl):               # anni
+            continue
+        if re.fullmatch(r"v\d+(\.\d+)?", pl, flags=re.I):   # versioni
+            continue
+        clean.append(p)
+    toks = [t for t in clean if t.isalpha() and len(t) >= 2][:4]
+    return toks if len(toks) >= 2 else None
+
+def _looks_like_person(toks: List[str]) -> bool:
+    # 2–4 token alfabetici; niente numeri
+    return 2 <= len(toks) <= 4 and all(t.isalpha() for t in toks)
+
+def _canon_key(toks: List[str]) -> Tuple[str, ...]:
+    # Chiave canonica per raggruppare: set ordinato dei token canonicalizzati
+    return tuple(sorted({_canonize_token(t) for t in toks}))
+
+def _equivalent_tokens(a: List[str], b: List[str]) -> bool:
+    """
+    Equivalenza inclusiva:
+    - normalizza (lower+unidecode)
+    - considera equivalenti se l'insieme di token di A è sottoinsieme di B o viceversa
+    """
+    A = { _canonize_token(t) for t in a }
+    B = { _canonize_token(t) for t in b }
+    if not A or not B:
+        return False
+    return A.issubset(B) or B.issubset(A)
+
+def _titlecase_split(toks: List[str]) -> Tuple[str, str]:
+    toks = [t.capitalize() for t in toks]
+    if len(toks) == 2:
+        return toks[0], toks[1]
+    return toks[0], " ".join(toks[1:])
+
+def infer_name(
+    blocks: List[Dict[str, Any]] | None,
+    email: str,
+    linkedin: str,
+    filename: str,
+    section_titles: Optional[List[str]] = None
+) -> Tuple[str, str]:
+    """
+    Consenso semplice tra LinkedIn, Email, Filename con equivalenza inclusiva.
+    1) Raccoglie candidati.
+    2) Gruppi per equivalenza (subset).
+    3) Se un gruppo ha >=2 fonti → vince (prende la variante più corta).
+    4) Altrimenti fallback: LinkedIn > Email > Filename.
+    (Layout disattivato per ora.)
+    """
+    candidates: List[Tuple[str, List[str]]] = []
+
+    li = _linkedin_tokens(linkedin)
+    if li and _looks_like_person(li):
+        candidates.append(("linkedin", li))
+
+    em = _email_tokens(email)
+    if em and _looks_like_person(em):
+        candidates.append(("email", em))
+
+    fn = _filename_tokens(filename)
+    if fn and _looks_like_person(fn):
+        candidates.append(("filename", fn))
+
+    if not candidates:
+        return "", ""
+
+    # 2) Raggruppa per equivalenza inclusiva (non per chiave identica)
+    groups: List[List[Tuple[str, List[str]]]] = []
+    for cand in candidates:
+        placed = False
+        for g in groups:
+            # confronta con il primo membro del gruppo (basta per stabilità)
+            if _equivalent_tokens(cand[1], g[0][1]):
+                g.append(cand)
+                placed = True
+                break
+        if not placed:
+            groups.append([cand])
+
+    # 3) Gruppo migliore = max fonti; tie-break: contiene LinkedIn? poi Email?
+    def group_score(g: List[Tuple[str, List[str]]]) -> Tuple[int, int, int]:
+        sources = {src for src, _ in g}
+        return (
+            len(sources),
+            1 if "linkedin" in sources else 0,
+            1 if "email" in sources else 0,
+        )
+
+    best = max(groups, key=group_score)
+
+    if len({src for src, _ in best}) >= 2:
+        # consenso: scegli la variante con meno token 
+        rep = min((toks for _, toks in best), key=len)
+        return _titlecase_split(rep)
+
+    # 4) Fallback deterministico: LinkedIn > Email > Filename
+    for prefer in ("linkedin", "email", "filename"):
+        for src, toks in candidates:
+            if src == prefer:
+                return _titlecase_split(toks)
+
+    return "", ""
+
+
 
 # ==============================================================================
-# Contatti: pattern generici + deduzione paese via utils (no liste)
+# Contatti: pattern generici + deduzione paese (priorità: phone → TLD → testo)
 # ==============================================================================
 
 EMAIL_RX    = re.compile(r"[\w\.-]+@[\w\.-]+\.\w+")
@@ -72,175 +256,268 @@ LINKEDIN_RX = re.compile(r"(https?://)?(www\.)?linkedin\.com/[^\s,;]+", re.I)
 GITHUB_RX   = re.compile(r"(https?://)?(www\.)?github\.com/[^\s,;]+", re.I)
 
 def _looks_like_address(line: str) -> bool:
-    """
-    Indirizzo “universale” (euristica):
-      - contiene ≥ 2 token alfabetici (parole)
-      - contiene ≥ 1 token con cifre (numero civico o CAP mescolato)
-      - lunghezza 10..120
-    Nessun vocabolario di tipi via.
-    """
     s = line.strip(" ,;.")
-    if not (10 <= len(s) <= 120):
+    if not (8 <= len(s) <= 120):
+        return False
+    if ":" in s:  # riga etichettata → no indirizzo
         return False
     tokens = s.split()
-    alpha_words = sum(1 for t in tokens if re.search(r"[A-Za-zÀ-ÿ]", t))
     has_digits = any(any(ch.isdigit() for ch in t) for t in tokens)
-    return alpha_words >= 2 and has_digits
+    # serve almeno una parola con iniziale maiuscola (Via, Rue, Street, ... o nome proprio)
+    has_cap_word = any(re.match(r"[A-ZÀ-Ý][a-zà-ÿ]+", t) for t in tokens)
+    # almeno 2 parole alfabetiche
+    alpha_words = sum(1 for t in tokens if re.search(r"[A-Za-zÀ-ÿ]", t))
+    return has_digits and has_cap_word and alpha_words >= 2
 
 def _looks_like_city(line: str) -> Optional[str]:
-    """
-    Città probabile: 1–2 parole capitalizzate, senza @/:///cifre lunghe.
-    """
     s = line.strip()
-    if "@" in s or "://" in s or re.search(r"\d{4,}", s):
+    if "@" in s or "://" in s or re.search(r"\d{2,}", s):
         return None
-    m = re.search(r"\b([A-Z][a-zÀ-ÿ]+(?: [A-Z][a-zÀ-ÿ]+)?)\b", s)
+    # prendi max 2-3 parole capitalizzate
+    m = re.match(r"^([A-Z][a-zÀ-ÿ]+(?: [A-Z][a-zÀ-ÿ]+){0,2})$", s)
     if not m:
         return None
-    city = m.group(1)
-    if len(city.split()) <= 2:
-        return city
-    return None
+    city = m.group(1).strip()
+    return city if 2 <= len(city) <= 48 else None
+
 
 def extract_contacts(text: str) -> Dict[str, Any]:
     out = {
         "indirizzo": {"via": "", "citta": "", "cap": "", "provincia": "", "paese": ""},
-        "telefono": "",
-        "cellulare": "",
-        "email": "",
-        "linkedin": "",
-        "sito_web": "",
-        "github": "",
+        "telefono": "", "cellulare": "",
+        "email": "", "linkedin": "", "sito_web": "", "github": "",
     }
 
     txt = norm(text)
-    lines = [l for l in txt.splitlines() if not is_noise(l)]
+    all_lines = [l for l in txt.splitlines() if not is_noise(l)]
 
-    # email / social / sito
-    m = EMAIL_RX.search(txt)
+    # --- 2.1 Zona contatti: solo header (prime ~120 righe) o fino a titolo sezione "work/edu"
+    cutoff_rx = re.compile(r"\b(experien|employment|impiego|beruf|lavor|career|history|work|educat|formaz|ausbild|stud|school|univers|degree|training)\b", re.I)
+    cutoff = None
+    for i, l in enumerate(all_lines[:200]):
+        if _is_heading(l) and cutoff_rx.search(l.lower()):
+            cutoff = i
+            break
+    lines = all_lines[: (cutoff if cutoff is not None else 120)]
+
+    # --- 2.2 email / social / sito
+    m = EMAIL_RX.search("\n".join(lines))
     if m:
         out["email"] = m.group(0)
 
-    li = LINKEDIN_RX.search(txt)
+    li = LINKEDIN_RX.search("\n".join(lines))
     if li:
         u = li.group(0)
         out["linkedin"] = u if u.startswith("http") else f"https://{u}"
 
-    gh = GITHUB_RX.search(txt)
+    gh = GITHUB_RX.search("\n".join(lines))
     if gh:
         u = gh.group(0)
         out["github"] = u if u.startswith("http") else f"https://{u}"
 
-    webs = [w.group(0) for w in WEB_RX.finditer(txt)]
+    webs = [w.group(0) for w in WEB_RX.finditer("\n".join(lines))]
     webs = [w for w in webs if "linkedin.com" not in w and "github.com" not in w]
     if webs:
         w0 = webs[0]
         out["sito_web"] = w0 if w0.startswith("http") else f"https://{w0}"
 
-    # telefoni
-    phones = phone_candidates(txt)
+    # --- 2.3 telefoni
+    phones = phone_candidates("\n".join(lines))
     if phones:
         out["telefono"] = phones[0]
         if len(phones) > 1:
             out["cellulare"] = phones[1]
 
-    # indirizzo “light”
-    top = "\n".join(lines[:30])
-
-    # CAP generico (4–6 cifre “isolate”)
-    cap = re.search(r"\b(\d{4,6})\b", top)
-    if cap:
-        out["indirizzo"]["cap"] = cap.group(1)
-
-    # via/strada (senza vocabolario): prendi la prima riga che “sembra” indirizzo
-    for l in lines[:30]:
-        if _looks_like_address(l):
-            out["indirizzo"]["via"] = l.strip(" ,;.")
-            break
-
-    # città
-    for l in lines[:30]:
-        c = _looks_like_city(l)
-        if c:
-            out["indirizzo"]["citta"] = c
-            break
-
-    # paese: testo → telefono → TLD
-    country = country_from_text(top) or (out["telefono"] and country_from_phone(out["telefono"])) or ""
+    # --- 2.4 paese: phone → TLD → testo (nella zona contatti)
+    top = "\n".join(lines[:80])
+    country = ""
+    if out["telefono"]:
+        country = country_from_phone(out["telefono"]) or ""
     if not country:
         for src in (out["sito_web"], out["email"], out["linkedin"], out["github"]):
             if src:
                 country = country_from_tld(src)
                 if country:
                     break
+    if not country:
+        country = country_from_text(top) or ""
     out["indirizzo"]["paese"] = normalize_country(country)
+
+    # --- 2.5 CAP (evita anni tipo 2021). Se IT → 5 cifre, altrimenti 4–6 ma non 1900–2099
+    cap = ""
+    if out["indirizzo"]["paese"].lower() == "italy":
+        mcap = re.search(r"\b(\d{5})\b", top)
+        if mcap:
+            cap = mcap.group(1)
+    else:
+        mcap = re.search(r"\b(\d{4,6})\b", top)
+        if mcap:
+            cand = mcap.group(1)
+            if not (1900 <= int(cand) <= 2099):  # scarta anni
+                cap = cand
+    out["indirizzo"]["cap"] = cap
+
+    # --- 2.6 città: label esplicite; fallback prudente; escludi nazioni
+    city = ""
+    city_lbl = re.compile(r"\b(citt[aà]|city)\s*[:\-]\s*([A-Z][A-Za-zÀ-ÿ' -]{1,48})\b", re.I)
+    for l in lines[:120]:
+        mm = city_lbl.search(l)
+        if mm:
+            cand = mm.group(2).strip()
+            # es. "Genova (Italia)" → "Genova"
+            cand = re.sub(r"\s*\(.+?\)$", "", cand).strip()
+            city = cand
+            break
+    if not city:
+        for l in lines[:120]:
+            s = l.strip()
+            if ":" in s:  # evita etichette "Paese: Italia"
+                continue
+            if len(s) > 48 or len(s.split()) > 3:
+                continue
+            c = _looks_like_city(s)
+            if c:
+                # escludi se è un paese (pycountry lo riconosce in country_from_text)
+                if normalize_country(c) and normalize_country(c).lower() == c.lower():
+                    continue
+                city = c
+                break
+    out["indirizzo"]["citta"] = city
+
+    # --- 2.7 via: escludi righe con più etichette "X: Y"
+    labelish = re.compile(r"\b(paese|nazionalit[aà]|data di nascita|luogo di nascita|sesso|citt[aà]|indirizzo|address|email|telefono|phone)\b", re.I)
+    for l in lines[:120]:
+        if ":" in l and labelish.search(l):
+            continue
+        if _looks_like_address(l):
+            out["indirizzo"]["via"] = l.strip(" ,;.")
+            break
+
     return out
 
-# ==============================================================================
-# Nome & Cognome (layout → email → linkedin → filename) — zero blacklist
-# ==============================================================================
 
-def _plausible_heading_name(s: str) -> bool:
-    if any(ch.isdigit() for ch in s):
-        return False
-    words = [w for w in s.split() if w]
-    if not (1 <= len(words) <= 4):
-        return False
-    cap_ratio = sum(w[:1].isupper() for w in words) / max(1, len(words))
-    return cap_ratio >= 0.75
+# ============================
+# Anagrafica
+# ============================
 
-def _split_fullname(s: str) -> Tuple[str, str]:
-    parts = [p for p in norm(s).split() if p]
-    if not parts:
-        return "", ""
-    if len(parts) == 1:
-        return parts[0].capitalize(), ""
-    return parts[0].capitalize(), " ".join(p.capitalize() for p in parts[1:])
+# Etichette multilingua (minimali) — niente liste lunghe, solo pattern diffusi
+_LBL_DOB   = re.compile(r"(data\s*di\s*nascita|date\s*of\s*birth|dob|geburtsdatum|fecha\s*de\s*nacimiento|date\s*de\s*naissance)", re.I)
+_LBL_POB   = re.compile(r"(luogo\s*di\s*nascita|place\s*of\s*birth|geburtsort|lugar\s*de\s*nacimiento|lieu\s*de\s*naissance)", re.I)
+_LBL_NAT   = re.compile(r"(nazionalit[aà]|nationality|nationalit[yéè])", re.I)
+_LBL_SEX   = re.compile(r"(sesso|sex|genre|geschlecht|sexo)", re.I)
+_LBL_MSTAT = re.compile(r"(stato\s*civile|marital\s*status|familienstand|estado\s*civil|situation\s*familiale)", re.I)
 
-def infer_name(blocks: List[Dict[str, Any]] | None, email: str, linkedin: str, filename: str) -> Tuple[str, str]:
-    # 1) header della prima pagina
-    cands: List[Tuple[str, float]] = []
-    for b in (blocks or []):
-        if b.get("page") != 0:
+def _clean_tail(v: str) -> str:
+    """Rimuove separatori iniziali e code tra parentesi."""
+    v = norm(v)
+    v = re.sub(r"^\s*[:\-–—]\s*", "", v)
+    v = re.sub(r"\s*\([^)]*\)\s*$", "", v)  # es. "(Italia)"
+    return v.strip(" ,;:|")
+
+def _first_date_token(s: str) -> str:
+    """Isola la sottostringa che 'sembra' una data dalla riga."""
+    s = norm(s)
+    m = re.search(r"\b\d{1,2}[\/\-.]\d{1,2}[\/\-.]\d{2,4}\b", s)
+    if m: return m.group(0)
+    m = re.search(r"\b\d{1,2}[\/\-.]\d{4}\b", s)
+    if m: return m.group(0)
+    m = re.search(r"\b[A-Za-zÀ-ÿ]{3,15}\s+\d{4}\b", s)
+    if m: return m.group(0)
+    m = re.search(r"\b(19|20)\d{2}\b", s)
+    if m: return m.group(0)
+    return ""
+
+def _pick_after_label(lines: List[str], lbl_rx: re.Pattern) -> Optional[str]:
+    """Prende 'Label: valore' sulla stessa riga, altrimenti la riga successiva non-noise."""
+    for i, l in enumerate(lines):
+        if not lbl_rx.search(l):
             continue
-        t = (b.get("text") or "").strip()
-        if not t or not _plausible_heading_name(t):
-            continue
-        score = (1.0 / (1.0 + float(b.get("y0", 9999.0)))) + (float(b.get("x1", 0.0)) - float(b.get("x0", 0.0))) / 1000.0
-        cands.append((t, score))
-    cands.sort(key=lambda x: x[1], reverse=True)
-    if cands:
-        return _split_fullname(cands[0][0])
+        tail = re.split(lbl_rx, l, maxsplit=1)[-1]
+        tail = _clean_tail(tail)
+        if tail:
+            return tail
+        if i + 1 < len(lines):
+            nxt = _clean_tail(lines[i + 1])
+            if nxt and not is_noise(nxt):
+                return nxt
+    return None
 
-    # 2) email
-    if email:
-        loc = email.split("@", 1)[0]
-        loc = re.sub(r"\d+", "", loc).replace("_", ".").replace("-", ".")
-        toks = [t for t in loc.split(".") if t]
-        if len(toks) >= 2:
-            return toks[0].capitalize(), toks[1].capitalize()
+def _format_date_it(iso_or_any: str) -> str:
+    """'YYYY-MM-DD' -> 'DD/MM/YYYY'; se non è ISO, torna pulito com'è."""
+    m = re.match(r"^(\d{4})-(\d{2})-(\d{2})$", iso_or_any)
+    if not m:
+        return iso_or_any
+    return f"{m.group(3)}/{m.group(2)}/{m.group(1)}"
 
-    # 3) linkedin
-    if linkedin:
-        m = re.search(r"linkedin\.com/(?:in|pub)/([A-Za-z0-9\-_\.]+)", linkedin, re.I)
-        if m:
-            slug = m.group(1).replace("_", ".").replace("-", ".")
-            toks = [t for t in slug.split(".") if t]
-            if len(toks) >= 2:
-                return toks[0].capitalize(), toks[1].capitalize()
+def _normalize_sex_minimal(val: str) -> str:
+    """
+    Regola minimale, senza liste:
+    - prendi la prima lettera alfabetica; 'f' -> 'F', 'm' -> 'M'
+    - altrimenti ritorna il valore pulito così com'è
+    """
+    s = norm(val)
+    m = re.search(r"[A-Za-zÀ-ÿ]", s)
+    if not m:
+        return s
+    first = m.group(0).lower()
+    if first == 'f':
+        return 'F'
+    if first == 'm':
+        return 'M'
+    return s
 
-    # 4) filename
-    if filename:
-        base = re.sub(r"\.pdf$", "", filename, flags=re.I)
-        base = re.sub(r"\(.*?\)", " ", base)
-        base = re.sub(r"[_\-]+", " ", base)
-        cand = " ".join([w for w in base.split() if w])
-        n, c = _split_fullname(cand)
-        if n:
-            return n, c
+def extract_personal_block(text: str) -> Dict[str, str]:
+    """
+    Ritorna sempre tutte le chiavi:
+      - data_nascita in 'DD/MM/YYYY' se interpretabile,
+      - luogo_nascita / nazionalita / stato_civile: testo pulito,
+      - sesso: 'F'/'M' con regola minimale, altrimenti testo pulito.
+    """
+    lines = [l for l in norm(text).splitlines() if not is_noise(l)]
 
-    return "", ""
+    # Data di nascita
+    dob_raw = _pick_after_label(lines, _LBL_DOB)
+    dob = ""
+    if dob_raw:
+        # isola il pezzo 'più da data' prima di passarlo al parser
+        token = _first_date_token(dob_raw) or dob_raw
+        dob_iso = parse_date_any(token)  # utils: ISO 'YYYY-MM-DD' o stringa pulita
+        dob = _format_date_it(dob_iso)
 
+    # Luogo di nascita
+    pob = ""
+    raw_pob = _pick_after_label(lines, _LBL_POB) or ""
+    if raw_pob:
+        raw_pob = _clean_tail(raw_pob)
+        raw_pob = re.split(r"\b(paese|country|state|nation|citt[aà]|city)\b", raw_pob, maxsplit=1, flags=re.I)[0]
+        pob = raw_pob.strip(" ,;")
+
+    # Nazionalità (testo pulito, senza mapping/blacklist)
+    nat = ""
+    raw_nat = _pick_after_label(lines, _LBL_NAT) or ""
+    if raw_nat:
+        raw_nat = _clean_tail(raw_nat)
+        raw_nat = re.split(r"\b(data|luogo|born|birth|citt[aà]|city|paese|country)\b", raw_nat, maxsplit=1, flags=re.I)[0]
+        nat = raw_nat.strip(" ,;")
+
+    # Sesso (normalizzazione minimale)
+    sex_raw = _pick_after_label(lines, _LBL_SEX) or ""
+    sex = _normalize_sex_minimal(sex_raw) if sex_raw else ""
+
+    # Stato civile (testo pulito)
+    mstat = ""
+    raw_ms = _pick_after_label(lines, _LBL_MSTAT) or ""
+    if raw_ms:
+        mstat = _clean_tail(raw_ms)
+
+    return {
+        "data_nascita": dob,
+        "luogo_nascita": pob or "",
+        "nazionalita": nat or "",
+        "sesso": sex,
+        "stato_civile": mstat or "",
+    }
+    
 # ==============================================================================
 # Lingue (CEFR) — agnostico
 # ==============================================================================
@@ -294,8 +571,6 @@ def _tokenize_bullets(section_text: str, all_text: str) -> List[str]:
 
 def extract_skills(section_text: str, all_text: str) -> Dict[str, List[str]]:
     tokens = _tokenize_bullets(section_text, all_text)
-    # Niente classificazione aggressiva: tutto in “altre_competenze”,
-    # lasciamo ai layer successivi (o all’utente) la categorizzazione.
     altre = [t for t in tokens if not is_noise(t) and len(t) <= 160]
     return {
         "linguaggi_programmazione": [],
@@ -399,7 +674,7 @@ def extract_education(section_text: str) -> List[Dict[str, Any]]:
         header = lines[0]
         titolo, istituto = header.strip(" -:|"), ""
 
-        # “Titolo @ Istituto” o “Titolo – Istituto” (generico)
+        # “Titolo @ Istituto” o “Titolo – Istituto”
         if "@" in header:
             left, right = header.split("@", 1)
             titolo = left.strip(" -:|")
@@ -438,38 +713,54 @@ def extract_privacy(text: str) -> str:
 # ==============================================================================
 
 def parse_text_to_internal(text: str, blocks: List[Dict[str, Any]] | None, filename: str) -> Dict[str, Any]:
+    # 1) sezioni
     sections = detect_sections(text)
 
-    contacts = extract_contacts(text)
-    nome, cognome = infer_name(blocks, contacts.get("email", ""), contacts.get("linkedin", ""), filename)
+    # 2) contatti
+    contacts = extract_contacts(text)  # tua funzione già presente nel parser
 
-    # Sezione “lingue”: prova a individuare col titolo (senza liste), altrimenti usa tutto
+    # 3) nome/cognome (consenso semplice; passa i titoli per evitare collisioni con headings)
+    nome, cognome = infer_name(
+        blocks=blocks,
+        email=contacts.get("email", ""),
+        linkedin=contacts.get("linkedin", ""),
+        filename=filename or "",
+        section_titles=list(sections.keys())
+    )
+
+    # 4) anagrafica “etichettata” conservativa
+    personal = extract_personal_block(text)
+
+    # 5) lingue (solo sezione dedicata)
     lang_section = ""
     for h, c in sections.items():
-        if re.search(r"\blang(?:uage|ues|uaggi|idiomas|langues|sprachen)\b", h.lower()):
-            lang_section = c
-            break
-    languages = extract_languages(lang_section, text)
+        if re.search(r"\blang(uage|uaggi|ues|ues|ues|ues|ues|ues|ues)?\b", h.lower()):
+            lang_section = c; break
+    languages = extract_languages(lang_section, lang_section or "") if lang_section else []
 
-    # Sezione “skills”: idem
+    # 6) skills (solo sezione dedicata)
     skills_section = ""
     for h, c in sections.items():
         if re.search(r"\b(skill|competenze|habilidades|comp[ée]tences|f[äa]higkeiten)\b", h.lower()):
-            skills_section = c
-            break
-    skills = extract_skills(skills_section, text)
+            skills_section = c; break
+    skills = extract_skills(skills_section, skills_section or "") if skills_section else {
+        "linguaggi_programmazione": [],
+        "framework": [],
+        "database": [],
+        "strumenti": [],
+        "metodologie": [],
+        "altre_competenze": [],
+    }
 
-    # Esperienze / istruzione: cerca intestazioni per *radici* (no liste), altrimenti vuoto
+    # 7) esperienze / education (radici ampie)
     exp_section = ""
     for h, c in sections.items():
-        if re.search(r"\b(experien|employment|impiego|beruf|lavor)\b", h.lower()):
-            exp_section = c
-            break
+        if re.search(r"\b(experien|employment|impiego|beruf|lavor|career|history|work)\b", h.lower()):
+            exp_section = c; break
     edu_section = ""
     for h, c in sections.items():
-        if re.search(r"\b(educat|formaz|ausbild|stud)\b", h.lower()):
-            edu_section = c
-            break
+        if re.search(r"\b(educat|formaz|ausbild|stud|school|univers|degree|training)\b", h.lower()):
+            edu_section = c; break
 
     experiences = extract_experience(exp_section)
     education   = extract_education(edu_section)
@@ -479,11 +770,11 @@ def parse_text_to_internal(text: str, blocks: List[Dict[str, Any]] | None, filen
         "anagrafica": {
             "nome": nome or "",
             "cognome": cognome or "",
-            "data_nascita": "",
-            "luogo_nascita": "",
-            "nazionalita": "",
-            "sesso": "",
-            "stato_civile": "",
+            "data_nascita": personal.get("data_nascita",""),
+            "luogo_nascita": personal.get("luogo_nascita",""),
+            "nazionalita": personal.get("nazionalita",""),
+            "sesso": personal.get("sesso",""),
+            "stato_civile": personal.get("stato_civile",""),
         },
         "contatti": contacts,
         "istruzione": education,

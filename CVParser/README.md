@@ -136,4 +136,134 @@ Se ti è utile, lascia una ⭐ al repo.
 
 
 ## Autore
-s
+
+
+
+## JSON di output
+
+Questo è il JSON di esempio in cui devi generare le informazioni: 
+
+```JSON
+{ "anagrafica": 
+    { 
+        "nome": "", 
+        "cognome": "", 
+        "data_nascita": "", 
+        "luogo_nascita": "", 
+        "nazionalita": "", 
+        "sesso": "", 
+        "stato_civile": "" 
+    }, 
+    "contatti": 
+        { 
+            "indirizzo": 
+                { 
+                    "via": "", 
+                    "citta": "", 
+                    "cap": "", 
+                    "provincia": "", 
+                    "paese": "" 
+                }, 
+            "telefono": "", 
+            "cellulare": "",
+            "email": "", 
+            "linkedin": "", 
+            "sito_web": "", 
+            "github": "" }, 
+            "istruzione": 
+                [ 
+                    { 
+                    "titolo_studio": "", 
+                    "istituto": "", 
+                    "citta": "", 
+                    "paese": "", 
+                    "data_inizio": "", 
+                    "data_fine": "", 
+                    "voto": "", 
+                    "descrizione": "", 
+                    "tesi": "" 
+                    }
+                ], 
+                
+            "esperienze_lavorative": 
+                [ 
+                    { 
+                        "posizione": "", 
+                        "azienda": "", 
+                        "citta": "", 
+                        "paese": "", 
+                        "data_inizio": "", 
+                        "data_fine": "", 
+                        "descrizione": "", 
+                        "responsabilita": [], 
+                        "risultati_ottenuti": [] 
+                    } 
+                ], 
+                
+            "competenze_tecniche": 
+                { 
+                    "linguaggi_programmazione": [], 
+                    "framework": [], 
+                    "database": [], 
+                    "strumenti": [], 
+                    "metodologie": [], 
+                    "altre_competenze": [] 
+                }, 
+                
+            "competenze_linguistiche": 
+                [ 
+                    { 
+                        "lingua": "", 
+                        "livello_scritto": "", 
+                        "livello_parlato": "", 
+                        "certificazioni": [] 
+                    } 
+                ],
+            
+            "competenze_trasversali": [], 
+            
+            "certificazioni": 
+                [ 
+                    { 
+                        "nome": "", 
+                        "ente_certificatore": "", 
+                        "data_ottenimento": "", 
+                        "data_scadenza": "", 
+                        "numero_certificato": "" 
+                    } 
+                ], 
+                
+            "progetti": 
+                [ 
+                    { 
+                        "nome": "", 
+                        "descrizione": "", 
+                        "ruolo": "", 
+                        "tecnologie": [], 
+                        "link": "" 
+                    } 
+                ], 
+            
+            "pubblicazioni": 
+                [ 
+                    { 
+                        "titolo": "", 
+                        "autori": [], 
+                        "data": "", 
+                        "rivista_conferenza": "", 
+                        "link": "" 
+                    } 
+                ], 
+                
+            
+            "interessi": [], 
+            "patente": [], 
+            "autorizzazione_trattamento_dati": "", 
+            "disponibilita": 
+                { 
+                    "trasferte": "", 
+                    "trasferimento": "", 
+                    "tipo_contratto_preferito": [] 
+                } 
+}
+```

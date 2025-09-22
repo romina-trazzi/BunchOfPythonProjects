@@ -22,6 +22,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["X-Completion-Core", "X-Completion-Global"], # per scoring
 )
 
 @app.post("/parse")
@@ -51,17 +52,20 @@ async def parse(file: UploadFile = File(...), mode: str = "local", language: str
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"Estrazione locale fallita: {e}")
 
-    # 2) parsing (layout-aware, no liste hard-coded)
+    # 2) parsing
     internal = parse_text_to_internal(text, blocks, filename)
 
-    # 3) normalizzazione nello schema target (italiano, pulito)
+    # 3) normalizzazione
     schema = to_schema(internal)
 
-    # 4) percentuale (fuori dallo schema)
-    pct = completion(schema)
+    # 4) scoring (TOP-LEVEL, NON dentro schema)
+    from scoring import scores
+    sc = scores(schema)
 
-    return JSONResponse(content={
-        "schema": schema,
-        "completamento_percentuale": pct,
-        "mode": mode
-    })
+    return JSONResponse(
+    content={"schema": schema}, 
+    headers={
+        "X-Completion-Core": str(sc["completezza_core_pct"]),
+        "X-Completion-Global": str(sc["completezza_globale_pct"]),
+    },
+)

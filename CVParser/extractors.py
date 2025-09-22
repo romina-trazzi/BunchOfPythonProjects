@@ -5,11 +5,19 @@ Espone due funzioni principali:
 
 - extract_text_and_blocks(pdf_bytes) -> tuple[str, list[dict]]
     Estrae il testo nativo del PDF e una lista di blocchi (layout-aware)
-    usando PyMuPDF: per ogni blocco fornisce bounding box e testo.
-    I blocchi sono utili al parser per euristiche su heading, nome/cognome, ecc.
+    usando PyMuPDF. In questa versione ogni blocco rappresenta una *riga*,
+    con bounding box e info tipografiche utili al parser:
+      {
+        "page": int,
+        "x0": float, "y0": float, "x1": float, "y1": float,
+        "text": str,
+        "font_size": float,   # max size tra gli spans della riga
+        "is_bold": bool,      # true se un font della riga è bold
+        "line_no": int        # numero di riga crescente per pagina
+      }
 
 - ocrspace_extract_text(pdf_bytes, language="ita") -> str
-    Esegue OCR via OCR.space senza dipendenze esterne (solo stdlib).
+    (Invariata) Esegue OCR via OCR.space senza dipendenze esterne (solo stdlib).
     Usa la chiave pubblica "helloworld" (rate limitato): va bene per test.
 
 Entrambe sono defensive (try/except) e sollevano eccezioni con messaggi chiari
@@ -34,18 +42,21 @@ except Exception:
 
 
 # ===============================
-# Estrazione locale (PyMuPDF)
+# Estrazione locale (PyMuPDF) — versione "layout-aware" arricchita
 # ===============================
 
 def extract_text_and_blocks(pdf_bytes: bytes) -> Tuple[str, List[Dict]]:
     """
     Estrae:
       - text: l'intero testo del PDF (join delle pagine).
-      - blocks: lista di blocchi con info layout per TUTTE le pagine.
+      - blocks: lista di *righe* con info layout e tipografiche per TUTTE le pagine.
         Ogni blocco: {
             "page": int,
             "x0": float, "y0": float, "x1": float, "y1": float,
-            "text": str
+            "text": str,
+            "font_size": float,
+            "is_bold": bool,
+            "line_no": int
         }
 
     Richiede PyMuPDF. Se non installato, solleva RuntimeError esplicativa.
@@ -66,31 +77,59 @@ def extract_text_and_blocks(pdf_bytes: bytes) -> Tuple[str, List[Dict]]:
             page = doc[pno]
 
             # Testo “semplice” della pagina
-            page_text = page.get_text("text")
+            page_text = page.get_text("text") or ""
             if page_text:
                 all_text_parts.append(page_text)
 
-            # Blocchi layout-aware: "blocks" restituisce [(x0,y0,x1,y1,_,text,_,_)]
-            # Per robustezza gestiamo eventuali campi mancanti.
+            # Ricostruzione linee con info di font/bold via get_text("dict")
             try:
-                blocks = page.get_text("blocks") or []
+                d = page.get_text("dict") or {}
             except Exception:
-                blocks = []
+                d = {}
 
-            for b in blocks:
-                # PyMuPDF può restituire tuple di lunghezza variabile a seconda della versione
-                # La forma classica è: (x0, y0, x1, y1, "text", block_no, block_type, ...)
-                x0 = float(b[0]) if len(b) > 0 else 0.0
-                y0 = float(b[1]) if len(b) > 1 else 0.0
-                x1 = float(b[2]) if len(b) > 2 else 0.0
-                y1 = float(b[3]) if len(b) > 3 else 0.0
-                text = str(b[4]) if len(b) > 4 and isinstance(b[4], str) else ""
+            line_no = 0
+            for b in d.get("blocks", []):
+                if "lines" not in b:
+                    # es. blocchi immagine
+                    continue
+                for l in b.get("lines", []):
+                    line_no += 1
+                    spans = l.get("spans", []) or []
+                    text_parts: List[str] = []
+                    max_size: float = 0.0
+                    is_bold: bool = False
 
-                if text.strip():
+                    for s in spans:
+                        t = s.get("text") or ""
+                        if t:
+                            text_parts.append(t)
+                        try:
+                            size = float(s.get("size", 0.0) or 0.0)
+                        except Exception:
+                            size = 0.0
+                        if size > max_size:
+                            max_size = size
+                        fname = (s.get("font") or "").lower()
+                        if "bold" in fname or fname.endswith("b"):
+                            is_bold = True
+
+                    text = " ".join(text_parts).strip()
+                    if not text:
+                        continue
+
+                    try:
+                        x0, y0, x1, y1 = l.get("bbox", [0, 0, 0, 0])
+                    except Exception:
+                        x0 = y0 = x1 = y1 = 0.0
+
                     all_blocks.append({
                         "page": pno,
-                        "x0": x0, "y0": y0, "x1": x1, "y1": y1,
-                        "text": text.strip()
+                        "x0": float(x0), "y0": float(y0),
+                        "x1": float(x1), "y1": float(y1),
+                        "text": text,
+                        "font_size": float(max_size),
+                        "is_bold": bool(is_bold),
+                        "line_no": int(line_no),
                     })
     finally:
         doc.close()
@@ -100,7 +139,7 @@ def extract_text_and_blocks(pdf_bytes: bytes) -> Tuple[str, List[Dict]]:
 
 
 # ===============================
-# Estrazione esterna (OCR.space)
+# Estrazione esterna (OCR.space) — INVARIATA
 # ===============================
 
 _OCRSPACE_ENDPOINT = "https://api.ocr.space/parse/image"
@@ -162,7 +201,6 @@ def ocrspace_extract_text(pdf_bytes: bytes, language: str = "ita") -> str:
     if not results:
         return ""
 
-    # Concateno tutti i “ParsedText” (in PDF multipagina OCR.space restituisce più risultati)
     texts = []
     for r in results:
         pt = (r or {}).get("ParsedText") or ""
