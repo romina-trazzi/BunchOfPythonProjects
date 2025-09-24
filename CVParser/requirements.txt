@@ -1,0 +1,24 @@
+# --- Server e API ---
+fastapi           # Framework web per costruire REST API (routing, validazione, response)
+uvicorn           # ASGI server veloce per eseguire FastAPI (sviluppo e produzione)
+python-multipart  # Supporto parsing multipart/form-data (necessario per upload file)
+
+# --- Pulizia testo / estrazione PDF ---
+ftfy              # "Fixes Text For You": ripara testo Unicode, rimuove caratteri strani/invisibili
+pymupdf           # PyMuPDF: legge PDF localmente, estrae testo e blocchi (layout-aware)
+
+# --- Internazionalizzazione ---
+langdetect        # Rileva la lingua utilizzata nel testo
+babel             # Aiuto per la traduzione di parole straniere in italiano
+phonenumbers      # Port di Google libphonenumber: parsing/validazione/format E.164 di numeri globali
+pycountry         # Dizionari ISO ufficiali (paesi, lingue, subdivisioni) per normalizzare nomi/abbr.
+tldextract        # Estrae registrable domain + TLD da URL/email (es. example.co.uk) per indizi paese
+
+
+# --- Parsing “intelligente” opzionale (qualità) ---
+dateparser        # Parsing di date multilingua (es. "Jul 2021", "ottobre 2019") → datetime
+email-validator   # Validazione sintattica e DNS delle email (riduce falsi positivi)
+validators        # Validatori semplici per URL/HTTP/email… (leggero, utile per filtri rapidi)
+unidecode         # Traslittera caratteri accentati/Unicode in ASCII (aiuta in confronti/matching)
+rapidfuzz         # Fuzzy matching veloce e leggero (riconciliare alias, abbreviazioni, varianti)
+
