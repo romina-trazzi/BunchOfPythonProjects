@@ -1,0 +1,38 @@
+2025-10-03 11:40:27,031 - src.api - INFO - Bootstrapping components...
+2025-10-03 11:40:31,270 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-10-03 11:40:33,849 - huggingface_hub.file_download - WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-10-03 11:40:37,951 - src.vector_store - INFO - [Chroma] Persist directory: C:\Users\Romina.Trazzi\Desktop\Notes\1. Python e Machine Learning\ProgettiPython\LangChain&Swagger\data\chroma_db
+2025-10-03 11:40:38,690 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-10-03 11:40:39,383 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-10-03 11:40:39,418 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientCreateCollectionEvent: capture() takes 1 positional argument but 3 were given
+2025-10-03 11:40:39,423 - src.vector_store - INFO - [Chroma] Initialized collection: rag_documents
+2025-10-03 11:40:39,454 - src.memory_manager - INFO - Memory Manager initialized
+2025-10-03 11:56:14,221 - src.api - INFO - Bootstrapping components...
+2025-10-03 11:56:18,826 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-10-03 11:56:21,417 - src.vector_store - INFO - [Chroma] Persist directory: C:\Users\Romina.Trazzi\Desktop\Notes\1. Python e Machine Learning\ProgettiPython\LangChain&Swagger\data\chroma_db
+2025-10-03 11:56:22,026 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-10-03 11:56:22,237 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-10-03 11:56:22,239 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientCreateCollectionEvent: capture() takes 1 positional argument but 3 were given
+2025-10-03 11:56:22,239 - src.vector_store - INFO - [Chroma] Initialized collection: rag_documents
+2025-10-03 11:56:22,240 - src.memory_manager - INFO - Memory Manager initialized
+2025-10-03 12:01:39,835 - src.api - INFO - Bootstrapping components...
+2025-10-03 12:01:44,625 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-10-03 12:01:47,395 - src.vector_store - INFO - [Chroma] Persist directory: C:\Users\Romina.Trazzi\Desktop\Notes\1. Python e Machine Learning\ProgettiPython\LangChain&Swagger\data\chroma_db
+2025-10-03 12:01:47,975 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-10-03 12:01:48,166 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-10-03 12:01:48,168 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientCreateCollectionEvent: capture() takes 1 positional argument but 3 were given
+2025-10-03 12:01:48,169 - src.vector_store - INFO - [Chroma] Initialized collection: rag_documents
+2025-10-03 12:01:48,169 - src.memory_manager - INFO - Memory Manager initialized
+2025-10-03 12:01:49,546 - src.agents - INFO - RAG Agent Manager initialized
+2025-10-03 12:01:49,547 - src.api - INFO - Agent manager ready
+2025-10-03 12:01:49,547 - src.api - INFO - Startup completed.
+2025-10-03 12:13:18,582 - src.api - INFO - Loaded 1 docs from prova.txt
+2025-10-03 12:13:18,601 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-10-03 12:13:18,603 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientCreateCollectionEvent: capture() takes 1 positional argument but 3 were given
+2025-10-03 12:13:18,630 - src.vector_store - INFO - [Chroma] Initialized collection: rag_documents
+2025-10-03 12:13:19,070 - src.vector_store - INFO - [Chroma] Added 1 docs (persisted)
+2025-10-03 12:16:17,625 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2025-10-03 12:16:17,626 - chromadb.segment.impl.vector.local_persistent_hnsw - WARNING - Number of requested results 3 is greater than number of elements in index 1, updating n_results = 1
+2025-10-03 12:16:17,632 - src.vector_store - INFO - [Chroma] similarity_search -> 1 hits
+2025-10-03 12:16:18,077 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 404 Not Found"
+2025-10-03 12:16:18,080 - src.api - ERROR - Error processing query: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-3-sonnet-20240229'}, 'request_id': 'req_011CTk6FY1g82ivKRcfXgYtR'}

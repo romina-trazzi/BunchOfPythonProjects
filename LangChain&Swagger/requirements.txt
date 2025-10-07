@@ -1,0 +1,30 @@
+# === Core web/API ===
+fastapi>=0.111,<1
+uvicorn[standard]>=0.30,<1
+python-multipart>=0.0.9
+
+# === LangChain 0.2.x (nuovi namespace) ===
+langchain==0.2.17
+langchain-community==0.2.10
+langchain-text-splitters==0.2.2
+langchain-experimental>=0.0.62
+
+# === LLM provider: Anthropic (Claude) via LangChain ===
+langchain-anthropic==0.1.20
+anthropic>=0.29,<1
+
+# === Vector store & embeddings ===
+chromadb>=0.5,<0.6
+sentence-transformers>=3.0
+
+# === Document loaders / parsing ===
+pypdf>=4.2
+docx2txt>=0.8
+
+# === Tools usati dagli agent (web search) ===
+duckduckgo-search>=5.3
+
+# === Configurazione / settings ===
+pydantic>=2.7,<3
+pydantic-settings>=2.2,<3
+python-dotenv>=1.0
