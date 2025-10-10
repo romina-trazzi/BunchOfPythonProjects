@@ -1,1 +1,32 @@
-.venv
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Artefatti pesanti
+*.dll
+*.lib
+
+# Dati / modelli (se presenti)
+data/
+models/
+*.pt
+*.pth
+*.onnx
+*.csv
+*.tsv
+*.parquet
+*.zip
+*.gz
+
+# Api Keys e configurazioni sensibili
+.env
+.env.*.local
+.env.local
+.env.production
+.env.*.production
+.env.test
+.env.*.test
+.env.development
