@@ -1,0 +1,49 @@
+# Docker Compose for API (FastAPI) + Web (Nginx static + reverse proxy).
+# Compose v2 syntax (no top-level "version" key required).
+
+services:
+  # ---------------------------
+  # FastAPI application service
+  # ---------------------------
+  api:
+    build:
+      context: ..                # project root (one level up from /docker)
+      dockerfile: docker/Dockerfile
+    image: estrattoconto-api:dev
+    container_name: estratto_conto_api
+
+    env_file:
+      - ../.env
+
+    # Keep API exposed on 8000 for direct testing if you want.
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - ../models:/app/models:rw
+      - ../data:/app/data:rw
+      - ../logs:/app/logs:rw
+      - ../config:/app/config:ro
+
+    restart: unless-stopped
+
+  # -----------------------------------------------
+  # Web frontend: Nginx static + reverse proxy to API
+  # -----------------------------------------------
+  web:
+    image: nginx:alpine
+    container_name: estratto_conto_web
+
+    # CHANGED: map host 8081 -> container 80 to avoid conflict on 8080
+    ports:
+      - "8081:80"
+
+    volumes:
+      # Serve your static frontend files
+      - ../frontend:/usr/share/nginx/html:ro
+      # Nginx config with /api/ reverse proxy to the "api" service
+      - ./nginx:/etc/nginx/conf.d:ro
+
+    depends_on:
+      - api
+    restart: unless-stopped

@@ -1,0 +1,9 @@
+{
+  "data_dir": "data",
+  "csv_dir": "data/csv",
+  "plots_dir": "data/plots",
+  "alerts": {
+    "months": 3,
+    "tolerance": 0.2
+  }
+}

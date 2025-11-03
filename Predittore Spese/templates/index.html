@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Predittore Spese</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>Dashboard Predittore Spese</h1>
+    <p>Genera nuovo flusso e visualizza i grafici generati.</p>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="messages">
+        {% for category, message in messages %}
+          <div class="msg {{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <section class="actions">
+    <h2>Azioni</h2>
+    <div class="grid-actions">
+      <form method="post" action="/run_all"><button type="submit">Rigenera flusso completo</button></form>
+      <form method="post" action="/run_generate"><button type="submit">Genera estratto conto</button></form>
+      <form method="post" action="/run_predict"><button type="submit">Calcola previsione spese</button></form>
+      <form method="post" action="/run_compare"><button type="submit">Grafico comparativo</button></form>
+      <form method="post" action="/run_categories"><button type="submit">Analisi per categoria (base)</button></form>
+      <form method="post" action="/run_summary"><button type="submit">Riepilogo entrate vs spese</button></form>
+    </div>
+
+    <div class="advanced">
+      <h3>Analisi avanzata categorie</h3>
+      <form method="post" action="/run_advanced" class="form-advanced">
+        <label>
+          Ultimi N mesi:
+          <input type="number" name="months" min="1" placeholder="es. 6">
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" name="include_entrate"> Includi entrate
+        </label>
+        <button type="submit">Esegui analisi avanzata</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Sezione Alert -->
+  <section class="alerts">
+    <h2>Alert spesa per categoria</h2>
+    <form method="post" action="/alerts_settings" class="form-alerts">
+      <label>
+        Mesi di riferimento
+        <input type="number" name="alert_months" min="1" value="{{ alerts_info.months }}">
+      </label>
+      <label>
+        Tolleranza (es. 0.2 = +20%)
+        <input type="number" name="alert_tolerance" step="0.05" min="0" value="{{ alerts_info.tolerance }}">
+      </label>
+      <button type="submit">Aggiorna impostazioni</button>
+    </form>
+
+    {% if alerts_info.missing %}
+      <p class="hint">Per vedere gli alert, esegui “Analisi per categoria (base)”.</p>
+    {% elif alerts_info.alerts and alerts_info.alerts|length > 0 %}
+      <ul class="alert-list">
+        {% for a in alerts_info.alerts %}
+          <li class="alert-item">
+            <strong>{{ a.categoria }}</strong> — {{ a.mese }}: spesa {{ a.spesa }} supera soglia {{ a.soglia }} (media {{ a.media }})
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="ok">Nessun alert per il mese {{ alerts_info.latest }}.</p>
+    {% endif %}
+  </section>
+
+  <section class="gallery">
+    <h2>Grafici generati</h2>
+    {% if plots and plots|length > 0 %}
+      <div class="grid-plots">
+        {% for p in plots %}
+          <figure>
+            <img src="/plots/{{ p }}" alt="{{ p }}">
+            <figcaption>{{ p }}</figcaption>
+          </figure>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>Nessun grafico presente. Esegui una delle azioni sopra.</p>
+    {% endif %}
+  </section>
+
+  <footer>
+    <small>© Predittore Spese</small>
+  </footer>
+</body>
+</html>

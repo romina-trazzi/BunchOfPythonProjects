@@ -1,0 +1,13 @@
+{
+  "budgets": {
+    "Affitto": 800,
+    "Spesa": 400,
+    "Utenze": 250,
+    "Trasporti": 200,
+    "Abbonamenti": 50
+  },
+  "alerts": {
+    "months": 3,
+    "tolerance": 0.2
+  }
+}

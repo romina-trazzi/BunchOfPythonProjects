@@ -1,0 +1,449 @@
+data,descrizione,categoria,importo,tipo,saldo
+2024-10-01,Affitto Appartamento,Affitto,-951.88,debito,2048.12
+2024-10-03,Sushi House,Ristoranti/Bar,-21.34,debito,2026.78
+2024-10-03,Bar Centrale,Ristoranti/Bar,-36.80,debito,1989.98
+2024-10-04,Ristorante La Pergola,Ristoranti/Bar,-6.00,debito,1983.98
+2024-10-06,Trenitalia,Trasporti,-2.20,debito,1981.78
+2024-10-07,TIM Fibra,Utenze - Internet,-31.03,debito,1950.75
+2024-10-07,Netflix,Intrattenimento,-17.79,debito,1932.96
+2024-10-07,Spotify,Intrattenimento,-10.58,debito,1922.38
+2024-10-07,Supermercato Pam,Spesa Supermercato,-44.17,debito,1878.21
+2024-10-07,Supermercato Eurospin,Spesa Supermercato,-71.43,debito,1806.78
+2024-10-07,Car Sharing,Trasporti,-2.20,debito,1804.58
+2024-10-07,Car Sharing,Trasporti,-3.00,debito,1801.58
+2024-10-07,Carburante Shell,Trasporti,-35.00,debito,1766.58
+2024-10-07,Farmacia Comunale,Sanità/Assicurazioni,-68.43,debito,1698.15
+2024-10-07,Acquisto Cartoleria,Varie,-23.97,debito,1674.18
+2024-10-07,Acquisto straordinario (Elettrodomestico),Anomalia - Spesa Straordinaria,-878.68,debito,795.50
+2024-10-08,Trattoria al Ponte,Ristoranti/Bar,-22.59,debito,772.91
+2024-10-08,Trenitalia,Trasporti,-1.50,debito,771.41
+2024-10-11,Iren,Utenze - Luce/Gas,-37.31,debito,734.10
+2024-10-11,Supermercato Conad,Spesa Supermercato,-71.41,debito,662.69
+2024-10-13,ATM Milano,Trasporti,-2.20,debito,660.49
+2024-10-14,Supermercato Coop,Spesa Supermercato,-47.11,debito,613.38
+2024-10-14,Acquisto Ikea,Varie,-48.64,debito,564.74
+2024-10-15,Acquedotto Comunale,Utenze - Acqua,-23.82,debito,540.92
+2024-10-15,Supermercato Lidl,Spesa Supermercato,-53.11,debito,487.81
+2024-10-15,Caffetteria Roma,Ristoranti/Bar,-16.09,debito,471.72
+2024-10-15,Trenitalia,Trasporti,-2.50,debito,469.22
+2024-10-15,Carburante ENI,Trasporti,-89.34,debito,379.88
+2024-10-16,Acquisto Amazon,Varie,-34.77,debito,345.11
+2024-10-21,Supermercato Esselunga,Spesa Supermercato,-76.21,debito,268.90
+2024-10-21,Bar Centrale,Ristoranti/Bar,-25.71,debito,243.19
+2024-10-21,Autostrade,Trasporti,-2.00,debito,241.19
+2024-10-21,TPL Urbano,Trasporti,-3.00,debito,238.19
+2024-10-21,Acquisto Decathlon,Varie,-5.00,debito,233.19
+2024-10-22,Autostrade,Trasporti,-1.50,debito,231.69
+2024-10-22,ATM Milano,Trasporti,-2.20,debito,229.49
+2024-10-22,Acquisto Decathlon,Varie,-14.74,debito,214.75
+2024-10-24,TPL Urbano,Trasporti,-2.00,debito,212.75
+2024-10-25,Stipendio Azienda,Stipendio,2645.06,credito,2857.81
+2024-10-25,Supermercato Eurospin,Spesa Supermercato,-111.64,debito,2746.17
+2024-10-25,Acquisto Amazon,Varie,-44.25,debito,2701.92
+2024-10-28,Supermercato Esselunga,Spesa Supermercato,-68.21,debito,2633.71
+2024-10-28,Trattoria al Ponte,Ristoranti/Bar,-47.34,debito,2586.37
+2024-11-04,Affitto Appartamento,Affitto,-951.46,debito,1634.91
+2024-11-04,Netflix,Intrattenimento,-19.18,debito,1615.73
+2024-11-04,Pizzeria Da Mario,Ristoranti/Bar,-55.84,debito,1559.89
+2024-11-04,Carburante Tamoil,Trasporti,-45.03,debito,1514.86
+2024-11-04,Acquisto Euronics,Varie,-23.43,debito,1491.43
+2024-11-05,Supermercato Esselunga,Spesa Supermercato,-57.45,debito,1433.98
+2024-11-05,Caffetteria Roma,Ristoranti/Bar,-17.73,debito,1416.25
+2024-11-07,Car Sharing,Trasporti,-3.00,debito,1413.25
+2024-11-07,Acquisto Amazon,Varie,-5.00,debito,1408.25
+2024-11-08,Pizzeria Da Mario,Ristoranti/Bar,-37.56,debito,1370.69
+2024-11-08,ATM Milano,Trasporti,-2.00,debito,1368.69
+2024-11-08,ATM Milano,Trasporti,-1.50,debito,1367.19
+2024-11-08,Carburante Q8,Trasporti,-94.55,debito,1272.64
+2024-11-10,Car Sharing,Trasporti,-2.50,debito,1270.14
+2024-11-11,TIM Fibra,Utenze - Internet,-30.04,debito,1240.10
+2024-11-11,Spotify,Intrattenimento,-9.71,debito,1230.39
+2024-11-11,Supermercato Eurospin,Spesa Supermercato,-61.69,debito,1168.70
+2024-11-11,Ristorante La Pergola,Ristoranti/Bar,-70.70,debito,1098.00
+2024-11-11,Autostrade,Trasporti,-1.50,debito,1096.50
+2024-11-17,Italo,Trasporti,-3.00,debito,1093.50
+2024-11-17,ATM Milano,Trasporti,-2.50,debito,1091.00
+2024-11-18,Supermercato Eurospin,Spesa Supermercato,-107.62,debito,983.38
+2024-11-18,Supermercato Conad,Spesa Supermercato,-73.07,debito,910.31
+2024-11-18,Bar Centrale,Ristoranti/Bar,-6.00,debito,904.31
+2024-11-18,Autostrade,Trasporti,-2.00,debito,902.31
+2024-11-18,Acquisto Ikea,Varie,-57.04,debito,845.27
+2024-11-19,MM Servizi Idrico,Utenze - Acqua,-19.28,debito,825.99
+2024-11-19,Acquisto MediaWorld,Varie,-60.23,debito,765.76
+2024-11-20,Hera,Utenze - Luce/Gas,-82.28,debito,683.48
+2024-11-21,Italo,Trasporti,-2.20,debito,681.28
+2024-11-21,Carburante Q8,Trasporti,-68.52,debito,612.76
+2024-11-22,Acquisto Decathlon,Varie,-50.22,debito,562.54
+2024-11-23,Car Sharing,Trasporti,-2.00,debito,560.54
+2024-11-25,Supermercato Coop,Spesa Supermercato,-41.61,debito,518.93
+2024-11-25,Ristorante La Pergola,Ristoranti/Bar,-53.15,debito,465.78
+2024-11-27,Stipendio Azienda,Stipendio,2482.65,credito,2948.43
+2024-11-27,Trattoria al Ponte,Ristoranti/Bar,-40.66,debito,2907.77
+2024-11-28,Supermercato Pam,Spesa Supermercato,-133.45,debito,2774.32
+2024-12-02,Rimborso doppio addebito,Anomalia - Rimborso,310.23,credito,3084.55
+2024-12-02,Affitto Appartamento,Affitto,-938.82,debito,2145.73
+2024-12-02,ATM Milano,Trasporti,-3.00,debito,2142.73
+2024-12-02,Carburante Shell,Trasporti,-48.23,debito,2094.50
+2024-12-03,Acquisto Ikea,Varie,-64.38,debito,2030.12
+2024-12-04,Netflix,Intrattenimento,-18.98,debito,2011.14
+2024-12-04,TPL Urbano,Trasporti,-3.00,debito,2008.14
+2024-12-05,Bar Centrale,Ristoranti/Bar,-25.03,debito,1983.11
+2024-12-06,Spotify,Intrattenimento,-9.80,debito,1973.31
+2024-12-06,Supermercato Carrefour,Spesa Supermercato,-66.43,debito,1906.88
+2024-12-06,Supermercato Carrefour,Spesa Supermercato,-108.57,debito,1798.31
+2024-12-07,TPL Urbano,Trasporti,-2.20,debito,1796.11
+2024-12-09,TPL Urbano,Trasporti,-2.50,debito,1793.61
+2024-12-10,TIM Fibra,Utenze - Internet,-29.27,debito,1764.34
+2024-12-10,Ristorante La Pergola,Ristoranti/Bar,-36.65,debito,1727.69
+2024-12-13,A2A Energia,Utenze - Luce/Gas,-85.80,debito,1641.89
+2024-12-13,Supermercato Conad,Spesa Supermercato,-85.26,debito,1556.63
+2024-12-17,TPL Urbano,Trasporti,-3.00,debito,1553.63
+2024-12-17,Trenitalia,Trasporti,-2.20,debito,1551.43
+2024-12-17,Acquisto Zara,Varie,-62.84,debito,1488.59
+2024-12-18,Pizzeria Da Mario,Ristoranti/Bar,-36.38,debito,1452.21
+2024-12-18,Acquisto Ikea,Varie,-25.06,debito,1427.15
+2024-12-19,Caffetteria Roma,Ristoranti/Bar,-74.25,debito,1352.90
+2024-12-19,ATM Milano,Trasporti,-3.00,debito,1349.90
+2024-12-20,Car Sharing,Trasporti,-1.50,debito,1348.40
+2024-12-20,Italo,Trasporti,-1.50,debito,1346.90
+2024-12-22,Autostrade,Trasporti,-3.00,debito,1343.90
+2024-12-22,Italo,Trasporti,-2.20,debito,1341.70
+2024-12-23,Acquedotto Comunale,Utenze - Acqua,-25.05,debito,1316.65
+2024-12-23,Supermercato Lidl,Spesa Supermercato,-74.77,debito,1241.88
+2024-12-23,Caffetteria Roma,Ristoranti/Bar,-55.55,debito,1186.33
+2024-12-23,Ristorante La Pergola,Ristoranti/Bar,-35.90,debito,1150.43
+2024-12-25,Stipendio Azienda,Stipendio,2602.88,credito,3753.31
+2024-12-25,Carburante Q8,Trasporti,-58.82,debito,3694.49
+2024-12-26,Supermercato Eurospin,Spesa Supermercato,-90.71,debito,3603.78
+2024-12-27,Supermercato Conad,Spesa Supermercato,-139.72,debito,3464.06
+2024-12-27,Commissione bancaria,Commissioni,-1.85,debito,3462.21
+2024-12-28,ATM Milano,Trasporti,-2.00,debito,3460.21
+2024-12-28,Italo,Trasporti,-2.00,debito,3458.21
+2024-12-30,Supermercato Coop,Spesa Supermercato,-72.65,debito,3385.56
+2025-01-02,Supermercato Conad,Spesa Supermercato,-52.45,debito,3333.11
+2025-01-02,Supermercato Conad,Spesa Supermercato,-48.58,debito,3284.53
+2025-01-02,Trenitalia,Trasporti,-2.20,debito,3282.33
+2025-01-03,Affitto Appartamento,Affitto,-955.18,debito,2327.15
+2025-01-03,Caffetteria Roma,Ristoranti/Bar,-37.37,debito,2289.78
+2025-01-04,Autostrade,Trasporti,-2.20,debito,2287.58
+2025-01-05,TPL Urbano,Trasporti,-2.50,debito,2285.08
+2025-01-06,Netflix,Intrattenimento,-18.06,debito,2267.02
+2025-01-06,Sushi House,Ristoranti/Bar,-50.48,debito,2216.54
+2025-01-06,Italo,Trasporti,-1.50,debito,2215.04
+2025-01-06,Acquisto MediaWorld,Varie,-91.22,debito,2123.82
+2025-01-07,Car Sharing,Trasporti,-2.00,debito,2121.82
+2025-01-08,Spotify,Intrattenimento,-9.72,debito,2112.10
+2025-01-08,Italo,Trasporti,-2.00,debito,2110.10
+2025-01-08,Carburante Q8,Trasporti,-55.28,debito,2054.82
+2025-01-09,TIM Fibra,Utenze - Internet,-30.82,debito,2024.00
+2025-01-09,Supermercato Eurospin,Spesa Supermercato,-60.02,debito,1963.98
+2025-01-09,Acquisto Amazon,Varie,-67.99,debito,1895.99
+2025-01-10,Carburante ENI,Trasporti,-68.88,debito,1827.11
+2025-01-13,Hera,Utenze - Luce/Gas,-85.27,debito,1741.84
+2025-01-13,Supermercato Eurospin,Spesa Supermercato,-131.25,debito,1610.59
+2025-01-13,Acquisto Euronics,Varie,-9.60,debito,1600.99
+2025-01-13,Acquisto Amazon,Varie,-96.91,debito,1504.08
+2025-01-14,TPL Urbano,Trasporti,-1.50,debito,1502.58
+2025-01-20,Caffetteria Roma,Ristoranti/Bar,-34.57,debito,1468.01
+2025-01-22,Supermercato Pam,Spesa Supermercato,-101.57,debito,1366.44
+2025-01-23,Acquedotto Comunale,Utenze - Acqua,-22.95,debito,1343.49
+2025-01-24,Ristorante La Pergola,Ristoranti/Bar,-67.14,debito,1276.35
+2025-01-24,TPL Urbano,Trasporti,-2.00,debito,1274.35
+2025-01-24,Italo,Trasporti,-2.20,debito,1272.15
+2025-01-26,Trenitalia,Trasporti,-1.50,debito,1270.65
+2025-01-26,Trenitalia,Trasporti,-2.00,debito,1268.65
+2025-01-27,Stipendio Azienda,Stipendio,2522.68,credito,3791.33
+2025-01-27,Acquisto MediaWorld,Varie,-45.02,debito,3746.31
+2025-01-28,Autostrade,Trasporti,-2.50,debito,3743.81
+2025-01-28,TPL Urbano,Trasporti,-2.00,debito,3741.81
+2025-01-28,Italo,Trasporti,-1.50,debito,3740.31
+2025-01-28,Farmacia Comunale,Sanità/Assicurazioni,-35.94,debito,3704.37
+2025-02-03,Affitto Appartamento,Affitto,-957.86,debito,2746.51
+2025-02-03,Autostrade,Trasporti,-2.20,debito,2744.31
+2025-02-03,Car Sharing,Trasporti,-2.00,debito,2742.31
+2025-02-04,WindTre,Utenze - Internet,-30.36,debito,2711.95
+2025-02-05,ATM Milano,Trasporti,-1.50,debito,2710.45
+2025-02-05,Acquisto Cartoleria,Varie,-17.24,debito,2693.21
+2025-02-06,Netflix,Intrattenimento,-18.37,debito,2674.84
+2025-02-06,Italo,Trasporti,-3.00,debito,2671.84
+2025-02-06,Acquisto Euronics,Varie,-32.24,debito,2639.60
+2025-02-08,Autostrade,Trasporti,-2.50,debito,2637.10
+2025-02-10,A2A Energia,Utenze - Luce/Gas,-77.99,debito,2559.11
+2025-02-10,Trattoria al Ponte,Ristoranti/Bar,-42.97,debito,2516.14
+2025-02-10,TPL Urbano,Trasporti,-2.00,debito,2514.14
+2025-02-11,Spotify,Intrattenimento,-9.28,debito,2504.86
+2025-02-11,Ristorante La Pergola,Ristoranti/Bar,-15.43,debito,2489.43
+2025-02-11,Acquisto Cartoleria,Varie,-73.98,debito,2415.45
+2025-02-13,Supermercato Pam,Spesa Supermercato,-118.23,debito,2297.22
+2025-02-13,TPL Urbano,Trasporti,-2.00,debito,2295.22
+2025-02-14,TPL Urbano,Trasporti,-3.00,debito,2292.22
+2025-02-14,Acquisto Cartoleria,Varie,-69.90,debito,2222.32
+2025-02-16,Car Sharing,Trasporti,-2.00,debito,2220.32
+2025-02-17,Supermercato Esselunga,Spesa Supermercato,-72.62,debito,2147.70
+2025-02-18,Supermercato Coop,Spesa Supermercato,-96.91,debito,2050.79
+2025-02-18,Supermercato Eurospin,Spesa Supermercato,-69.66,debito,1981.13
+2025-02-18,Carburante ENI,Trasporti,-74.66,debito,1906.47
+2025-02-18,Acquisto MediaWorld,Varie,-54.03,debito,1852.44
+2025-02-20,Caffetteria Roma,Ristoranti/Bar,-61.96,debito,1790.48
+2025-02-21,ATM Milano,Trasporti,-1.50,debito,1788.98
+2025-02-22,Trenitalia,Trasporti,-3.00,debito,1785.98
+2025-02-23,Italo,Trasporti,-2.50,debito,1783.48
+2025-02-24,Supermercato Esselunga,Spesa Supermercato,-64.45,debito,1719.03
+2025-02-24,Supermercato Coop,Spesa Supermercato,-67.88,debito,1651.15
+2025-02-24,Acquisto MediaWorld,Varie,-25.54,debito,1625.61
+2025-02-25,Stipendio Azienda,Stipendio,2630.69,credito,4256.30
+2025-02-25,MM Servizi Idrico,Utenze - Acqua,-22.86,debito,4233.44
+2025-02-25,TPL Urbano,Trasporti,-2.50,debito,4230.94
+2025-02-28,Italo,Trasporti,-1.50,debito,4229.44
+2025-03-02,Italo,Trasporti,-2.20,debito,4227.24
+2025-03-03,Affitto Appartamento,Affitto,-939.79,debito,3287.45
+2025-03-03,Netflix,Intrattenimento,-17.43,debito,3270.02
+2025-03-03,Supermercato Carrefour,Spesa Supermercato,-121.90,debito,3148.12
+2025-03-03,Ristorante La Pergola,Ristoranti/Bar,-52.20,debito,3095.92
+2025-03-03,Commissione bancaria,Commissioni,-2.07,debito,3093.85
+2025-03-07,Vodafone Fibra,Utenze - Internet,-29.97,debito,3063.88
+2025-03-07,Spotify,Intrattenimento,-9.92,debito,3053.96
+2025-03-07,Supermercato Eurospin,Spesa Supermercato,-76.84,debito,2977.12
+2025-03-10,Ristorante La Pergola,Ristoranti/Bar,-39.51,debito,2937.61
+2025-03-10,Carburante Shell,Trasporti,-64.89,debito,2872.72
+2025-03-11,Caffetteria Roma,Ristoranti/Bar,-29.87,debito,2842.85
+2025-03-11,Italo,Trasporti,-2.00,debito,2840.85
+2025-03-11,Carburante Shell,Trasporti,-48.46,debito,2792.39
+2025-03-12,Acquisto Ikea,Varie,-57.58,debito,2734.81
+2025-03-13,Ristorante La Pergola,Ristoranti/Bar,-50.41,debito,2684.40
+2025-03-13,Autostrade,Trasporti,-3.00,debito,2681.40
+2025-03-14,A2A Energia,Utenze - Luce/Gas,-85.76,debito,2595.64
+2025-03-14,Supermercato Esselunga,Spesa Supermercato,-58.70,debito,2536.94
+2025-03-14,Supermercato Carrefour,Spesa Supermercato,-111.07,debito,2425.87
+2025-03-19,MM Servizi Idrico,Utenze - Acqua,-20.41,debito,2405.46
+2025-03-20,ATM Milano,Trasporti,-3.00,debito,2402.46
+2025-03-21,TPL Urbano,Trasporti,-2.50,debito,2399.96
+2025-03-21,Acquisto Amazon,Varie,-54.33,debito,2345.63
+2025-03-22,ATM Milano,Trasporti,-1.50,debito,2344.13
+2025-03-24,Supermercato Conad,Spesa Supermercato,-65.06,debito,2279.07
+2025-03-25,Ristorante La Pergola,Ristoranti/Bar,-36.97,debito,2242.10
+2025-03-25,Acquisto Amazon,Varie,-11.63,debito,2230.47
+2025-03-26,Stipendio Azienda,Stipendio,2601.75,credito,4832.22
+2025-03-26,Sushi House,Ristoranti/Bar,-30.64,debito,4801.58
+2025-03-27,TPL Urbano,Trasporti,-2.50,debito,4799.08
+2025-03-28,Ristorante La Pergola,Ristoranti/Bar,-12.72,debito,4786.36
+2025-03-28,TPL Urbano,Trasporti,-2.50,debito,4783.86
+2025-04-01,Ristorante La Pergola,Ristoranti/Bar,-30.11,debito,4753.75
+2025-04-01,Trenitalia,Trasporti,-2.50,debito,4751.25
+2025-04-02,Supermercato Esselunga,Spesa Supermercato,-25.98,debito,4725.27
+2025-04-03,Affitto Appartamento,Affitto,-977.43,debito,3747.84
+2025-04-03,Supermercato Lidl,Spesa Supermercato,-85.95,debito,3661.89
+2025-04-03,Supermercato Lidl,Spesa Supermercato,-54.48,debito,3607.41
+2025-04-04,Netflix,Intrattenimento,-17.90,debito,3589.51
+2025-04-06,TPL Urbano,Trasporti,-2.50,debito,3587.01
+2025-04-07,Fastweb,Utenze - Internet,-27.98,debito,3559.03
+2025-04-07,Commissione bancaria,Commissioni,-1.89,debito,3557.14
+2025-04-08,Spotify,Intrattenimento,-9.93,debito,3547.21
+2025-04-08,Italo,Trasporti,-2.50,debito,3544.71
+2025-04-08,Acquisto Decathlon,Varie,-27.35,debito,3517.36
+2025-04-09,TPL Urbano,Trasporti,-2.50,debito,3514.86
+2025-04-09,Car Sharing,Trasporti,-3.00,debito,3511.86
+2025-04-09,ATM Milano,Trasporti,-3.00,debito,3508.86
+2025-04-11,Acquisto Zara,Varie,-29.20,debito,3479.66
+2025-04-12,Trenitalia,Trasporti,-2.20,debito,3477.46
+2025-04-14,Caffetteria Roma,Ristoranti/Bar,-20.63,debito,3456.83
+2025-04-15,A2A Energia,Utenze - Luce/Gas,-35.69,debito,3421.14
+2025-04-15,Car Sharing,Trasporti,-2.50,debito,3418.64
+2025-04-16,Acquedotto Comunale,Utenze - Acqua,-17.23,debito,3401.41
+2025-04-16,Acquisto MediaWorld,Varie,-9.17,debito,3392.24
+2025-04-17,ATM Milano,Trasporti,-2.00,debito,3390.24
+2025-04-19,Trenitalia,Trasporti,-2.20,debito,3388.04
+2025-04-20,Trenitalia,Trasporti,-2.50,debito,3385.54
+2025-04-21,Supermercato Eurospin,Spesa Supermercato,-54.51,debito,3331.03
+2025-04-21,Trattoria al Ponte,Ristoranti/Bar,-6.00,debito,3325.03
+2025-04-21,Acquisto Zara,Varie,-15.04,debito,3309.99
+2025-04-22,Supermercato Carrefour,Spesa Supermercato,-30.45,debito,3279.54
+2025-04-23,Supermercato Eurospin,Spesa Supermercato,-53.92,debito,3225.62
+2025-04-23,Carburante Shell,Trasporti,-52.28,debito,3173.34
+2025-04-24,Sushi House,Ristoranti/Bar,-11.53,debito,3161.81
+2025-04-24,Acquisto MediaWorld,Varie,-29.92,debito,3131.89
+2025-04-25,Supermercato Esselunga,Spesa Supermercato,-53.69,debito,3078.20
+2025-04-25,Autostrade,Trasporti,-2.50,debito,3075.70
+2025-04-25,Carburante ENI,Trasporti,-38.10,debito,3037.60
+2025-04-28,Stipendio Azienda,Stipendio,2488.81,credito,5526.41
+2025-04-28,Supermercato Pam,Spesa Supermercato,-51.74,debito,5474.67
+2025-04-28,Ristorante La Pergola,Ristoranti/Bar,-22.75,debito,5451.92
+2025-04-28,ATM Milano,Trasporti,-2.00,debito,5449.92
+2025-04-28,Carburante Q8,Trasporti,-48.40,debito,5401.52
+2025-05-02,Supermercato Lidl,Spesa Supermercato,-49.44,debito,5352.08
+2025-05-02,Bar Centrale,Ristoranti/Bar,-36.49,debito,5315.59
+2025-05-02,Car Sharing,Trasporti,-3.00,debito,5312.59
+2025-05-02,Acquisto Ikea,Varie,-30.17,debito,5282.42
+2025-05-04,Italo,Trasporti,-3.00,debito,5279.42
+2025-05-04,Car Sharing,Trasporti,-2.00,debito,5277.42
+2025-05-05,Affitto Appartamento,Affitto,-962.68,debito,4314.74
+2025-05-05,Vodafone Fibra,Utenze - Internet,-29.61,debito,4285.13
+2025-05-05,Netflix,Intrattenimento,-17.54,debito,4267.59
+2025-05-05,Supermercato Eurospin,Spesa Supermercato,-82.39,debito,4185.20
+2025-05-05,Pizzeria Da Mario,Ristoranti/Bar,-56.83,debito,4128.37
+2025-05-05,Sushi House,Ristoranti/Bar,-33.01,debito,4095.36
+2025-05-06,Spotify,Intrattenimento,-10.04,debito,4085.32
+2025-05-06,Pizzeria Da Mario,Ristoranti/Bar,-26.54,debito,4058.78
+2025-05-06,Carburante ENI,Trasporti,-62.61,debito,3996.17
+2025-05-06,Acquisto Amazon,Varie,-5.00,debito,3991.17
+2025-05-07,Car Sharing,Trasporti,-2.20,debito,3988.97
+2025-05-08,Italo,Trasporti,-3.00,debito,3985.97
+2025-05-08,Commissione bancaria,Commissioni,-3.13,debito,3982.84
+2025-05-10,Autostrade,Trasporti,-3.00,debito,3979.84
+2025-05-12,Supermercato Pam,Spesa Supermercato,-95.46,debito,3884.38
+2025-05-13,Ristorante La Pergola,Ristoranti/Bar,-45.89,debito,3838.49
+2025-05-15,Trattoria al Ponte,Ristoranti/Bar,-27.94,debito,3810.55
+2025-05-15,Trenitalia,Trasporti,-2.50,debito,3808.05
+2025-05-16,Acquedotto Comunale,Utenze - Acqua,-21.19,debito,3786.86
+2025-05-16,Acquisto Zara,Varie,-55.78,debito,3731.08
+2025-05-19,Hera,Utenze - Luce/Gas,-73.50,debito,3657.58
+2025-05-20,Autostrade,Trasporti,-3.00,debito,3654.58
+2025-05-26,Supermercato Carrefour,Spesa Supermercato,-49.74,debito,3604.84
+2025-05-27,Stipendio Azienda,Stipendio,2658.67,credito,6263.51
+2025-05-28,Italo,Trasporti,-3.00,debito,6260.51
+2025-06-02,ATM Milano,Trasporti,-2.50,debito,6258.01
+2025-06-03,Affitto Appartamento,Affitto,-929.58,debito,5328.43
+2025-06-04,Netflix,Intrattenimento,-17.86,debito,5310.57
+2025-06-04,Trenitalia,Trasporti,-2.00,debito,5308.57
+2025-06-04,Autostrade,Trasporti,-2.50,debito,5306.07
+2025-06-04,Acquisto Decathlon,Varie,-72.63,debito,5233.44
+2025-06-05,Acquisto Decathlon,Varie,-26.71,debito,5206.73
+2025-06-06,Sushi House,Ristoranti/Bar,-6.00,debito,5200.73
+2025-06-09,Supermercato Lidl,Spesa Supermercato,-92.12,debito,5108.61
+2025-06-09,Acquisto Cartoleria,Varie,-40.70,debito,5067.91
+2025-06-10,Vodafone Fibra,Utenze - Internet,-31.24,debito,5036.67
+2025-06-10,Spotify,Intrattenimento,-9.99,debito,5026.68
+2025-06-10,Carburante Shell,Trasporti,-86.76,debito,4939.92
+2025-06-10,Acquisto MediaWorld,Varie,-64.00,debito,4875.92
+2025-06-11,Supermercato Lidl,Spesa Supermercato,-68.17,debito,4807.75
+2025-06-11,Car Sharing,Trasporti,-2.20,debito,4805.55
+2025-06-11,Trenitalia,Trasporti,-2.20,debito,4803.35
+2025-06-14,Trenitalia,Trasporti,-2.50,debito,4800.85
+2025-06-14,TPL Urbano,Trasporti,-1.50,debito,4799.35
+2025-06-16,Supermercato Conad,Spesa Supermercato,-35.76,debito,4763.59
+2025-06-16,Supermercato Pam,Spesa Supermercato,-59.74,debito,4703.85
+2025-06-16,Supermercato Pam,Spesa Supermercato,-81.07,debito,4622.78
+2025-06-16,Sushi House,Ristoranti/Bar,-10.33,debito,4612.45
+2025-06-16,Caffetteria Roma,Ristoranti/Bar,-45.23,debito,4567.22
+2025-06-16,Trattoria al Ponte,Ristoranti/Bar,-6.00,debito,4561.22
+2025-06-16,Farmacia Comunale,Sanità/Assicurazioni,-125.48,debito,4435.74
+2025-06-17,Autostrade,Trasporti,-2.20,debito,4433.54
+2025-06-18,Supermercato Carrefour,Spesa Supermercato,-37.00,debito,4396.54
+2025-06-19,Acquedotto Comunale,Utenze - Acqua,-23.63,debito,4372.91
+2025-06-19,Pizzeria Da Mario,Ristoranti/Bar,-36.26,debito,4336.65
+2025-06-20,A2A Energia,Utenze - Luce/Gas,-72.82,debito,4263.83
+2025-06-22,Autostrade,Trasporti,-2.50,debito,4261.33
+2025-06-23,Commissione bancaria,Commissioni,-2.28,debito,4259.05
+2025-06-25,Caffetteria Roma,Ristoranti/Bar,-38.23,debito,4220.82
+2025-06-25,Bar Centrale,Ristoranti/Bar,-11.99,debito,4208.83
+2025-06-25,Car Sharing,Trasporti,-2.50,debito,4206.33
+2025-06-25,Carburante Q8,Trasporti,-71.54,debito,4134.79
+2025-06-26,Farmacia Comunale,Sanità/Assicurazioni,-80.18,debito,4054.61
+2025-06-27,Stipendio Azienda,Stipendio,2589.58,credito,6644.19
+2025-06-27,Car Sharing,Trasporti,-1.50,debito,6642.69
+2025-06-28,Italo,Trasporti,-3.00,debito,6639.69
+2025-07-01,Affitto Appartamento,Affitto,-941.92,debito,5697.77
+2025-07-01,Caffetteria Roma,Ristoranti/Bar,-49.02,debito,5648.75
+2025-07-02,Bar Centrale,Ristoranti/Bar,-9.67,debito,5639.08
+2025-07-02,ATM Milano,Trasporti,-3.00,debito,5636.08
+2025-07-03,Car Sharing,Trasporti,-2.20,debito,5633.88
+2025-07-03,Carburante Shell,Trasporti,-95.15,debito,5538.73
+2025-07-03,Acquisto MediaWorld,Varie,-23.78,debito,5514.95
+2025-07-04,Netflix,Intrattenimento,-17.82,debito,5497.13
+2025-07-07,Vodafone Fibra,Utenze - Internet,-29.72,debito,5467.41
+2025-07-07,Ristorante La Pergola,Ristoranti/Bar,-8.67,debito,5458.74
+2025-07-08,Spotify,Intrattenimento,-10.28,debito,5448.46
+2025-07-08,TPL Urbano,Trasporti,-2.20,debito,5446.26
+2025-07-10,Acquisto Zara,Varie,-28.59,debito,5417.67
+2025-07-11,Hera,Utenze - Luce/Gas,-69.34,debito,5348.33
+2025-07-11,Autostrade,Trasporti,-2.50,debito,5345.83
+2025-07-14,Supermercato Esselunga,Spesa Supermercato,-38.55,debito,5307.28
+2025-07-14,Supermercato Coop,Spesa Supermercato,-65.97,debito,5241.31
+2025-07-14,Caffetteria Roma,Ristoranti/Bar,-35.44,debito,5205.87
+2025-07-14,ATM Milano,Trasporti,-2.00,debito,5203.87
+2025-07-15,Supermercato Esselunga,Spesa Supermercato,-58.17,debito,5145.70
+2025-07-15,Carburante ENI,Trasporti,-51.59,debito,5094.11
+2025-07-16,Supermercato Pam,Spesa Supermercato,-79.83,debito,5014.28
+2025-07-16,Trenitalia,Trasporti,-2.20,debito,5012.08
+2025-07-17,Acquisto Decathlon,Varie,-48.43,debito,4963.65
+2025-07-18,Supermercato Carrefour,Spesa Supermercato,-69.12,debito,4894.53
+2025-07-20,Car Sharing,Trasporti,-2.50,debito,4892.03
+2025-07-21,Acea,Utenze - Acqua,-16.17,debito,4875.86
+2025-07-21,Supermercato Pam,Spesa Supermercato,-54.05,debito,4821.81
+2025-07-21,Acquisto Euronics,Varie,-42.53,debito,4779.28
+2025-07-23,Carburante Q8,Trasporti,-60.87,debito,4718.41
+2025-07-28,Stipendio Azienda,Stipendio,2775.23,credito,7493.64
+2025-07-28,Supermercato Coop,Spesa Supermercato,-86.53,debito,7407.11
+2025-07-28,Supermercato Eurospin,Spesa Supermercato,-49.67,debito,7357.44
+2025-07-28,Pizzeria Da Mario,Ristoranti/Bar,-29.41,debito,7328.03
+2025-07-28,Ristorante La Pergola,Ristoranti/Bar,-56.39,debito,7271.64
+2025-07-28,Italo,Trasporti,-3.00,debito,7268.64
+2025-07-28,Acquisto Amazon,Varie,-5.00,debito,7263.64
+2025-08-01,Affitto Appartamento,Affitto,-950.29,debito,6313.35
+2025-08-01,Supermercato Eurospin,Spesa Supermercato,-57.28,debito,6256.07
+2025-08-04,Netflix,Intrattenimento,-17.54,debito,6238.53
+2025-08-04,Supermercato Coop,Spesa Supermercato,-68.01,debito,6170.52
+2025-08-04,Farmacia Comunale,Sanità/Assicurazioni,-27.62,debito,6142.90
+2025-08-05,Trenitalia,Trasporti,-1.50,debito,6141.40
+2025-08-07,Fastweb,Utenze - Internet,-31.62,debito,6109.78
+2025-08-07,Autostrade,Trasporti,-2.00,debito,6107.78
+2025-08-08,Caffetteria Roma,Ristoranti/Bar,-33.89,debito,6073.89
+2025-08-11,Spotify,Intrattenimento,-10.30,debito,6063.59
+2025-08-11,Supermercato Coop,Spesa Supermercato,-117.18,debito,5946.41
+2025-08-11,TPL Urbano,Trasporti,-2.50,debito,5943.91
+2025-08-11,Acquisto MediaWorld,Varie,-51.96,debito,5891.95
+2025-08-12,Autostrade,Trasporti,-3.00,debito,5888.95
+2025-08-13,Supermercato Lidl,Spesa Supermercato,-54.96,debito,5833.99
+2025-08-15,Supermercato Eurospin,Spesa Supermercato,-129.12,debito,5704.87
+2025-08-18,Hera,Utenze - Luce/Gas,-70.47,debito,5634.40
+2025-08-18,Carburante IP,Trasporti,-98.56,debito,5535.84
+2025-08-18,Acquisto Zara,Varie,-59.62,debito,5476.22
+2025-08-19,Car Sharing,Trasporti,-2.20,debito,5474.02
+2025-08-21,Rimborso spese,Rimborsi,52.15,credito,5526.17
+2025-08-21,Car Sharing,Trasporti,-1.50,debito,5524.67
+2025-08-21,Trenitalia,Trasporti,-1.50,debito,5523.17
+2025-08-25,Acea,Utenze - Acqua,-23.77,debito,5499.40
+2025-08-25,Supermercato Esselunga,Spesa Supermercato,-84.42,debito,5414.98
+2025-08-25,Caffetteria Roma,Ristoranti/Bar,-62.21,debito,5352.77
+2025-08-25,Ristorante La Pergola,Ristoranti/Bar,-24.26,debito,5328.51
+2025-08-25,Caffetteria Roma,Ristoranti/Bar,-40.30,debito,5288.21
+2025-08-26,Stipendio Azienda,Stipendio,2391.27,credito,7679.48
+2025-08-26,Trattoria al Ponte,Ristoranti/Bar,-18.99,debito,7660.49
+2025-08-26,ATM Milano,Trasporti,-2.50,debito,7657.99
+2025-08-27,Trattoria al Ponte,Ristoranti/Bar,-31.45,debito,7626.54
+2025-08-27,Carburante ENI,Trasporti,-63.53,debito,7563.01
+2025-08-28,Caffetteria Roma,Ristoranti/Bar,-19.63,debito,7543.38
+2025-08-28,Studio Medico,Sanità/Assicurazioni,-85.03,debito,7458.35
+2025-08-28,Acquisto Euronics,Varie,-27.23,debito,7431.12
+2025-08-28,Acquisto Cartoleria,Varie,-5.00,debito,7426.12
+2025-09-01,Affitto Appartamento,Affitto,-942.29,debito,6483.83
+2025-09-02,TPL Urbano,Trasporti,-2.20,debito,6481.63
+2025-09-04,Netflix,Intrattenimento,-18.14,debito,6463.49
+2025-09-04,ATM Milano,Trasporti,-2.50,debito,6460.99
+2025-09-04,Acquisto Euronics,Varie,-23.81,debito,6437.18
+2025-09-05,Acquisto Ikea,Varie,-5.00,debito,6432.18
+2025-09-08,Fastweb,Utenze - Internet,-31.11,debito,6401.07
+2025-09-08,Spotify,Intrattenimento,-10.15,debito,6390.92
+2025-09-08,Trattoria al Ponte,Ristoranti/Bar,-42.93,debito,6347.99
+2025-09-08,Analisi di Laboratorio,Sanità/Assicurazioni,-142.32,debito,6205.67
+2025-09-08,Farmacia Comunale,Sanità/Assicurazioni,-59.29,debito,6146.38
+2025-09-09,Pizzeria Da Mario,Ristoranti/Bar,-6.00,debito,6140.38
+2025-09-09,Acquisto Cartoleria,Varie,-47.44,debito,6092.94
+2025-09-10,Supermercato Carrefour,Spesa Supermercato,-75.63,debito,6017.31
+2025-09-12,Commissione bancaria,Commissioni,-2.65,debito,6014.66
+2025-09-13,TPL Urbano,Trasporti,-2.20,debito,6012.46
+2025-09-15,Supermercato Carrefour,Spesa Supermercato,-19.91,debito,5992.55
+2025-09-18,Supermercato Coop,Spesa Supermercato,-74.19,debito,5918.36
+2025-09-19,A2A Energia,Utenze - Luce/Gas,-49.78,debito,5868.58
+2025-09-19,Caffetteria Roma,Ristoranti/Bar,-22.43,debito,5846.15
+2025-09-21,ATM Milano,Trasporti,-2.20,debito,5843.95
+2025-09-21,ATM Milano,Trasporti,-3.00,debito,5840.95
+2025-09-22,Acea,Utenze - Acqua,-18.59,debito,5822.36
+2025-09-22,Pizzeria Da Mario,Ristoranti/Bar,-6.00,debito,5816.36
+2025-09-22,Autostrade,Trasporti,-2.20,debito,5814.16
+2025-09-22,Car Sharing,Trasporti,-2.00,debito,5812.16
+2025-09-23,Supermercato Lidl,Spesa Supermercato,-106.25,debito,5705.91
+2025-09-23,Trattoria al Ponte,Ristoranti/Bar,-30.32,debito,5675.59
+2025-09-26,Carburante Tamoil,Trasporti,-74.41,debito,5601.18
+2025-09-29,Stipendio Azienda,Stipendio,2391.40,credito,7992.58
+2025-09-29,Ristorante La Pergola,Ristoranti/Bar,-6.00,debito,7986.58

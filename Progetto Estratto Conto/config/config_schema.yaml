@@ -1,0 +1,256 @@
+# config/config_schema.yaml
+# -------------------------
+# JSON Schema (in YAML form) for validating the "default.yaml" configuration.
+# This schema is tailored to the "Progetto Estratto Conto" structure.
+# Compatible with JSON Schema Draft 2020-12.
+#
+# Usage (example in Python):
+#   import yaml, jsonschema
+#   schema = yaml.safe_load(open("config/config_schema.yaml"))
+#   cfg    = yaml.safe_load(open("config/default.yaml"))
+#   jsonschema.validate(instance=cfg, schema=schema)
+#
+# Notes:
+# - This schema enforces types, required fields, enums and basic ranges.
+# - The cross-field rule "train_split + val_split + test_split == 1.0"
+#   is not expressible in standard JSON Schema without extensions;
+#   keep that check in code (see your dataclass validate()).
+
+$title: "Progetto Estratto Conto - Default Config Schema"
+type: object
+additionalProperties: false
+
+required:
+  - data
+  - features
+  - regressor
+  - classifier
+  - training
+  - prediction
+  - logging
+
+properties:
+
+  data:
+    type: object
+    additionalProperties: false
+    required:
+      - raw_path
+      - processed_path
+      - model_dir
+      - logs_dir
+      - train_split
+      - val_split
+      - test_split
+    properties:
+      raw_path:
+        type: string
+        description: "Path to the raw CSV used by training/prediction."
+      processed_path:
+        type: string
+        description: "Directory for processed artifacts (metrics, prediction outputs)."
+      model_dir:
+        type: string
+        description: "Directory where trained models are stored."
+      logs_dir:
+        type: string
+        description: "Directory for log files."
+      train_split:
+        type: number
+        minimum: 0.0
+        maximum: 1.0
+        description: "Proportion for training set (code should ensure the 3 splits sum to 1.0)."
+      val_split:
+        type: number
+        minimum: 0.0
+        maximum: 1.0
+        description: "Proportion for validation set."
+      test_split:
+        type: number
+        minimum: 0.0
+        maximum: 1.0
+        description: "Proportion for test set."
+
+  features:
+    type: object
+    additionalProperties: false
+    required:
+      - include_day_features
+      - include_lag_features
+      - lag_days
+      - include_rolling_stats
+      - rolling_windows
+      - include_categorical
+      - include_amount_features
+      - target_column
+    properties:
+      include_day_features:
+        type: boolean
+        description: "Add day_of_week and weekend features."
+      include_lag_features:
+        type: boolean
+        description: "Add lag-based spending features."
+      lag_days:
+        type: array
+        items:
+          type: integer
+          minimum: 1
+        minItems: 1
+        description: "Lag periods (in days) for lag features."
+      include_rolling_stats:
+        type: boolean
+        description: "Add rolling mean/std features."
+      rolling_windows:
+        type: array
+        items:
+          type: integer
+          minimum: 2
+        minItems: 1
+        description: "Window sizes (in days) for rolling statistics."
+      include_categorical:
+        type: boolean
+        description: "Enable one-hot encoding for categorical variables."
+      include_amount_features:
+        type: boolean
+        description: "Derive additional numeric features from amounts."
+      target_column:
+        type: string
+        minLength: 1
+        description: "Name of the regression/classification target column."
+
+  regressor:
+    type: object
+    additionalProperties: false
+    required:
+      - model_type
+      - hyperparameters
+    properties:
+      model_type:
+        type: string
+        enum: ["random_forest", "gradient_boosting", "neural_network"]
+        description: "Regressor family."
+      hyperparameters:
+        type: object
+        additionalProperties: false
+        properties:
+          n_estimators: { type: integer, minimum: 1 }
+          max_depth:    { type: integer, minimum: 1 }
+          min_samples_split: { type: integer, minimum: 2 }
+          min_samples_leaf:  { type: integer, minimum: 1 }
+          random_state: { type: integer }
+          n_jobs:       { type: integer }
+        description: "Regressor hyperparameters (subset depends on model_type)."
+
+  classifier:
+    type: object
+    additionalProperties: false
+    required:
+      - model_type
+      - hyperparameters
+    properties:
+      model_type:
+        type: string
+        enum: ["random_forest", "gradient_boosting", "neural_network"]
+        description: "Classifier family."
+      hyperparameters:
+        type: object
+        additionalProperties: false
+        properties:
+          n_estimators: { type: integer, minimum: 1 }
+          max_depth:    { type: integer, minimum: 1 }
+          random_state: { type: integer }
+          n_jobs:       { type: integer }
+        description: "Classifier hyperparameters (subset depends on model_type)."
+
+  training:
+    type: object
+    additionalProperties: false
+    required:
+      - save_best_model
+      - model_save_path
+      - metrics_path
+      - log_path
+      - verbose
+      - random_state
+    properties:
+      save_best_model:
+        type: boolean
+        description: "Persist the best model to disk."
+      model_save_path:
+        type: string
+        description: "Full model path (e.g., models/latest.joblib)."
+      metrics_path:
+        type: string
+        description: "Where to write training metrics (JSON)."
+      log_path:
+        type: string
+        description: "Training log file path."
+      verbose:
+        type: boolean
+        description: "Verbose output during training."
+      random_state:
+        type: integer
+        description: "Random seed used in training procedures."
+      early_stopping:
+        type: boolean
+        description: "Enable early stopping (for supported models)."
+
+  prediction:
+    type: object
+    additionalProperties: false
+    required:
+      - model_path
+      - input_path
+      - output_path
+      - batch_size
+      - confidence_threshold
+      - include_input_columns
+    properties:
+      model_path:
+        type: string
+        description: "Path to the trained model to load."
+      input_path:
+        type: string
+        description: "CSV to score (must follow the schema expected by the pipeline)."
+      output_path:
+        type: string
+        description: "CSV written with predictions."
+      batch_size:
+        type: integer
+        minimum: 1
+        description: "Batch size for vectorized inference."
+      confidence_threshold:
+        type: number
+        minimum: 0.0
+        maximum: 1.0
+        description: "Threshold for anomaly flagging or alerts."
+      include_input_columns:
+        type: boolean
+        description: "Keep original columns alongside predictions in the output CSV."
+      output_columns:
+        type: array
+        items:
+          type: string
+          minLength: 1
+        description: "Explicit output column order (optional)."
+
+  logging:
+    type: object
+    additionalProperties: false
+    required:
+      - level
+      - file
+    properties:
+      level:
+        type: string
+        enum: ["DEBUG", "INFO", "WARNING", "ERROR"]
+        description: "Global logging level."
+      file:
+        type: string
+        description: "Main application log file path."
+      rotation:
+        type: string
+        description: "Log rotation policy (e.g., '1 week')."
+      retention:
+        type: string
+        description: "Log retention policy (e.g., '4 weeks')."
