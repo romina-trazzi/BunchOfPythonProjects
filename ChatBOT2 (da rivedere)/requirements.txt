@@ -1,0 +1,6 @@
+flask
+yfinance
+python-dotenv
+requests
+fuzzywuzzy[speedup]
+matplotlib
