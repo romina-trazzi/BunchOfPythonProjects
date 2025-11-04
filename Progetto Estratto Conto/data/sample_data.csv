@@ -1,382 +1,110 @@
-data_movimento,data_valuta,descrizione,categoria,sottocategoria,importo,segno,saldo_disponibile,metodo_pagamento,beneficiario,id_movimento
-2025-01-01,2025-01-02,Pagamento POS Supermercato,Spesa,Supermercato,27.94,-1,972.06,POS,Conad,TX20250101007
-2025-01-03,2025-01-04,Addebito abbonamento,Abbonamenti,Streaming,12.37,-1,959.69,POS,Netflix,TX20250103006
-2025-01-04,2025-01-05,Pagamento POS Supermercato,Spesa,Supermercato,52.38,-1,907.31,POS,Conad,TX20250104008
-2025-01-08,2025-01-09,Ricarica telefonica,Telefonia,Ricarica,16.5,-1,890.81,POS,TIM,TX20250108027
-2025-01-08,2025-01-09,Prelievo contante,Prelievo,Bancomat,41.33,-1,849.48,BANCOMAT,ATM Intesa,TX20250108028
-2025-01-08,2025-01-09,Pagamento POS Ristorante,Ristorante,Pranzo,31.19,-1,818.29,POS,Osteria del Corso,TX20250108010
-2025-01-08,2025-01-09,Pagamento POS Supermercato,Spesa,Supermercato,55.65,-1,762.64,POS,Esselunga,TX20250108009
-2025-01-10,2025-01-11,Stipendio 2025-01,Bonifico,In,2560.94,1,3323.58,BONIFICO,Azienda SRL,TX20250110001
-2025-01-11,2025-01-12,Pagamento POS Supermercato,Spesa,Supermercato,67.58,-1,3256.0,POS,Conad,TX20250111011
-2025-01-11,2025-01-12,Pagamento POS Ristorante,Ristorante,Pranzo,12.4,-1,3243.6,POS,Trattoria da Nino,TX20250111012
-2025-01-12,2025-01-13,Pagamento POS Ristorante,Ristorante,Pranzo,33.15,-1,3210.45,POS,Trattoria da Nino,TX20250112013
-2025-01-13,2025-01-14,Addebito utenza,Utenze,Luce,114.81,-1,3095.64,POS,Enel Energia,TX20250113003
-2025-01-13,2025-01-14,Spesa straordinaria Altro,Altro,Imprevisto,92.55,-1,3003.09,POS,Esercente,TX20250113030
-2025-01-14,2025-01-15,Pagamento POS Ristorante,Ristorante,Pranzo,38.07,-1,2965.02,POS,Osteria del Corso,TX20250114014
-2025-01-14,2025-01-15,Addebito canone,Affitto,Canone,618.8,-1,2346.22,POS,Proprietario,TX20250114002
-2025-01-15,2025-01-16,Pagamento POS Supermercato,Spesa,Supermercato,46.35,-1,2299.87,POS,Esselunga,TX20250115015
-2025-01-15,2025-01-16,Addebito utenza,Utenze,Internet,37.02,-1,2262.85,POS,Enel Energia,TX20250115005
-2025-01-18,2025-01-19,Pagamento POS Supermercato,Spesa,Supermercato,39.5,-1,2223.35,POS,Esselunga,TX20250118016
-2025-01-19,2025-01-20,Pagamento POS Supermercato,Spesa,Supermercato,11.34,-1,2212.01,POS,Esselunga,TX20250119017
-2025-01-20,2025-01-21,Prelievo contante,Prelievo,Bancomat,55.89,-1,2156.12,BANCOMAT,ATM Intesa,TX20250120029
-2025-01-22,2025-01-23,Addebito utenza,Utenze,Gas,35.22,-1,2120.9,POS,Enel Energia,TX20250122004
-2025-01-22,2025-01-23,Pagamento POS Supermercato,Spesa,Supermercato,35.75,-1,2085.15,POS,Conad,TX20250122018
-2025-01-23,2025-01-24,Pagamento POS Ristorante,Ristorante,Pranzo,11.21,-1,2073.94,POS,Trattoria da Nino,TX20250123019
-2025-01-24,2025-01-25,Pagamento POS Supermercato,Spesa,Supermercato,47.85,-1,2026.09,POS,Coop,TX20250124020
-2025-01-25,2025-01-26,Ricarica telefonica,Telefonia,Ricarica,5.47,-1,2020.62,POS,Vodafone,TX20250125026
-2025-01-26,2025-01-27,Pagamento POS Ristorante,Ristorante,Pranzo,19.55,-1,2001.07,POS,Trattoria da Nino,TX20250126022
-2025-01-26,2025-01-27,Pagamento POS Supermercato,Spesa,Supermercato,54.14,-1,1946.93,POS,Coop,TX20250126021
-2025-01-28,2025-01-29,Pagamento POS Ristorante,Ristorante,Pranzo,31.7,-1,1915.23,POS,Trattoria da Nino,TX20250128024
-2025-01-28,2025-01-29,Pagamento POS Supermercato,Spesa,Supermercato,45.25,-1,1869.98,POS,Esselunga,TX20250128023
-2025-01-31,2025-02-01,Pagamento POS Supermercato,Spesa,Supermercato,18.55,-1,1851.43,POS,Coop,TX20250131025
-2025-02-01,2025-02-02,Pagamento POS Ristorante,Ristorante,Pranzo,30.35,-1,1821.08,POS,Trattoria da Nino,TX20250201038
-2025-02-01,2025-02-02,Pagamento POS Supermercato,Spesa,Supermercato,49.4,-1,1771.68,POS,Esselunga,TX20250201037
-2025-02-02,2025-02-03,Pagamento POS Supermercato,Spesa,Supermercato,21.22,-1,1750.46,POS,Conad,TX20250202039
-2025-02-03,2025-02-04,Addebito abbonamento,Abbonamenti,Streaming,10.95,-1,1739.51,POS,Netflix,TX20250203036
-2025-02-04,2025-02-05,Pagamento POS Ristorante,Ristorante,Pranzo,2.94,-1,1736.57,POS,Trattoria da Nino,TX20250204040
-2025-02-06,2025-02-07,Ricarica telefonica,Telefonia,Ricarica,8.33,-1,1728.24,POS,TIM,TX20250206059
-2025-02-06,2025-02-07,Pagamento POS Supermercato,Spesa,Supermercato,84.93,-1,1643.31,POS,Conad,TX20250206041
-2025-02-08,2025-02-09,Pagamento POS Supermercato,Spesa,Supermercato,28.74,-1,1614.57,POS,Coop,TX20250208042
-2025-02-08,2025-02-09,Pagamento POS Ristorante,Ristorante,Pranzo,15.82,-1,1598.75,POS,Trattoria da Nino,TX20250208043
-2025-02-10,2025-02-11,Stipendio 2025-02,Bonifico,In,2514.43,1,4113.18,BONIFICO,Azienda SRL,TX20250210031
-2025-02-10,2025-02-11,Pagamento POS Ristorante,Ristorante,Pranzo,17.71,-1,4095.47,POS,Trattoria da Nino,TX20250210045
-2025-02-10,2025-02-11,Pagamento POS Supermercato,Spesa,Supermercato,24.29,-1,4071.18,POS,Esselunga,TX20250210044
-2025-02-11,2025-02-12,Addebito utenza,Utenze,Gas,110.04,-1,3961.14,POS,Enel Energia,TX20250211034
-2025-02-12,2025-02-13,Pagamento POS Ristorante,Ristorante,Pranzo,17.51,-1,3943.63,POS,Trattoria da Nino,TX20250212046
-2025-02-13,2025-02-14,Pagamento POS Supermercato,Spesa,Supermercato,25.7,-1,3917.93,POS,Esselunga,TX20250213047
-2025-02-14,2025-02-15,Addebito canone,Affitto,Canone,634.12,-1,3283.81,POS,Proprietario,TX20250214032
-2025-02-15,2025-02-16,Pagamento POS Supermercato,Spesa,Supermercato,63.63,-1,3220.18,POS,Coop,TX20250215048
-2025-02-15,2025-02-16,Pagamento POS Ristorante,Ristorante,Pranzo,22.65,-1,3197.53,POS,Osteria del Corso,TX20250215049
-2025-02-16,2025-02-17,Pagamento POS Ristorante,Ristorante,Pranzo,18.18,-1,3179.35,POS,Trattoria da Nino,TX20250216050
-2025-02-16,2025-02-17,Addebito utenza,Utenze,Luce,84.65,-1,3094.7,POS,Enel Energia,TX20250216033
-2025-02-16,2025-02-17,Spesa straordinaria Altro,Altro,Carburante,99.81,-1,2994.89,POS,Esercente,TX20250216061
-2025-02-17,2025-02-18,Addebito utenza,Utenze,Internet,28.09,-1,2966.8,POS,Enel Energia,TX20250217035
-2025-02-20,2025-02-21,Ricarica telefonica,Telefonia,Ricarica,3.37,-1,2963.43,POS,Iliad,TX20250220060
-2025-02-22,2025-02-23,Pagamento POS Supermercato,Spesa,Supermercato,53.58,-1,2909.85,POS,Conad,TX20250222051
-2025-02-22,2025-02-23,Pagamento POS Ristorante,Ristorante,Pranzo,6.63,-1,2903.22,POS,Osteria del Corso,TX20250222052
-2025-02-23,2025-02-24,Pagamento POS Supermercato,Spesa,Supermercato,78.02,-1,2825.2,POS,Esselunga,TX20250223053
-2025-02-23,2025-02-24,Pagamento POS Ristorante,Ristorante,Pranzo,19.25,-1,2805.95,POS,Osteria del Corso,TX20250223054
-2025-02-25,2025-02-26,Pagamento POS Supermercato,Spesa,Supermercato,27.11,-1,2778.84,POS,Conad,TX20250225055
-2025-02-26,2025-02-27,Pagamento POS Ristorante,Ristorante,Pranzo,30.06,-1,2748.78,POS,Osteria del Corso,TX20250226056
-2025-02-27,2025-02-28,Pagamento POS Ristorante,Ristorante,Pranzo,24.27,-1,2724.51,POS,Osteria del Corso,TX20250227058
-2025-02-27,2025-02-28,Pagamento POS Supermercato,Spesa,Supermercato,46.81,-1,2677.7,POS,Esselunga,TX20250227057
-2025-03-01,2025-03-02,Pagamento POS Ristorante,Ristorante,Pranzo,12.2,-1,2665.5,POS,Osteria del Corso,TX20250301068
-2025-03-02,2025-03-03,Pagamento POS Ristorante,Ristorante,Pranzo,43.09,-1,2622.41,POS,Trattoria da Nino,TX20250302070
-2025-03-02,2025-03-03,Pagamento POS Supermercato,Spesa,Supermercato,33.19,-1,2589.22,POS,Conad,TX20250302069
-2025-03-03,2025-03-04,Pagamento POS Ristorante,Ristorante,Pranzo,22.56,-1,2566.66,POS,Osteria del Corso,TX20250303071
-2025-03-03,2025-03-04,Addebito abbonamento,Abbonamenti,Streaming,13.46,-1,2553.2,POS,Netflix,TX20250303067
-2025-03-03,2025-03-04,Prelievo contante,Prelievo,Bancomat,58.66,-1,2494.54,BANCOMAT,ATM Intesa,TX20250303095
-2025-03-07,2025-03-08,Addebito utenza,Utenze,Gas,42.89,-1,2451.65,POS,Enel Energia,TX20250307065
-2025-03-08,2025-03-09,Pagamento POS Supermercato,Spesa,Supermercato,87.58,-1,2364.07,POS,Esselunga,TX20250308072
-2025-03-09,2025-03-10,Pagamento POS Ristorante,Ristorante,Pranzo,7.43,-1,2356.64,POS,Trattoria da Nino,TX20250309073
-2025-03-10,2025-03-11,Stipendio 2025-03,Bonifico,In,2360.81,1,4717.45,BONIFICO,Azienda SRL,TX20250310062
-2025-03-10,2025-03-11,Pagamento POS Ristorante,Ristorante,Pranzo,50.93,-1,4666.52,POS,Trattoria da Nino,TX20250310074
-2025-03-11,2025-03-12,Pagamento POS Supermercato,Spesa,Supermercato,60.55,-1,4605.97,POS,Esselunga,TX20250311075
-2025-03-11,2025-03-12,Pagamento POS Ristorante,Ristorante,Pranzo,19.36,-1,4586.61,POS,Osteria del Corso,TX20250311076
-2025-03-12,2025-03-13,Pagamento POS Supermercato,Spesa,Supermercato,40.24,-1,4546.37,POS,Esselunga,TX20250312077
-2025-03-12,2025-03-13,Pagamento POS Ristorante,Ristorante,Pranzo,28.48,-1,4517.89,POS,Osteria del Corso,TX20250312078
-2025-03-14,2025-03-15,Addebito canone,Affitto,Canone,643.28,-1,3874.61,POS,Proprietario,TX20250314063
-2025-03-15,2025-03-16,Pagamento POS Supermercato,Spesa,Supermercato,45.0,-1,3829.61,POS,Esselunga,TX20250315079
-2025-03-16,2025-03-17,Prelievo contante,Prelievo,Bancomat,28.56,-1,3801.05,BANCOMAT,ATM Intesa,TX20250316094
-2025-03-16,2025-03-17,Pagamento POS Supermercato,Spesa,Supermercato,43.05,-1,3758.0,POS,Esselunga,TX20250316080
-2025-03-16,2025-03-17,Pagamento POS Ristorante,Ristorante,Pranzo,30.79,-1,3727.21,POS,Trattoria da Nino,TX20250316081
-2025-03-17,2025-03-18,Ricarica telefonica,Telefonia,Ricarica,13.75,-1,3713.46,POS,Vodafone,TX20250317093
-2025-03-17,2025-03-18,Pagamento POS Supermercato,Spesa,Supermercato,22.75,-1,3690.71,POS,Esselunga,TX20250317082
-2025-03-17,2025-03-18,Addebito utenza,Utenze,Internet,30.72,-1,3659.99,POS,Enel Energia,TX20250317066
-2025-03-17,2025-03-18,Pagamento POS Ristorante,Ristorante,Pranzo,32.2,-1,3627.79,POS,Osteria del Corso,TX20250317083
-2025-03-18,2025-03-19,Pagamento POS Supermercato,Spesa,Supermercato,63.55,-1,3564.24,POS,Conad,TX20250318084
-2025-03-18,2025-03-19,Addebito utenza,Utenze,Luce,84.85,-1,3479.39,POS,Enel Energia,TX20250318064
-2025-03-21,2025-03-22,Pagamento POS Supermercato,Spesa,Supermercato,39.96,-1,3439.43,POS,Conad,TX20250321085
-2025-03-22,2025-03-23,Pagamento POS Ristorante,Ristorante,Pranzo,21.45,-1,3417.98,POS,Osteria del Corso,TX20250322086
-2025-03-23,2025-03-24,Pagamento POS Supermercato,Spesa,Supermercato,37.56,-1,3380.42,POS,Coop,TX20250323087
-2025-03-23,2025-03-24,Pagamento POS Ristorante,Ristorante,Pranzo,29.92,-1,3350.5,POS,Osteria del Corso,TX20250323088
-2025-03-24,2025-03-25,Ricarica telefonica,Telefonia,Ricarica,10.35,-1,3340.15,POS,Iliad,TX20250324092
-2025-03-26,2025-03-27,Pagamento POS Ristorante,Ristorante,Pranzo,44.5,-1,3295.65,POS,Trattoria da Nino,TX20250326089
-2025-03-30,2025-03-31,Pagamento POS Ristorante,Ristorante,Pranzo,26.0,-1,3269.65,POS,Trattoria da Nino,TX20250330090
-2025-03-31,2025-04-01,Pagamento POS Ristorante,Ristorante,Pranzo,36.74,-1,3232.91,POS,Trattoria da Nino,TX20250331091
-2025-04-01,2025-04-02,Ricarica telefonica,Telefonia,Ricarica,9.34,-1,3223.57,POS,TIM,TX20250401125
-2025-04-03,2025-04-04,Prelievo contante,Prelievo,Bancomat,49.32,-1,3174.25,BANCOMAT,ATM Intesa,TX20250403127
-2025-04-03,2025-04-04,Addebito abbonamento,Abbonamenti,Streaming,15.31,-1,3158.94,POS,Netflix,TX20250403101
-2025-04-05,2025-04-06,Pagamento POS Supermercato,Spesa,Supermercato,13.37,-1,3145.57,POS,Esselunga,TX20250405102
-2025-04-05,2025-04-06,Pagamento POS Ristorante,Ristorante,Pranzo,30.53,-1,3115.04,POS,Osteria del Corso,TX20250405103
-2025-04-06,2025-04-07,Addebito utenza,Utenze,Internet,32.5,-1,3082.54,POS,Enel Energia,TX20250406100
-2025-04-08,2025-04-09,Pagamento POS Ristorante,Ristorante,Pranzo,12.05,-1,3070.49,POS,Trattoria da Nino,TX20250408104
-2025-04-09,2025-04-10,Pagamento POS Ristorante,Ristorante,Pranzo,30.75,-1,3039.74,POS,Trattoria da Nino,TX20250409105
-2025-04-10,2025-04-11,Stipendio 2025-04,Bonifico,In,2627.51,1,5667.25,BONIFICO,Azienda SRL,TX20250410096
-2025-04-13,2025-04-14,Pagamento POS Supermercato,Spesa,Supermercato,45.23,-1,5622.02,POS,Conad,TX20250413106
-2025-04-13,2025-04-14,Ricarica telefonica,Telefonia,Ricarica,14.64,-1,5607.38,POS,Iliad,TX20250413126
-2025-04-14,2025-04-15,Addebito canone,Affitto,Canone,629.03,-1,4978.35,POS,Proprietario,TX20250414097
-2025-04-14,2025-04-15,Ricarica telefonica,Telefonia,Ricarica,4.8,-1,4973.55,POS,TIM,TX20250414124
-2025-04-15,2025-04-16,Pagamento POS Supermercato,Spesa,Supermercato,91.55,-1,4882.0,POS,Conad,TX20250415107
-2025-04-15,2025-04-16,Pagamento POS Ristorante,Ristorante,Pranzo,49.06,-1,4832.94,POS,Osteria del Corso,TX20250415108
-2025-04-16,2025-04-17,Pagamento POS Ristorante,Ristorante,Pranzo,44.64,-1,4788.3,POS,Osteria del Corso,TX20250416109
-2025-04-17,2025-04-18,Pagamento POS Supermercato,Spesa,Supermercato,12.97,-1,4775.33,POS,Conad,TX20250417110
-2025-04-19,2025-04-20,Pagamento POS Ristorante,Ristorante,Pranzo,1.0,-1,4774.33,POS,Trattoria da Nino,TX20250419111
-2025-04-20,2025-04-21,Pagamento POS Supermercato,Spesa,Supermercato,54.19,-1,4720.14,POS,Conad,TX20250420112
-2025-04-20,2025-04-21,Pagamento POS Ristorante,Ristorante,Pranzo,27.07,-1,4693.07,POS,Osteria del Corso,TX20250420113
-2025-04-21,2025-04-22,Pagamento POS Ristorante,Ristorante,Pranzo,14.43,-1,4678.64,POS,Trattoria da Nino,TX20250421114
-2025-04-22,2025-04-23,Pagamento POS Supermercato,Spesa,Supermercato,48.94,-1,4629.7,POS,Conad,TX20250422115
-2025-04-23,2025-04-24,Addebito utenza,Utenze,Luce,80.66,-1,4549.04,POS,Enel Energia,TX20250423098
-2025-04-23,2025-04-24,Addebito utenza,Utenze,Gas,39.59,-1,4509.45,POS,Enel Energia,TX20250423099
-2025-04-23,2025-04-24,Pagamento POS Ristorante,Ristorante,Pranzo,23.24,-1,4486.21,POS,Trattoria da Nino,TX20250423116
-2025-04-24,2025-04-25,Pagamento POS Ristorante,Ristorante,Pranzo,1.0,-1,4485.21,POS,Osteria del Corso,TX20250424118
-2025-04-24,2025-04-25,Pagamento POS Supermercato,Spesa,Supermercato,5.14,-1,4480.07,POS,Conad,TX20250424117
-2025-04-25,2025-04-26,Pagamento POS Supermercato,Spesa,Supermercato,59.99,-1,4420.08,POS,Conad,TX20250425119
-2025-04-27,2025-04-28,Pagamento POS Supermercato,Spesa,Supermercato,29.61,-1,4390.47,POS,Conad,TX20250427120
-2025-04-27,2025-04-28,Pagamento POS Ristorante,Ristorante,Pranzo,23.53,-1,4366.94,POS,Osteria del Corso,TX20250427121
-2025-04-29,2025-04-30,Pagamento POS Supermercato,Spesa,Supermercato,15.39,-1,4351.55,POS,Conad,TX20250429122
-2025-04-29,2025-04-30,Pagamento POS Ristorante,Ristorante,Pranzo,19.63,-1,4331.92,POS,Trattoria da Nino,TX20250429123
-2025-05-01,2025-05-02,Pagamento POS Ristorante,Ristorante,Pranzo,23.03,-1,4308.89,POS,Osteria del Corso,TX20250501134
-2025-05-03,2025-05-04,Pagamento POS Supermercato,Spesa,Supermercato,46.39,-1,4262.5,POS,Conad,TX20250503135
-2025-05-03,2025-05-04,Addebito abbonamento,Abbonamenti,Streaming,12.34,-1,4250.16,POS,Netflix,TX20250503133
-2025-05-03,2025-05-04,Pagamento POS Ristorante,Ristorante,Pranzo,12.32,-1,4237.84,POS,Trattoria da Nino,TX20250503136
-2025-05-06,2025-05-07,Pagamento POS Supermercato,Spesa,Supermercato,3.54,-1,4234.3,POS,Coop,TX20250506137
-2025-05-06,2025-05-07,Pagamento POS Ristorante,Ristorante,Pranzo,20.6,-1,4213.7,POS,Trattoria da Nino,TX20250506138
-2025-05-07,2025-05-08,Addebito utenza,Utenze,Gas,61.43,-1,4152.27,POS,Enel Energia,TX20250507131
-2025-05-07,2025-05-08,Pagamento POS Ristorante,Ristorante,Pranzo,10.57,-1,4141.7,POS,Trattoria da Nino,TX20250507139
-2025-05-10,2025-05-11,Stipendio 2025-05,Bonifico,In,2462.15,1,6603.85,BONIFICO,Azienda SRL,TX20250510128
-2025-05-10,2025-05-11,Pagamento POS Ristorante,Ristorante,Pranzo,7.87,-1,6595.98,POS,Osteria del Corso,TX20250510140
-2025-05-11,2025-05-12,Pagamento POS Ristorante,Ristorante,Pranzo,28.35,-1,6567.63,POS,Osteria del Corso,TX20250511141
-2025-05-13,2025-05-14,Addebito utenza,Utenze,Internet,38.54,-1,6529.09,POS,Enel Energia,TX20250513132
-2025-05-13,2025-05-14,Addebito utenza,Utenze,Luce,106.41,-1,6422.68,POS,Enel Energia,TX20250513130
-2025-05-14,2025-05-15,Addebito canone,Affitto,Canone,659.86,-1,5762.82,POS,Proprietario,TX20250514129
-2025-05-16,2025-05-17,Pagamento POS Supermercato,Spesa,Supermercato,58.31,-1,5704.51,POS,Conad,TX20250516142
-2025-05-17,2025-05-18,Pagamento POS Supermercato,Spesa,Supermercato,39.28,-1,5665.23,POS,Coop,TX20250517143
-2025-05-17,2025-05-18,Pagamento POS Ristorante,Ristorante,Pranzo,39.03,-1,5626.2,POS,Trattoria da Nino,TX20250517144
-2025-05-18,2025-05-19,Pagamento POS Ristorante,Ristorante,Pranzo,1.0,-1,5625.2,POS,Osteria del Corso,TX20250518145
-2025-05-18,2025-05-19,Prelievo contante,Prelievo,Bancomat,54.93,-1,5570.27,BANCOMAT,ATM Intesa,TX20250518157
-2025-05-19,2025-05-20,Pagamento POS Ristorante,Ristorante,Pranzo,14.21,-1,5556.06,POS,Osteria del Corso,TX20250519146
-2025-05-20,2025-05-21,Pagamento POS Supermercato,Spesa,Supermercato,1.0,-1,5555.06,POS,Coop,TX20250520147
-2025-05-20,2025-05-21,Spesa anomala,Altro,Imprevisto,831.62,-1,4723.44,POS,Evento straordinario,TX20250520158
-2025-05-23,2025-05-24,Ricarica telefonica,Telefonia,Ricarica,11.24,-1,4712.2,POS,Iliad,TX20250523156
-2025-05-24,2025-05-25,Pagamento POS Supermercato,Spesa,Supermercato,60.82,-1,4651.38,POS,Conad,TX20250524148
-2025-05-24,2025-05-25,Pagamento POS Ristorante,Ristorante,Pranzo,35.02,-1,4616.36,POS,Osteria del Corso,TX20250524149
-2025-05-27,2025-05-28,Pagamento POS Ristorante,Ristorante,Pranzo,46.06,-1,4570.3,POS,Trattoria da Nino,TX20250527150
-2025-05-28,2025-05-29,Pagamento POS Ristorante,Ristorante,Pranzo,26.97,-1,4543.33,POS,Trattoria da Nino,TX20250528151
-2025-05-29,2025-05-30,Pagamento POS Ristorante,Ristorante,Pranzo,10.88,-1,4532.45,POS,Trattoria da Nino,TX20250529152
-2025-05-30,2025-05-31,Pagamento POS Ristorante,Ristorante,Pranzo,1.51,-1,4530.94,POS,Trattoria da Nino,TX20250530153
-2025-05-31,2025-06-01,Pagamento POS Supermercato,Spesa,Supermercato,67.96,-1,4462.98,POS,Esselunga,TX20250531154
-2025-05-31,2025-06-01,Pagamento POS Ristorante,Ristorante,Pranzo,13.2,-1,4449.78,POS,Trattoria da Nino,TX20250531155
-2025-06-01,2025-06-02,Pagamento POS Ristorante,Ristorante,Pranzo,11.67,-1,4438.11,POS,Trattoria da Nino,TX20250601165
-2025-06-03,2025-06-04,Pagamento POS Ristorante,Ristorante,Pranzo,22.61,-1,4415.5,POS,Osteria del Corso,TX20250603167
-2025-06-03,2025-06-04,Addebito abbonamento,Abbonamenti,Streaming,11.49,-1,4404.01,POS,Netflix,TX20250603164
-2025-06-03,2025-06-04,Pagamento POS Supermercato,Spesa,Supermercato,63.0,-1,4341.01,POS,Coop,TX20250603166
-2025-06-05,2025-06-06,Pagamento POS Ristorante,Ristorante,Pranzo,28.93,-1,4312.08,POS,Osteria del Corso,TX20250605168
-2025-06-06,2025-06-07,Ricarica telefonica,Telefonia,Ricarica,3.65,-1,4308.43,POS,Iliad,TX20250606186
-2025-06-08,2025-06-09,Pagamento POS Supermercato,Spesa,Supermercato,39.95,-1,4268.48,POS,Coop,TX20250608169
-2025-06-10,2025-06-11,Pagamento POS Ristorante,Ristorante,Pranzo,54.96,-1,4213.52,POS,Osteria del Corso,TX20250610170
-2025-06-10,2025-06-11,Stipendio 2025-06,Bonifico,In,2577.01,1,6790.53,BONIFICO,Azienda SRL,TX20250610159
-2025-06-12,2025-06-13,Addebito utenza,Utenze,Luce,85.93,-1,6704.6,POS,Enel Energia,TX20250612161
-2025-06-13,2025-06-14,Pagamento POS Ristorante,Ristorante,Pranzo,52.32,-1,6652.28,POS,Osteria del Corso,TX20250613171
-2025-06-14,2025-06-15,Addebito canone,Affitto,Canone,666.7,-1,5985.58,POS,Proprietario,TX20250614160
-2025-06-14,2025-06-15,Pagamento POS Supermercato,Spesa,Supermercato,11.96,-1,5973.62,POS,Conad,TX20250614172
-2025-06-14,2025-06-15,Pagamento POS Ristorante,Ristorante,Pranzo,18.65,-1,5954.97,POS,Osteria del Corso,TX20250614173
-2025-06-14,2025-06-15,Prelievo contante,Prelievo,Bancomat,96.96,-1,5858.01,BANCOMAT,ATM Intesa,TX20250614188
-2025-06-15,2025-06-16,Pagamento POS Ristorante,Ristorante,Pranzo,1.0,-1,5857.01,POS,Trattoria da Nino,TX20250615174
-2025-06-17,2025-06-18,Pagamento POS Supermercato,Spesa,Supermercato,32.45,-1,5824.56,POS,Coop,TX20250617175
-2025-06-17,2025-06-18,Prelievo contante,Prelievo,Bancomat,63.29,-1,5761.27,BANCOMAT,ATM Intesa,TX20250617187
-2025-06-18,2025-06-19,Addebito utenza,Utenze,Gas,67.82,-1,5693.45,POS,Enel Energia,TX20250618162
-2025-06-18,2025-06-19,Pagamento POS Ristorante,Ristorante,Pranzo,1.0,-1,5692.45,POS,Osteria del Corso,TX20250618176
-2025-06-19,2025-06-20,Pagamento POS Supermercato,Spesa,Supermercato,24.31,-1,5668.14,POS,Conad,TX20250619177
-2025-06-22,2025-06-23,Pagamento POS Supermercato,Spesa,Supermercato,32.72,-1,5635.42,POS,Conad,TX20250622178
-2025-06-22,2025-06-23,Addebito utenza,Utenze,Internet,27.54,-1,5607.88,POS,Enel Energia,TX20250622163
-2025-06-23,2025-06-24,Pagamento POS Ristorante,Ristorante,Pranzo,29.03,-1,5578.85,POS,Trattoria da Nino,TX20250623179
-2025-06-24,2025-06-25,Pagamento POS Supermercato,Spesa,Supermercato,34.33,-1,5544.52,POS,Conad,TX20250624180
-2025-06-25,2025-06-26,Pagamento POS Ristorante,Ristorante,Pranzo,1.0,-1,5543.52,POS,Osteria del Corso,TX20250625181
-2025-06-25,2025-06-26,Spesa straordinaria Trasporti,Trasporti,Farmacia,81.3,-1,5462.22,POS,Esercente,TX20250625189
-2025-06-26,2025-06-27,Pagamento POS Ristorante,Ristorante,Pranzo,1.0,-1,5461.22,POS,Trattoria da Nino,TX20250626182
-2025-06-27,2025-06-28,Pagamento POS Ristorante,Ristorante,Pranzo,22.15,-1,5439.07,POS,Osteria del Corso,TX20250627183
-2025-06-28,2025-06-29,Pagamento POS Supermercato,Spesa,Supermercato,55.49,-1,5383.58,POS,Esselunga,TX20250628184
-2025-06-30,2025-07-01,Pagamento POS Supermercato,Spesa,Supermercato,38.25,-1,5345.33,POS,Coop,TX20250630185
-2025-07-03,2025-07-04,Addebito abbonamento,Abbonamenti,Streaming,9.59,-1,5335.74,POS,Netflix,TX20250703195
-2025-07-04,2025-07-05,Pagamento POS Supermercato,Spesa,Supermercato,18.66,-1,5317.08,POS,Esselunga,TX20250704196
-2025-07-05,2025-07-06,Pagamento POS Supermercato,Spesa,Supermercato,92.65,-1,5224.43,POS,Esselunga,TX20250705197
-2025-07-06,2025-07-07,Pagamento POS Ristorante,Ristorante,Pranzo,34.38,-1,5190.05,POS,Osteria del Corso,TX20250706198
-2025-07-06,2025-07-07,Ricarica telefonica,Telefonia,Ricarica,13.18,-1,5176.87,POS,Vodafone,TX20250706219
-2025-07-09,2025-07-10,Pagamento POS Ristorante,Ristorante,Pranzo,36.86,-1,5140.01,POS,Trattoria da Nino,TX20250709199
-2025-07-10,2025-07-11,Stipendio 2025-07,Bonifico,In,2742.5,1,7882.51,BONIFICO,Azienda SRL,TX20250710190
-2025-07-12,2025-07-13,Pagamento POS Ristorante,Ristorante,Pranzo,13.26,-1,7869.25,POS,Trattoria da Nino,TX20250712201
-2025-07-12,2025-07-13,Pagamento POS Supermercato,Spesa,Supermercato,1.0,-1,7868.25,POS,Esselunga,TX20250712200
-2025-07-13,2025-07-14,Pagamento POS Ristorante,Ristorante,Pranzo,41.69,-1,7826.56,POS,Trattoria da Nino,TX20250713203
-2025-07-13,2025-07-14,Pagamento POS Supermercato,Spesa,Supermercato,26.7,-1,7799.86,POS,Esselunga,TX20250713202
-2025-07-14,2025-07-15,Pagamento POS Supermercato,Spesa,Supermercato,43.86,-1,7756.0,POS,Esselunga,TX20250714204
-2025-07-14,2025-07-15,Pagamento POS Ristorante,Ristorante,Pranzo,10.36,-1,7745.64,POS,Trattoria da Nino,TX20250714205
-2025-07-14,2025-07-15,Addebito canone,Affitto,Canone,640.29,-1,7105.35,POS,Proprietario,TX20250714191
-2025-07-16,2025-07-17,Pagamento POS Ristorante,Ristorante,Pranzo,35.52,-1,7069.83,POS,Trattoria da Nino,TX20250716206
-2025-07-17,2025-07-18,Pagamento POS Ristorante,Ristorante,Pranzo,21.84,-1,7047.99,POS,Trattoria da Nino,TX20250717207
-2025-07-20,2025-07-21,Pagamento POS Supermercato,Spesa,Supermercato,67.56,-1,6980.43,POS,Coop,TX20250720208
-2025-07-20,2025-07-21,Pagamento POS Ristorante,Ristorante,Pranzo,2.55,-1,6977.88,POS,Osteria del Corso,TX20250720209
-2025-07-21,2025-07-22,Pagamento POS Supermercato,Spesa,Supermercato,50.65,-1,6927.23,POS,Conad,TX20250721210
-2025-07-22,2025-07-23,Addebito utenza,Utenze,Luce,79.65,-1,6847.58,POS,Enel Energia,TX20250722192
-2025-07-22,2025-07-23,Pagamento POS Supermercato,Spesa,Supermercato,22.61,-1,6824.97,POS,Conad,TX20250722211
-2025-07-22,2025-07-23,Pagamento POS Ristorante,Ristorante,Pranzo,33.23,-1,6791.74,POS,Osteria del Corso,TX20250722212
-2025-07-23,2025-07-24,Pagamento POS Supermercato,Spesa,Supermercato,50.56,-1,6741.18,POS,Esselunga,TX20250723213
-2025-07-23,2025-07-24,Pagamento POS Ristorante,Ristorante,Pranzo,37.11,-1,6704.07,POS,Trattoria da Nino,TX20250723214
-2025-07-24,2025-07-25,Addebito utenza,Utenze,Gas,47.44,-1,6656.63,POS,Enel Energia,TX20250724193
-2025-07-24,2025-07-25,Spesa straordinaria Salute,Salute,Carburante,65.59,-1,6591.04,POS,Esercente,TX20250724220
-2025-07-24,2025-07-25,Addebito utenza,Utenze,Internet,29.35,-1,6561.69,POS,Enel Energia,TX20250724194
-2025-07-24,2025-07-25,Pagamento POS Supermercato,Spesa,Supermercato,1.0,-1,6560.69,POS,Coop,TX20250724215
-2025-07-26,2025-07-27,Pagamento POS Supermercato,Spesa,Supermercato,63.62,-1,6497.07,POS,Esselunga,TX20250726216
-2025-07-27,2025-07-28,Pagamento POS Supermercato,Spesa,Supermercato,37.57,-1,6459.5,POS,Conad,TX20250727217
-2025-07-27,2025-07-28,Pagamento POS Ristorante,Ristorante,Pranzo,20.51,-1,6438.99,POS,Osteria del Corso,TX20250727218
-2025-08-02,2025-08-03,Pagamento POS Ristorante,Ristorante,Pranzo,17.67,-1,6421.32,POS,Osteria del Corso,TX20250802228
-2025-08-02,2025-08-03,Pagamento POS Supermercato,Spesa,Supermercato,29.91,-1,6391.41,POS,Coop,TX20250802227
-2025-08-03,2025-08-04,Addebito abbonamento,Abbonamenti,Streaming,13.79,-1,6377.62,POS,Netflix,TX20250803226
-2025-08-05,2025-08-06,Pagamento POS Ristorante,Ristorante,Pranzo,23.37,-1,6354.25,POS,Osteria del Corso,TX20250805230
-2025-08-05,2025-08-06,Pagamento POS Supermercato,Spesa,Supermercato,16.58,-1,6337.67,POS,Coop,TX20250805229
-2025-08-06,2025-08-07,Pagamento POS Ristorante,Ristorante,Pranzo,32.44,-1,6305.23,POS,Trattoria da Nino,TX20250806231
-2025-08-07,2025-08-08,Ricarica telefonica,Telefonia,Ricarica,8.9,-1,6296.33,POS,TIM,TX20250807251
-2025-08-07,2025-08-08,Addebito utenza,Utenze,Internet,12.25,-1,6284.08,POS,Enel Energia,TX20250807225
-2025-08-07,2025-08-08,Pagamento POS Ristorante,Ristorante,Pranzo,4.82,-1,6279.26,POS,Trattoria da Nino,TX20250807232
-2025-08-09,2025-08-10,Prelievo contante,Prelievo,Bancomat,64.51,-1,6214.75,BANCOMAT,ATM Intesa,TX20250809252
-2025-08-09,2025-08-10,Addebito utenza,Utenze,Gas,54.07,-1,6160.68,POS,Enel Energia,TX20250809224
-2025-08-10,2025-08-11,Pagamento POS Supermercato,Spesa,Supermercato,28.86,-1,6131.82,POS,Conad,TX20250810233
-2025-08-10,2025-08-11,Pagamento POS Ristorante,Ristorante,Pranzo,20.76,-1,6111.06,POS,Osteria del Corso,TX20250810234
-2025-08-10,2025-08-11,Stipendio 2025-08,Bonifico,In,2771.84,1,8882.9,BONIFICO,Azienda SRL,TX20250810221
-2025-08-11,2025-08-12,Pagamento POS Supermercato,Spesa,Supermercato,19.94,-1,8862.96,POS,Coop,TX20250811235
-2025-08-12,2025-08-13,Accredito imprevisto,Bonifico,Bonus,513.13,1,9376.09,BONIFICO,Azienda SRL,TX20250812254
-2025-08-12,2025-08-13,Pagamento POS Supermercato,Spesa,Supermercato,37.73,-1,9338.36,POS,Coop,TX20250812236
-2025-08-13,2025-08-14,Pagamento POS Ristorante,Ristorante,Pranzo,1.0,-1,9337.36,POS,Trattoria da Nino,TX20250813237
-2025-08-14,2025-08-15,Addebito canone,Affitto,Canone,657.66,-1,8679.7,POS,Proprietario,TX20250814222
-2025-08-14,2025-08-15,Pagamento POS Supermercato,Spesa,Supermercato,8.26,-1,8671.44,POS,Esselunga,TX20250814238
-2025-08-16,2025-08-17,Pagamento POS Supermercato,Spesa,Supermercato,29.15,-1,8642.29,POS,Esselunga,TX20250816239
-2025-08-17,2025-08-18,Pagamento POS Ristorante,Ristorante,Pranzo,1.0,-1,8641.29,POS,Osteria del Corso,TX20250817240
-2025-08-19,2025-08-20,Addebito utenza,Utenze,Luce,83.01,-1,8558.28,POS,Enel Energia,TX20250819223
-2025-08-19,2025-08-20,Pagamento POS Ristorante,Ristorante,Pranzo,38.91,-1,8519.37,POS,Trattoria da Nino,TX20250819241
-2025-08-20,2025-08-21,Pagamento POS Supermercato,Spesa,Supermercato,69.6,-1,8449.77,POS,Conad,TX20250820242
-2025-08-23,2025-08-24,Pagamento POS Ristorante,Ristorante,Pranzo,6.89,-1,8442.88,POS,Trattoria da Nino,TX20250823243
-2025-08-24,2025-08-25,Prelievo contante,Prelievo,Bancomat,78.95,-1,8363.93,BANCOMAT,ATM Intesa,TX20250824253
-2025-08-24,2025-08-25,Pagamento POS Ristorante,Ristorante,Pranzo,31.13,-1,8332.8,POS,Osteria del Corso,TX20250824244
-2025-08-26,2025-08-27,Pagamento POS Supermercato,Spesa,Supermercato,38.23,-1,8294.57,POS,Esselunga,TX20250826245
-2025-08-27,2025-08-28,Pagamento POS Ristorante,Ristorante,Pranzo,1.0,-1,8293.57,POS,Osteria del Corso,TX20250827246
-2025-08-29,2025-08-30,Pagamento POS Supermercato,Spesa,Supermercato,48.12,-1,8245.45,POS,Conad,TX20250829247
-2025-08-30,2025-08-31,Pagamento POS Supermercato,Spesa,Supermercato,30.57,-1,8214.88,POS,Esselunga,TX20250830248
-2025-08-30,2025-08-31,Pagamento POS Ristorante,Ristorante,Pranzo,2.38,-1,8212.5,POS,Trattoria da Nino,TX20250830249
-2025-08-31,2025-09-01,Pagamento POS Ristorante,Ristorante,Pranzo,1.0,-1,8211.5,POS,Osteria del Corso,TX20250831250
-2025-09-01,2025-09-02,Pagamento POS Supermercato,Spesa,Supermercato,65.99,-1,8145.51,POS,Coop,TX20250901261
-2025-09-02,2025-09-03,Pagamento POS Supermercato,Spesa,Supermercato,14.29,-1,8131.22,POS,Coop,TX20250902262
-2025-09-03,2025-09-04,Addebito abbonamento,Abbonamenti,Streaming,13.08,-1,8118.14,POS,Netflix,TX20250903260
-2025-09-04,2025-09-05,Pagamento POS Supermercato,Spesa,Supermercato,32.56,-1,8085.58,POS,Coop,TX20250904263
-2025-09-05,2025-09-06,Prelievo contante,Prelievo,Bancomat,89.59,-1,7995.99,BANCOMAT,ATM Intesa,TX20250905286
-2025-09-05,2025-09-06,Pagamento POS Supermercato,Spesa,Supermercato,46.4,-1,7949.59,POS,Esselunga,TX20250905264
-2025-09-06,2025-09-07,Pagamento POS Supermercato,Spesa,Supermercato,52.94,-1,7896.65,POS,Esselunga,TX20250906265
-2025-09-06,2025-09-07,Pagamento POS Ristorante,Ristorante,Pranzo,39.81,-1,7856.84,POS,Trattoria da Nino,TX20250906266
-2025-09-07,2025-09-08,Addebito utenza,Utenze,Luce,45.92,-1,7810.92,POS,Enel Energia,TX20250907257
-2025-09-09,2025-09-10,Pagamento POS Supermercato,Spesa,Supermercato,7.38,-1,7803.54,POS,Esselunga,TX20250909267
-2025-09-10,2025-09-11,Stipendio 2025-09,Bonifico,In,2413.73,1,10217.27,BONIFICO,Azienda SRL,TX20250910255
-2025-09-13,2025-09-14,Pagamento POS Ristorante,Ristorante,Pranzo,31.72,-1,10185.55,POS,Trattoria da Nino,TX20250913269
-2025-09-13,2025-09-14,Pagamento POS Supermercato,Spesa,Supermercato,46.51,-1,10139.04,POS,Esselunga,TX20250913268
-2025-09-14,2025-09-15,Addebito canone,Affitto,Canone,574.95,-1,9564.09,POS,Proprietario,TX20250914256
-2025-09-14,2025-09-15,Pagamento POS Ristorante,Ristorante,Pranzo,33.84,-1,9530.25,POS,Trattoria da Nino,TX20250914270
-2025-09-15,2025-09-16,Pagamento POS Supermercato,Spesa,Supermercato,43.24,-1,9487.01,POS,Conad,TX20250915271
-2025-09-15,2025-09-16,Pagamento POS Ristorante,Ristorante,Pranzo,28.17,-1,9458.84,POS,Trattoria da Nino,TX20250915272
-2025-09-17,2025-09-18,Addebito utenza,Utenze,Internet,26.73,-1,9432.11,POS,Enel Energia,TX20250917259
-2025-09-18,2025-09-19,Pagamento POS Ristorante,Ristorante,Pranzo,1.0,-1,9431.11,POS,Trattoria da Nino,TX20250918273
-2025-09-19,2025-09-20,Addebito utenza,Utenze,Gas,56.06,-1,9375.05,POS,Enel Energia,TX20250919258
-2025-09-20,2025-09-21,Pagamento POS Ristorante,Ristorante,Pranzo,14.32,-1,9360.73,POS,Osteria del Corso,TX20250920275
-2025-09-20,2025-09-21,Pagamento POS Supermercato,Spesa,Supermercato,54.55,-1,9306.18,POS,Conad,TX20250920274
-2025-09-23,2025-09-24,Pagamento POS Supermercato,Spesa,Supermercato,47.62,-1,9258.56,POS,Coop,TX20250923276
-2025-09-24,2025-09-25,Pagamento POS Ristorante,Ristorante,Pranzo,4.53,-1,9254.03,POS,Trattoria da Nino,TX20250924277
-2025-09-25,2025-09-26,Pagamento POS Ristorante,Ristorante,Pranzo,20.76,-1,9233.27,POS,Osteria del Corso,TX20250925279
-2025-09-25,2025-09-26,Pagamento POS Supermercato,Spesa,Supermercato,63.49,-1,9169.78,POS,Esselunga,TX20250925278
-2025-09-27,2025-09-28,Pagamento POS Supermercato,Spesa,Supermercato,24.17,-1,9145.61,POS,Coop,TX20250927280
-2025-09-27,2025-09-28,Pagamento POS Ristorante,Ristorante,Pranzo,18.81,-1,9126.8,POS,Osteria del Corso,TX20250927281
-2025-09-27,2025-09-28,Ricarica telefonica,Telefonia,Ricarica,8.49,-1,9118.31,POS,Iliad,TX20250927285
-2025-09-28,2025-09-29,Pagamento POS Supermercato,Spesa,Supermercato,54.27,-1,9064.04,POS,Coop,TX20250928282
-2025-09-28,2025-09-29,Pagamento POS Ristorante,Ristorante,Pranzo,28.44,-1,9035.6,POS,Trattoria da Nino,TX20250928283
-2025-09-29,2025-09-30,Pagamento POS Ristorante,Ristorante,Pranzo,3.94,-1,9031.66,POS,Osteria del Corso,TX20250929284
-2025-10-01,2025-10-02,Ricarica telefonica,Telefonia,Ricarica,17.9,-1,9013.76,POS,Vodafone,TX20251001314
-2025-10-02,2025-10-03,Pagamento POS Supermercato,Spesa,Supermercato,51.8,-1,8961.96,POS,Esselunga,TX20251002293
-2025-10-03,2025-10-04,Pagamento POS Ristorante,Ristorante,Pranzo,6.48,-1,8955.48,POS,Osteria del Corso,TX20251003294
-2025-10-03,2025-10-04,Addebito abbonamento,Abbonamenti,Streaming,11.54,-1,8943.94,POS,Netflix,TX20251003292
-2025-10-04,2025-10-05,Pagamento POS Supermercato,Spesa,Supermercato,34.99,-1,8908.95,POS,Conad,TX20251004295
-2025-10-04,2025-10-05,Pagamento POS Ristorante,Ristorante,Pranzo,9.68,-1,8899.27,POS,Osteria del Corso,TX20251004296
-2025-10-05,2025-10-06,Pagamento POS Supermercato,Spesa,Supermercato,39.52,-1,8859.75,POS,Conad,TX20251005297
-2025-10-05,2025-10-06,Pagamento POS Ristorante,Ristorante,Pranzo,30.1,-1,8829.65,POS,Trattoria da Nino,TX20251005298
-2025-10-06,2025-10-07,Pagamento POS Ristorante,Ristorante,Pranzo,34.24,-1,8795.41,POS,Osteria del Corso,TX20251006299
-2025-10-08,2025-10-09,Pagamento POS Supermercato,Spesa,Supermercato,44.91,-1,8750.5,POS,Conad,TX20251008300
-2025-10-09,2025-10-10,Prelievo contante,Prelievo,Bancomat,82.6,-1,8667.9,BANCOMAT,ATM Intesa,TX20251009316
-2025-10-09,2025-10-10,Spesa anomala,Altro,Imprevisto,937.81,-1,7730.09,POS,Evento straordinario,TX20251009317
-2025-10-10,2025-10-11,Stipendio 2025-10,Bonifico,In,2570.54,1,10300.63,BONIFICO,Azienda SRL,TX20251010287
-2025-10-10,2025-10-11,Pagamento POS Ristorante,Ristorante,Pranzo,17.08,-1,10283.55,POS,Osteria del Corso,TX20251010301
-2025-10-11,2025-10-12,Addebito utenza,Utenze,Luce,82.42,-1,10201.13,POS,Enel Energia,TX20251011289
-2025-10-11,2025-10-12,Pagamento POS Ristorante,Ristorante,Pranzo,37.09,-1,10164.04,POS,Osteria del Corso,TX20251011302
-2025-10-12,2025-10-13,Pagamento POS Ristorante,Ristorante,Pranzo,39.61,-1,10124.43,POS,Osteria del Corso,TX20251012303
-2025-10-14,2025-10-15,Pagamento POS Supermercato,Spesa,Supermercato,34.25,-1,10090.18,POS,Coop,TX20251014304
-2025-10-14,2025-10-15,Addebito canone,Affitto,Canone,673.0,-1,9417.18,POS,Proprietario,TX20251014288
-2025-10-18,2025-10-19,Pagamento POS Supermercato,Spesa,Supermercato,74.44,-1,9342.74,POS,Coop,TX20251018305
-2025-10-18,2025-10-19,Pagamento POS Ristorante,Ristorante,Pranzo,26.78,-1,9315.96,POS,Osteria del Corso,TX20251018306
-2025-10-19,2025-10-20,Pagamento POS Supermercato,Spesa,Supermercato,41.93,-1,9274.03,POS,Esselunga,TX20251019307
-2025-10-19,2025-10-20,Addebito utenza,Utenze,Gas,90.59,-1,9183.44,POS,Enel Energia,TX20251019290
-2025-10-20,2025-10-21,Prelievo contante,Prelievo,Bancomat,79.47,-1,9103.97,BANCOMAT,ATM Intesa,TX20251020315
-2025-10-20,2025-10-21,Pagamento POS Ristorante,Ristorante,Pranzo,24.1,-1,9079.87,POS,Trattoria da Nino,TX20251020308
-2025-10-22,2025-10-23,Pagamento POS Ristorante,Ristorante,Pranzo,22.05,-1,9057.82,POS,Osteria del Corso,TX20251022309
-2025-10-23,2025-10-24,Addebito utenza,Utenze,Internet,29.53,-1,9028.29,POS,Enel Energia,TX20251023291
-2025-10-24,2025-10-25,Pagamento POS Supermercato,Spesa,Supermercato,49.54,-1,8978.75,POS,Esselunga,TX20251024310
-2025-10-26,2025-10-27,Pagamento POS Ristorante,Ristorante,Pranzo,22.73,-1,8956.02,POS,Osteria del Corso,TX20251026311
-2025-10-27,2025-10-28,Pagamento POS Supermercato,Spesa,Supermercato,47.21,-1,8908.81,POS,Conad,TX20251027312
-2025-10-28,2025-10-29,Pagamento POS Supermercato,Spesa,Supermercato,14.13,-1,8894.68,POS,Coop,TX20251028313
-2025-11-01,2025-11-02,Pagamento POS Ristorante,Ristorante,Pranzo,26.18,-1,8868.5,POS,Osteria del Corso,TX20251101324
-2025-11-02,2025-11-03,Pagamento POS Ristorante,Ristorante,Pranzo,31.75,-1,8836.75,POS,Osteria del Corso,TX20251102326
-2025-11-02,2025-11-03,Pagamento POS Supermercato,Spesa,Supermercato,37.77,-1,8798.98,POS,Esselunga,TX20251102325
-2025-11-03,2025-11-04,Addebito abbonamento,Abbonamenti,Streaming,10.7,-1,8788.28,POS,Netflix,TX20251103323
-2025-11-03,2025-11-04,Pagamento POS Supermercato,Spesa,Supermercato,30.0,-1,8758.28,POS,Conad,TX20251103327
-2025-11-03,2025-11-04,Pagamento POS Ristorante,Ristorante,Pranzo,20.95,-1,8737.33,POS,Osteria del Corso,TX20251103328
-2025-11-04,2025-11-05,Ricarica telefonica,Telefonia,Ricarica,1.0,-1,8736.33,POS,Vodafone,TX20251104353
-2025-11-04,2025-11-05,Pagamento POS Ristorante,Ristorante,Pranzo,21.34,-1,8714.99,POS,Trattoria da Nino,TX20251104329
-2025-11-06,2025-11-07,Pagamento POS Ristorante,Ristorante,Pranzo,22.53,-1,8692.46,POS,Osteria del Corso,TX20251106330
-2025-11-07,2025-11-08,Pagamento POS Ristorante,Ristorante,Pranzo,25.56,-1,8666.9,POS,Trattoria da Nino,TX20251107331
-2025-11-08,2025-11-09,Pagamento POS Ristorante,Ristorante,Pranzo,1.0,-1,8665.9,POS,Osteria del Corso,TX20251108332
-2025-11-09,2025-11-10,Pagamento POS Ristorante,Ristorante,Pranzo,32.1,-1,8633.8,POS,Osteria del Corso,TX20251109334
-2025-11-09,2025-11-10,Addebito utenza,Utenze,Internet,27.83,-1,8605.97,POS,Enel Energia,TX20251109322
-2025-11-09,2025-11-10,Pagamento POS Supermercato,Spesa,Supermercato,34.14,-1,8571.83,POS,Coop,TX20251109333
-2025-11-10,2025-11-11,Stipendio 2025-11,Bonifico,In,2640.14,1,11211.97,BONIFICO,Azienda SRL,TX20251110318
-2025-11-10,2025-11-11,Pagamento POS Supermercato,Spesa,Supermercato,65.38,-1,11146.59,POS,Esselunga,TX20251110335
-2025-11-11,2025-11-12,Pagamento POS Ristorante,Ristorante,Pranzo,16.58,-1,11130.01,POS,Osteria del Corso,TX20251111336
-2025-11-14,2025-11-15,Addebito canone,Affitto,Canone,609.33,-1,10520.68,POS,Proprietario,TX20251114319
-2025-11-14,2025-11-15,Pagamento POS Ristorante,Ristorante,Pranzo,7.19,-1,10513.49,POS,Trattoria da Nino,TX20251114337
-2025-11-15,2025-11-16,Pagamento POS Supermercato,Spesa,Supermercato,14.85,-1,10498.64,POS,Coop,TX20251115338
-2025-11-15,2025-11-16,Pagamento POS Ristorante,Ristorante,Pranzo,12.09,-1,10486.55,POS,Trattoria da Nino,TX20251115339
-2025-11-16,2025-11-17,Pagamento POS Ristorante,Ristorante,Pranzo,19.55,-1,10467.0,POS,Osteria del Corso,TX20251116340
-2025-11-18,2025-11-19,Pagamento POS Supermercato,Spesa,Supermercato,25.04,-1,10441.96,POS,Esselunga,TX20251118341
-2025-11-20,2025-11-21,Pagamento POS Supermercato,Spesa,Supermercato,53.35,-1,10388.61,POS,Conad,TX20251120342
-2025-11-21,2025-11-22,Addebito utenza,Utenze,Gas,91.01,-1,10297.6,POS,Enel Energia,TX20251121321
-2025-11-22,2025-11-23,Pagamento POS Supermercato,Spesa,Supermercato,44.79,-1,10252.81,POS,Esselunga,TX20251122343
-2025-11-23,2025-11-24,Addebito utenza,Utenze,Luce,106.07,-1,10146.74,POS,Enel Energia,TX20251123320
-2025-11-23,2025-11-24,Pagamento POS Ristorante,Ristorante,Pranzo,22.89,-1,10123.85,POS,Trattoria da Nino,TX20251123344
-2025-11-25,2025-11-26,Pagamento POS Ristorante,Ristorante,Pranzo,54.01,-1,10069.84,POS,Trattoria da Nino,TX20251125345
-2025-11-26,2025-11-27,Pagamento POS Supermercato,Spesa,Supermercato,26.47,-1,10043.37,POS,Coop,TX20251126346
-2025-11-26,2025-11-27,Pagamento POS Ristorante,Ristorante,Pranzo,9.13,-1,10034.24,POS,Trattoria da Nino,TX20251126347
-2025-11-27,2025-11-28,Pagamento POS Ristorante,Ristorante,Pranzo,23.46,-1,10010.78,POS,Trattoria da Nino,TX20251127348
-2025-11-29,2025-11-30,Pagamento POS Ristorante,Ristorante,Pranzo,38.3,-1,9972.48,POS,Trattoria da Nino,TX20251129350
-2025-11-29,2025-11-30,Pagamento POS Supermercato,Spesa,Supermercato,27.41,-1,9945.07,POS,Coop,TX20251129349
-2025-11-30,2025-12-01,Pagamento POS Supermercato,Spesa,Supermercato,41.28,-1,9903.79,POS,Esselunga,TX20251130351
-2025-11-30,2025-12-01,Pagamento POS Ristorante,Ristorante,Pranzo,4.33,-1,9899.46,POS,Osteria del Corso,TX20251130352
-2025-12-01,2025-12-02,Pagamento POS Supermercato,Spesa,Supermercato,40.54,-1,9858.92,POS,Conad,TX20251201360
-2025-12-02,2025-12-03,Ricarica telefonica,Telefonia,Ricarica,11.88,-1,9847.04,POS,TIM,TX20251202378
-2025-12-03,2025-12-04,Addebito abbonamento,Abbonamenti,Streaming,14.13,-1,9832.91,POS,Netflix,TX20251203359
-2025-12-04,2025-12-05,Pagamento POS Ristorante,Ristorante,Pranzo,43.56,-1,9789.35,POS,Trattoria da Nino,TX20251204361
-2025-12-05,2025-12-06,Pagamento POS Supermercato,Spesa,Supermercato,88.54,-1,9700.81,POS,Esselunga,TX20251205362
-2025-12-05,2025-12-06,Addebito utenza,Utenze,Gas,88.22,-1,9612.59,POS,Enel Energia,TX20251205357
-2025-12-06,2025-12-07,Pagamento POS Supermercato,Spesa,Supermercato,52.38,-1,9560.21,POS,Coop,TX20251206363
-2025-12-10,2025-12-11,Stipendio 2025-12,Bonifico,In,2582.2,1,12142.41,BONIFICO,Azienda SRL,TX20251210354
-2025-12-11,2025-12-12,Spesa anomala,Altro,Imprevisto,769.38,-1,11373.03,POS,Evento straordinario,TX20251211381
-2025-12-13,2025-12-14,Pagamento POS Supermercato,Spesa,Supermercato,53.36,-1,11319.67,POS,Coop,TX20251213364
-2025-12-13,2025-12-14,Addebito utenza,Utenze,Luce,90.48,-1,11229.19,POS,Enel Energia,TX20251213356
-2025-12-14,2025-12-15,Addebito canone,Affitto,Canone,673.48,-1,10555.71,POS,Proprietario,TX20251214355
-2025-12-14,2025-12-15,Ricarica telefonica,Telefonia,Ricarica,15.95,-1,10539.76,POS,Vodafone,TX20251214379
-2025-12-14,2025-12-15,Addebito utenza,Utenze,Internet,34.48,-1,10505.28,POS,Enel Energia,TX20251214358
-2025-12-14,2025-12-15,Pagamento POS Supermercato,Spesa,Supermercato,78.92,-1,10426.36,POS,Conad,TX20251214365
-2025-12-15,2025-12-16,Pagamento POS Supermercato,Spesa,Supermercato,46.28,-1,10380.08,POS,Coop,TX20251215366
-2025-12-16,2025-12-17,Ricarica telefonica,Telefonia,Ricarica,7.2,-1,10372.88,POS,TIM,TX20251216380
-2025-12-17,2025-12-18,Pagamento POS Supermercato,Spesa,Supermercato,91.99,-1,10280.89,POS,Conad,TX20251217367
-2025-12-18,2025-12-19,Pagamento POS Ristorante,Ristorante,Pranzo,26.0,-1,10254.89,POS,Trattoria da Nino,TX20251218368
-2025-12-20,2025-12-21,Pagamento POS Supermercato,Spesa,Supermercato,86.87,-1,10168.02,POS,Esselunga,TX20251220369
-2025-12-20,2025-12-21,Pagamento POS Ristorante,Ristorante,Pranzo,46.94,-1,10121.08,POS,Osteria del Corso,TX20251220370
-2025-12-21,2025-12-22,Pagamento POS Supermercato,Spesa,Supermercato,68.01,-1,10053.07,POS,Conad,TX20251221371
-2025-12-23,2025-12-24,Pagamento POS Supermercato,Spesa,Supermercato,54.22,-1,9998.85,POS,Esselunga,TX20251223372
-2025-12-26,2025-12-27,Pagamento POS Ristorante,Ristorante,Pranzo,20.52,-1,9978.33,POS,Osteria del Corso,TX20251226373
-2025-12-27,2025-12-28,Pagamento POS Supermercato,Spesa,Supermercato,12.08,-1,9966.25,POS,Conad,TX20251227374
-2025-12-28,2025-12-29,Pagamento POS Supermercato,Spesa,Supermercato,57.98,-1,9908.27,POS,Coop,TX20251228375
-2025-12-30,2025-12-31,Pagamento POS Ristorante,Ristorante,Pranzo,47.07,-1,9861.2,POS,Osteria del Corso,TX20251230376
-2025-12-31,2026-01-01,Pagamento POS Ristorante,Ristorante,Pranzo,43.48,-1,9817.72,POS,Osteria del Corso,TX20251231377
+date,amount,category,merchant,day_of_week,is_weekend,month
+2024-01-01,62.26,Restaurant,Sushi Bar,Monday,0,1
+2024-01-02,150.73,Groceries,Coop,Tuesday,0,1
+2024-01-03,15.66,Healthcare,Pharmacy,Wednesday,0,1
+2024-01-04,47.78,Restaurant,Sushi Bar,Thursday,0,1
+2024-01-05,95.35,Healthcare,Pharmacy,Friday,0,1
+2024-01-06,185.44,Restaurant,Pizza Place,Saturday,1,1
+2024-01-07,191.87,Transport,Gas Station,Sunday,1,1
+2024-01-08,28.38,Groceries,Organic Market,Monday,0,1
+2024-01-09,148.65,Entertainment,Cinema,Tuesday,0,1
+2024-01-09,24.97,Groceries,Organic Market,Tuesday,0,1
+2024-01-10,143.87,Shopping,Clothing Store,Wednesday,0,1
+2024-01-12,172.51,Entertainment,Cinema,Friday,0,1
+2024-01-13,80.33,Shopping,Clothing Store,Saturday,1,1
+2024-01-13,96.15,Healthcare,Clinic,Saturday,1,1
+2024-01-14,187.96,Entertainment,Concert Hall,Sunday,1,1
+2024-01-15,148.53,Transport,Train Station,Monday,0,1
+2024-01-17,1027.6,Rent,Landlord,Wednesday,0,1
+2024-01-18,86.22,Restaurant,Trattoria Roma,Thursday,0,1
+2024-01-20,134.53,Shopping,Clothing Store,Saturday,1,1
+2024-01-20,37.15,Healthcare,Clinic,Saturday,1,1
+2024-01-22,121.07,Entertainment,Concert Hall,Monday,0,1
+2024-01-22,51.67,Healthcare,Clinic,Monday,0,1
+2024-01-23,64.44,Utilities,Electric Company,Tuesday,0,1
+2024-01-23,40.4,Transport,Train Station,Tuesday,0,1
+2024-01-23,83.11,Healthcare,Pharmacy,Tuesday,0,1
+2024-01-24,52.13,Utilities,Internet Provider,Wednesday,0,1
+2024-01-25,74.63,Entertainment,Concert Hall,Thursday,0,1
+2024-01-25,178.11,Groceries,Coop,Thursday,0,1
+2024-01-26,10.62,Transport,Taxi,Friday,0,1
+2024-01-27,154.77,Entertainment,Concert Hall,Saturday,1,1
+2024-01-27,66.7,Groceries,Coop,Saturday,1,1
+2024-01-28,966.15,Rent,Landlord,Sunday,1,1
+2024-01-29,71.59,Restaurant,Sushi Bar,Monday,0,1
+2024-01-29,186.53,Restaurant,Pizza Place,Monday,0,1
+2024-01-29,21.01,Entertainment,Cinema,Monday,0,1
+2024-01-30,149.06,Groceries,Supermarket,Tuesday,0,1
+2024-01-30,155.51,Groceries,Coop,Tuesday,0,1
+2024-02-01,110.26,Transport,Taxi,Thursday,0,2
+2024-02-02,989.9,Rent,Landlord,Friday,0,2
+2024-02-03,180.93,Shopping,Electronics Shop,Saturday,1,2
+2024-02-04,952.1,Rent,Landlord,Sunday,1,2
+2024-02-05,1013.11,Rent,Landlord,Monday,0,2
+2024-02-06,23.46,Restaurant,Trattoria Roma,Tuesday,0,2
+2024-02-07,58.93,Utilities,Electric Company,Wednesday,0,2
+2024-02-08,62.3,Utilities,Electric Company,Thursday,0,2
+2024-02-08,993.11,Rent,Landlord,Thursday,0,2
+2024-02-09,56.14,Utilities,Internet Provider,Friday,0,2
+2024-02-10,192.87,Restaurant,Trattoria Roma,Saturday,1,2
+2024-02-11,46.4,Groceries,Supermarket,Sunday,1,2
+2024-02-11,41.14,Utilities,Electric Company,Sunday,1,2
+2024-02-12,163.52,Groceries,Organic Market,Monday,0,2
+2024-02-13,133.91,Groceries,Supermarket,Tuesday,0,2
+2024-02-13,186.01,Restaurant,Pizza Place,Tuesday,0,2
+2024-02-14,966.46,Rent,Landlord,Wednesday,0,2
+2024-02-14,102.27,Transport,Taxi,Wednesday,0,2
+2024-02-16,68.29,Utilities,Water Utility,Friday,0,2
+2024-02-17,38.71,Utilities,Electric Company,Saturday,1,2
+2024-02-17,194.73,Restaurant,Sushi Bar,Saturday,1,2
+2024-02-17,90.46,Restaurant,Sushi Bar,Saturday,1,2
+2024-02-19,192.55,Transport,Gas Station,Monday,0,2
+2024-02-22,1039.03,Rent,Landlord,Thursday,0,2
+2024-02-23,25.58,Restaurant,Sushi Bar,Friday,0,2
+2024-02-24,48.81,Shopping,Electronics Shop,Saturday,1,2
+2024-02-25,1017.17,Rent,Landlord,Sunday,1,2
+2024-02-25,70.07,Entertainment,Streaming Service,Sunday,1,2
+2024-02-26,97.07,Groceries,Supermarket,Monday,0,2
+2024-02-26,112.15,Groceries,Supermarket,Monday,0,2
+2024-02-27,177.36,Transport,Taxi,Tuesday,0,2
+2024-02-28,39.97,Shopping,Electronics Shop,Wednesday,0,2
+2024-02-28,196.93,Entertainment,Concert Hall,Wednesday,0,2
+2024-02-29,165.25,Restaurant,Sushi Bar,Thursday,0,2
+2024-02-29,29.68,Entertainment,Concert Hall,Thursday,0,2
+2024-03-01,179.05,Entertainment,Cinema,Friday,0,3
+2024-03-01,63.53,Transport,Taxi,Friday,0,3
+2024-03-02,140.62,Shopping,Clothing Store,Saturday,1,3
+2024-03-03,63.84,Utilities,Water Utility,Sunday,1,3
+2024-03-03,90.48,Groceries,Coop,Sunday,1,3
+2024-03-04,156.51,Restaurant,Trattoria Roma,Monday,0,3
+2024-03-05,150.83,Entertainment,Cinema,Tuesday,0,3
+2024-03-06,31.26,Healthcare,Pharmacy,Wednesday,0,3
+2024-03-07,91.66,Shopping,Clothing Store,Thursday,0,3
+2024-03-07,16.85,Transport,Train Station,Thursday,0,3
+2024-03-09,64.89,Restaurant,Trattoria Roma,Saturday,1,3
+2024-03-10,158.22,Groceries,Organic Market,Sunday,1,3
+2024-03-11,185.9,Healthcare,Pharmacy,Monday,0,3
+2024-03-11,1031.08,Rent,Landlord,Monday,0,3
+2024-03-12,149.95,Restaurant,Pizza Place,Tuesday,0,3
+2024-03-12,162.42,Shopping,Electronics Shop,Tuesday,0,3
+2024-03-13,1020.13,Rent,Landlord,Wednesday,0,3
+2024-03-13,173.13,Healthcare,Pharmacy,Wednesday,0,3
+2024-03-14,61.81,Utilities,Water Utility,Thursday,0,3
+2024-03-15,46.69,Restaurant,Sushi Bar,Friday,0,3
+2024-03-16,76.72,Groceries,Organic Market,Saturday,1,3
+2024-03-17,31.91,Shopping,Clothing Store,Sunday,1,3
+2024-03-18,148.42,Healthcare,Clinic,Monday,0,3
+2024-03-18,192.88,Transport,Train Station,Monday,0,3
+2024-03-18,30.6,Entertainment,Cinema,Monday,0,3
+2024-03-19,180.91,Groceries,Organic Market,Tuesday,0,3
+2024-03-22,1044.89,Rent,Landlord,Friday,0,3
+2024-03-23,146.75,Shopping,Clothing Store,Saturday,1,3
+2024-03-23,68.76,Entertainment,Concert Hall,Saturday,1,3
+2024-03-24,115.34,Healthcare,Clinic,Sunday,1,3
+2024-03-26,126.95,Healthcare,Pharmacy,Tuesday,0,3
+2024-03-27,64.51,Restaurant,Trattoria Roma,Wednesday,0,3
+2024-03-28,93.94,Shopping,Electronics Shop,Thursday,0,3
+2024-03-29,33.39,Utilities,Internet Provider,Friday,0,3
+2024-03-30,165.5,Shopping,Clothing Store,Saturday,1,3
+2024-03-31,163.25,Entertainment,Cinema,Sunday,1,3
+2024-03-31,18.78,Transport,Gas Station,Sunday,1,3

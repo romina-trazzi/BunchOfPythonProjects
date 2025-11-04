@@ -20,6 +20,7 @@ services:
       - "8000:8000"
 
     volumes:
+      - ../src:/app/src:ro
       - ../models:/app/models:rw
       - ../data:/app/data:rw
       - ../logs:/app/logs:rw

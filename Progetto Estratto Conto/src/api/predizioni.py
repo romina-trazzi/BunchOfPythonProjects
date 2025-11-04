@@ -1,231 +1,122 @@
 ﻿# src/api/predizioni.py
-# ---------------------
-# Purpose:
-#   ML API via FastAPI with two styles of endpoints:
-#     - JSON/Query based:
-#         POST /v1/train      -> optional input_csv path
-#         POST /v1/predict    -> optional input_csv/output_csv paths
-#     - Multipart upload:
-#         POST /v1/train/upload    -> upload CSV file
-#         POST /v1/predict/upload  -> upload CSV file
-#
-# Behavior:
-#   - Reads config/default.yaml
-#   - Uses ExpenseRegressor (preprocessor + estimator)
-#   - Splits data according to config.data train/val/test ratios
-#   - Saves model and metrics; returns a concise JSON with paths and previews
-#
-# Notes:
-#   - Upload endpoints save the incoming CSV under a configurable uploads dir:
-#       cfg.data.uploads_dir  (if present)
-#     otherwise fallback:
-#       {cfg.data.processed_path}/uploads
-#
-#   - Keep endpoints lightweight for Swagger demo & simple frontend integration.
+# ------------------------------------------------------------
+# API FastAPI per training e predizione modello spese personali
+# compatibile con frontend HTML
+# ------------------------------------------------------------
 
-from __future__ import annotations
-
-from typing import Any, Dict, Optional, List
-from pathlib import Path
-import shutil
-
+from fastapi import APIRouter, UploadFile, File, HTTPException
 import pandas as pd
-from fastapi import APIRouter, HTTPException, UploadFile, File
-from yaml import safe_load
+import io, os, joblib, base64
 from sklearn.model_selection import train_test_split
-
-from src.models.expense_regressor import ExpenseRegressor
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import classification_report, confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 router = APIRouter(prefix="/v1", tags=["ml"])
+MODEL_PATH = "models/latest.joblib"
 
 
-def _load_cfg() -> Dict[str, Any]:
-    cfg_path = Path("config/default.yaml")
-    if not cfg_path.exists():
-        raise HTTPException(status_code=500, detail="config/default.yaml not found")
-    with cfg_path.open("r", encoding="utf-8") as f:
-        return safe_load(f)
+# ------------------------------------------------------------
+# TRAIN
+# ------------------------------------------------------------
+@router.post("/train/upload", summary="Upload CSV e addestra il modello")
+async def train_upload(file: UploadFile = File(...)):
+    try:
+        contents = await file.read()
+        df = pd.read_csv(io.BytesIO(contents))
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Errore nel caricamento CSV: {e}")
 
+    expected = {"date", "amount", "category", "merchant", "day_of_week", "is_weekend", "month"}
+    if not expected.issubset(df.columns):
+        raise HTTPException(status_code=400, detail=f"Colonne mancanti. Attese: {sorted(list(expected))}")
 
-def _ensure_dirs(cfg: Dict[str, Any]) -> Dict[str, Path]:
-    data_dirs = {
-        "processed": Path(cfg["data"]["processed_path"]),
-        "models": Path(cfg["data"]["model_dir"]),
-        "logs": Path(cfg["data"]["logs_dir"]),
-    }
-    # uploads dir: config override or default under processed/uploads
-    uploads_dir = Path(
-        cfg["data"].get("uploads_dir", (data_dirs["processed"] / "uploads"))
+    X = df.drop(columns=["category"])
+    y = df["category"]
+
+    categorical = ["merchant", "day_of_week"]
+    numeric = ["amount", "is_weekend", "month"]
+
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ("cat", OneHotEncoder(handle_unknown="ignore"), categorical),
+            ("num", "passthrough", numeric),
+        ]
     )
-    for p in [*data_dirs.values(), uploads_dir]:
-        p.mkdir(parents=True, exist_ok=True)
-    return {"uploads": uploads_dir, **data_dirs}
 
+    clf = RandomForestClassifier(n_estimators=100, random_state=42)
+    pipeline = Pipeline(steps=[("preprocess", preprocessor), ("clf", clf)])
 
-def _save_upload(uploads_dir: Path, uploaded: UploadFile, target_name: Optional[str] = None) -> Path:
-    """
-    Persist the uploaded file to uploads_dir. Returns the saved path.
-    """
-    suffix = ""
-    # Try to preserve extension if any
-    if uploaded.filename and "." in uploaded.filename:
-        suffix = "." + uploaded.filename.split(".")[-1].lower()
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
 
-    name = target_name or (uploaded.filename or "uploaded")
-    if not name.lower().endswith(suffix) and suffix:
-        name = f"{Path(name).stem}{suffix}"
+    pipeline.fit(X_train, y_train)
+    preds = pipeline.predict(X_test)
+    report = classification_report(y_test, preds, output_dict=True)
 
-    save_path = uploads_dir / name
-    with save_path.open("wb") as out:
-        shutil.copyfileobj(uploaded.file, out)
-    return save_path
+    # Confusion matrix plot
+    cm = confusion_matrix(y_test, preds, labels=clf.classes_)
+    fig, ax = plt.subplots(figsize=(6, 4))
+    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
+                xticklabels=clf.classes_, yticklabels=clf.classes_)
+    plt.xlabel("Predetto")
+    plt.ylabel("Reale")
+    plt.tight_layout()
 
+    buf = io.BytesIO()
+    plt.savefig(buf, format="png")
+    plt.close(fig)
+    buf.seek(0)
+    img_b64 = base64.b64encode(buf.read()).decode("utf-8")
 
-@router.post("/train", summary="Train model from default.yaml or provided CSV path")
-def train(input_csv: Optional[str] = None) -> Dict[str, Any]:
-    """
-    Train the regressor using the CSV in config (or an override path in input_csv).
-    Returns metrics and where the model/metrics were saved.
-    """
-    cfg = _load_cfg()
-    dirs = _ensure_dirs(cfg)
-
-    # Resolve paths
-    raw_csv = Path(input_csv or cfg["data"]["raw_path"])
-    if not raw_csv.exists():
-        raise HTTPException(status_code=400, detail=f"Input CSV not found: {raw_csv}")
-
-    model_path = Path(cfg["training"]["model_save_path"])
-    metrics_path = Path(cfg["training"]["metrics_path"])
-
-    # Load data
-    df = pd.read_csv(raw_csv)
-
-    # Split according to config.data ratios (train vs temp, then temp -> val/test)
-    tr, va, te = cfg["data"]["train_split"], cfg["data"]["val_split"], cfg["data"]["test_split"]
-    if abs((tr + va + te) - 1.0) > 1e-6:
-        raise HTTPException(status_code=400, detail="train/val/test splits must sum to 1.0")
-
-    df_train, df_tmp = train_test_split(df, test_size=(1 - tr), random_state=42, shuffle=True)
-    if (va + te) == 0:
-        df_val, df_test = pd.DataFrame(columns=df.columns), pd.DataFrame(columns=df.columns)
-    else:
-        rel_test = te / (va + te)
-        df_val, df_test = train_test_split(df_tmp, test_size=rel_test, random_state=42, shuffle=True)
-
-    # Train
-    model = ExpenseRegressor(cfg).fit(df_train)
-
-    # Evaluate on test (if present)
-    if not df_test.empty and cfg["features"]["target_column"] in df_test.columns:
-        pred_df = model.predict(df_test, return_df=True)
-        y_true = pred_df["y_true"].to_numpy()
-        y_pred = pred_df["y_pred"].to_numpy()
-        metrics = model.regression_metrics(y_true, y_pred)
-    else:
-        metrics = {"mae": None, "rmse": None, "r2": None}
-
-    # Persist
-    model_path.parent.mkdir(parents=True, exist_ok=True)
-    model.save(str(model_path))
-    metrics_path.parent.mkdir(parents=True, exist_ok=True)
-    pd.Series(metrics).to_json(metrics_path, force_ascii=False)
-
-    # Preview
-    preview_cols = ["id_movimento", "data_movimento", "categoria", "sottocategoria"]
-    train_preview = df_train.head(5)[[c for c in preview_cols if c in df_train.columns]].to_dict(orient="records")
+    os.makedirs("models", exist_ok=True)
+    joblib.dump(pipeline, MODEL_PATH)
 
     return {
         "status": "ok",
-        "mode": "path",
-        "model_path": str(model_path),
-        "metrics_path": str(metrics_path),
-        "metrics": metrics,
-        "train_rows": int(len(df_train)),
-        "val_rows": int(len(df_val)),
-        "test_rows": int(len(df_test)),
-        "train_preview": train_preview,
+        "message": "Training completato ✅",
+        "model_path": MODEL_PATH,
+        "train_rows": len(X_train),
+        "test_rows": len(X_test),
+        "metrics": report,
+        "plot_base64": img_b64,
     }
 
 
-@router.post("/train/upload", summary="Upload CSV and train")
-async def train_upload(file: UploadFile = File(...)) -> Dict[str, Any]:
-    """
-    Upload a CSV and train the model on it.
-    """
-    cfg = _load_cfg()
-    dirs = _ensure_dirs(cfg)
-    saved = _save_upload(dirs["uploads"], file, target_name="train.csv")
-    # Reuse the train() logic with the saved path
-    return train(input_csv=str(saved))
+# ------------------------------------------------------------
+# PREDICT
+# ------------------------------------------------------------
+@router.post("/predict/upload", summary="Upload CSV per predizione batch")
+async def predict_upload(file: UploadFile = File(...)):
+    if not os.path.exists(MODEL_PATH):
+        raise HTTPException(status_code=400, detail=f"Model file not found: {MODEL_PATH}")
 
+    try:
+        contents = await file.read()
+        df = pd.read_csv(io.BytesIO(contents))
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Errore nel caricamento CSV: {e}")
 
-@router.post("/predict", summary="Batch predict from default.yaml or provided CSV path")
-def predict(
-    input_csv: Optional[str] = None,
-    output_csv: Optional[str] = None,
-    limit_preview: int = 10
-) -> Dict[str, Any]:
-    """
-    Load the trained model and score a CSV (default from config).
-    Writes predictions to config.prediction.output_path (or override).
-    Returns a small preview of predictions.
-    """
-    cfg = _load_cfg()
-    dirs = _ensure_dirs(cfg)
+    expected = {"date", "amount", "merchant", "day_of_week", "is_weekend", "month"}
+    missing = expected - set(df.columns)
+    if missing:
+        raise HTTPException(status_code=400, detail=f"Colonne mancanti: {missing}")
 
-    # Resolve paths
-    model_path = Path(cfg["prediction"]["model_path"])
-    if not model_path.exists():
-        raise HTTPException(status_code=400, detail=f"Model file not found: {model_path}")
-
-    in_path = Path(input_csv or cfg["prediction"]["input_path"])
-    out_path = Path(output_csv or cfg["prediction"]["output_path"])
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-
-    if not in_path.exists():
-        raise HTTPException(status_code=400, detail=f"Input CSV not found: {in_path}")
-
-    # Load model and data
-    model = ExpenseRegressor.load(str(model_path), cfg)
-    df = pd.read_csv(in_path)
-
-    # Predict
-    pred_df = model.predict(df, return_df=True)
-
-    # Select output columns
-    out_cols: List[str] = cfg["prediction"].get("output_columns") or []
-    if out_cols:
-        keep = [c for c in out_cols if c in pred_df.columns]
-        out = pred_df[keep]
-    else:
-        out = pred_df
-
-    # Write and preview
-    out.to_csv(out_path, index=False)
-    preview = out.head(limit_preview).to_dict(orient="records")
+    try:
+        model = joblib.load(MODEL_PATH)
+        preds = model.predict(df)
+        df["predicted_category"] = preds
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Errore durante la predizione: {e}")
 
     return {
         "status": "ok",
-        "mode": "path",
-        "input_csv": str(in_path),
-        "output_csv": str(out_path),
-        "preview": preview,
-        "rows": int(len(out)),
+        "message": "Predizione completata ✅",
+        "rows": len(df),
+        "preview": df.head(10).to_dict(orient="records"),
     }
-
-
-@router.post("/predict/upload", summary="Upload CSV and batch predict")
-async def predict_upload(
-    file: UploadFile = File(...),
-    limit_preview: int = 10
-) -> Dict[str, Any]:
-    """
-    Upload a CSV, run predictions, and return a preview.
-    The output file will be written under config.prediction.output_path.
-    """
-    cfg = _load_cfg()
-    dirs = _ensure_dirs(cfg)
-    saved = _save_upload(dirs["uploads"], file, target_name="predict.csv")
-    # Reuse the predict() logic with the saved path
-    return predict(input_csv=str(saved), output_csv=None, limit_preview=limit_preview)
